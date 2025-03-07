@@ -1,13 +1,588 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-		<!-- Your code goes here-->
+<!-- This HTML page and script files are developed by
+   Kamal Sandeep Karreddula
+    Research Scholar,
+    Electrical Engineering Department,
+    IIT Kharagpur.
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
-</body>
-</html>
+   Piyali Chattopadhyay
+    Project Scientist-Technical,
+    Virtual Labs IIT Kharagpur.-->
+
+<!DOCTYPE html>
+<html lang="en"><!--html tag start-->
+<head>
+    <title>Compare the frequency responses with methods and for different sampling times</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/adik.css" rel="stylesheet">
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!--<script  src="./js/TC.js">   </script>-->
+ 
+  
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>-->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.2.1/math.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.2.1/math.min.js  "></script>
+ 
+  <script  src="./js/DS.js"> </script>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+
+<link rel="stylesheet" href="./css/TC.css">
+
+	
+
+
+  <style>
+	.bluedot{
+	position:absolute;
+    border: 2px solid blue;
+    border-radius:50%;
+    background-color:blue;
+    background-image:linear-gradient(90deg,#0066ff,#00ccff);
+	box-shadow: 5px 5px 8px #888888;
+	}
+	.handlep{
+	position:absolute;
+    border: 2px solid blue;
+    border-radius:50%;
+    background-color:white;
+    background-image:url(./images/plus.png);
+	background-size:cover;
+	background-position:center;
+	
+	}
+	
+	.handlen{
+	position:absolute;
+    border: 2px solid blue;
+    border-radius:50%;
+    background-color:white;
+    background-image:url(./images/minus.jpg);
+	background-size:cover;
+	background-position:center;
+	
+	}
+	
+	canvas {	
+	max-width:100%;
+	}
+	
+	@media print {
+  body {
+    visibility: hidden;
+  }
+  #plotbucket {
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+	
+	
+	
+  </style>
+  
+  
+  
+</head>
+<body><!--body tag start-->
+    <div class="container p-3 my-3 text-primary text-center border"><!--First Container under body tag start-->
+        <div class="row"><!--First row under 1st container start-->
+            <div class="col-md-3"><!--First col under 1st row start-->
+                <img class="img-fluid rounded" src="./images/vlabs.png" alt="VLabs logo">
+            </div><!--First col under 1st row end-->
+            <div class="col-md-6"><!--2nd col under 1st row start-->
+                <p class="display-1"> <b> Virtual Labs <br> IIT Kharagpur </b> </p>
+            </div><!--2nd col under 1st row end-->
+            <div class="col-md-3"><!--3rd col under 1st row start-->
+                <img class="img-fluid rounded" src="./images/iitkgp.png" alt="IIT KGP Logo" >
+            </div><!--3rd col under 1st row end-->
+        </div><!--First row under 1st container end-->
+    
+        <hr>
+        <div class="row"><!--2nd row under 1st container start-->
+            <div class="col-md-3"><!--First col under 2nd row start-->
+
+            </div><!--First col under 2nd row end-->
+            <div class="col-md-6"><!--2nd col under 2nd row start-->
+                <p class="h1"> <b>Simulation</b> </p>
+            </div><!--2nd col under 2nd row end-->
+            <div class="col-md-3"><!--3rd col under 2nd row start-->
+
+            </div><!--3rd col under 2nd row end-->
+        </div><!--2nd row under 1st container end-->
+        <hr>
+        
+    </div><!--First Container under body tag end-->
+    
+    	
+    <div class="container p-3 my-5 text-left border"><!--3rd Container under body tag start-->
+      <div class="row"><!--First row under 3rd container start-->
+        <div class="col-md-1"></div><!--First col under 3rd container start& end-->
+        <div class="col-md-10"><!--2nd col under 3rd container start-->
+            <p class="text-center bg-success"> <a class="nav-link" data-bs-toggle="tab"  id="instcontrol" style="background-color:#128BD9"  ><span class=" h3 text-dark"> Instructions </span></a>
+              <ol id="inst" style="display:block;height:200px;overflow-y:auto;">
+                      <li> At first enter the coefficient values of the transfer function and sampling time. Here default sampling time T is 0.1.</li></br>
+  
+					  <li> Click on 'G(s)' button to get the partial fraction form of the transfer function. </li><br/>
+					 
+					 <li> Clicking on 'Discretization' dropdown-menu to get different methods.</li><br/>
+
+					 <li> Click on the desired option to select the discrete form of the system.</li><br/> 
+					 
+					 <li> Click on the 'Run' button option to get the selected discrete form of the system.</li><br/> 
+					 
+					 <li> Click on 'Plot Frequency Response' dropdown-menu to get the desired frequecy response plot. </li><br/>
+					 
+					 <li> Click on 'Clear' button to get results for new transfer function.</li><br/>
+					 
+					 <li> Note: Run both the methods one after the another to compare the responses.</li><br/>
+
+					
+						 
+		   </ol>
+            </p> 
+          </div><!--2nd col under 3rd container end-->
+		  
+        <div class="col-md-1"></div><!--3rd col under 3rd container start& end-->
+      </div><!--First row under 3rd container end-->
+    </div><!--3rd Container under body tag end-->
+	
+    <div class="container p-3 my-5 text-center border" id="canvas" ><!--Fourth container under body tag start-->
+	
+	<div class="row my-5 gy-2">
+	
+	<div class="col-md-12">
+	       
+		   <div id = "tf1" class="card" style="display:block;width:100%;background-color:none">
+		   <div class="card-body">
+		   
+		   $$G (s) = \frac{b_0 s^2 + b_1 s + b_2}{a_0 s^2 + a_1 s + a_2}$$
+	
+			<div   class="img-container">			
+			<!--<img class = "img-fluid" src="./images/Continuous_System.png" class="img-fluid" > <br/></br>-->
+			Enter the value b<sub>0</sub> : <input type="number" id="b_0" min="1" value="1" max="10" step="1" style="position:absolute;width:25%" ><br/></br>
+			Enter the value b<sub>1</sub> : <input type="number" id="b_1" min="1" value="2" max="10" step="1" style="position:absolute;width:25%" ><br/></br>
+			Enter the value b<sub>2</sub> : <input type="number" id="b_2" min="1" value="1" max="10" step="1" style="position:absolute;width:25%" ><br/></br>
+            Enter the value a<sub>0</sub> : <input type="number" id="a_0" min="1" value="1" max="10" step="1" style="position:absolute;width:25%" ><br/></br>	
+            Enter the value a<sub>1</sub> : <input type="number" id="a_1" min="-10" value="-3" max="1000" step="1" style="position:absolute;width:25%" ><br/></br>
+            Enter the value a<sub>2</sub> : <input type="number" id="a_2" min="1" value="2" max="1000" step="1" style="position:absolute;width:25%" ><br/></br> 	
+			<!--Enter the desired sampling time :    <input type="number" id="Ts" min="0.01" value="0.1" max="10" step="0.01" style="position:absolute;width:20%"readonly=readonly><br/></br>-->
+									
+			Enter the    sampling time T :    <input type="number" onchange="inputChange()" id="Ts" min="0.01" value="0.1" max="0.5" step="0.01" style="position:absolute;width:30%"><br/></br>				
+			
+			<button class="btn btn-success" id ="run" onclick="system()">G(s)</button>
+			
+			</div></div>
+			
+			<div id="tfbody" class="card" style="display:none; width:100%;background-color:none">
+			<br/>			
+			<span class="card-text "><b>Transfer Function of Continuous System</b></span><br/><br/><br/>			
+			<span class="card-text" ><b style="position:absolute;width: 6%;left:27%;top: 61%;">G (s) =</b></span> 
+			<span  class="card-text fontCss" >&nbsp;&nbsp;<input type="number" id="tfn1" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s<sup>2</sup></b>
+			+ &nbsp;<input type="number" id="tfn2" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s</b> 
+			+ &nbsp; <input type="number" id="tfn3" value="0" readonly=readonly style="width:5%;text-align:center;border:none"></span><br/>
+			<br/>
+			<span  class="card-text fontCss" >&nbsp;&nbsp;<input type="number" id="tfd1" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s<sup>2</sup></b>
+			+ &nbsp;<input type="number" id="tfd2" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s</b> 
+			+ &nbsp; <input type="number" id="tfd3" value="0" readonly=readonly style="width:5%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 33%;left: 34%;top: 59%;">
+						
+			<br/><br/>
+			</div>
+			
+			
+			<!--<script>
+			var outputText1;
+			var outputText2;
+			var roots=[];
+            var b0 = document.getElementById('b_0').value;
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+			var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+			var T = document.getElementById('Ts').value;
+			
+			function system(){
+			
+			outputText1=" G(s)= ("+b0+"s\u00B2+"+b1+"s+"+b2+ ") / (" +a0+"s<sup>2</sup>+"+a1+"s+"+a2+ ")";//+b0+"s\u00B2+"+b1+"s+"+b2+;
+			outputText2=" b0="+b0+";  b1="+b1+"; b2="+b2+ "; a0="+a0+";  a1="+a1+";  a2="+a2+ "";
+			document.getElementById("output_text1").innerHTML=outputText1;
+			document.getElementById("output_text2").innerHTML=outputText2;
+			
+						
+			}
+			</script> -->
+			
+			
+			
+			<!--<p id="output_text1"/>
+			<p id="output_text2"/>-->
+			
+			<p id="Rt_text1"/>
+			
+			<p id="Rt_text2"/>
+			 
+            			  
+			
+			</div>
+			<br/>
+			
+			
+			
+			<div  id="pfG" class="img-container" style="visibility:hidden">			
+			<b>Partial Fractions form of given system, G(s):</b></br>
+			<!--<img class = "img-fluid" src="./images/pf.png" class="img-fluid" > <br/></br> -->
+			
+			<div id="tfbody2" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			$$G (s) = \frac{b_0 s^2 + b_1 s + b_2}{a_0 s^2 + a_1 s + a_2} = b_0 + \frac{e_0 s + e_1}{a_0 s^2 + a_1 s + a_2} = b_0 + \frac{A_1}{s + (p_1)} + \frac{A_2}{s + (p_2)}$$
+			<!--<span class="card-text "><b>Equation example</b></span><br/><br/><br/>	-->
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:4%;top:70%;"><span class="fontCss">G</span>(s) =</b></span>
+			
+			<span  class="card-text fontCss"style="position:absolute;left:-13%;top: 62%;" >&nbsp;&nbsp;<input type="number" id="tfn4" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s<sup>2</sup></b>
+			+ &nbsp;<input type="number" id="tfn5" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s</b> 
+			+ &nbsp; <input type="number" id="tfn6" value="0" readonly=readonly style="width:5%;text-align:center;border:none"></span><br/>
+			<br/>
+			<span  class="card-text fontCss" style="position:absolute;left:-13%;top: 78%;">&nbsp;&nbsp;<input type="number" id="tfd4" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s<sup>2</sup></b>
+			+ &nbsp;<input type="number" id="tfd5" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s</b> 
+			+ &nbsp; <input type="number" id="tfd6" value="0" readonly=readonly style="width:5%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 19%;left: 11%;top: 70%;">
+			
+			<span style="position:absolute;left:24%;top: 70%;">=<input type="number" id="tfn7" value="0" readonly=readonly style="width:20%;text-align:center;border:none;"> + </span>
+			
+			<span style="position:absolute;left:29%;top: 62%;"><input type="number" id="tfn8" value="0" readonly=readonly style="width:20%;text-align:center;border:none;"> s + 
+			<input type="number" id="tfn9" value="0" readonly=readonly style="width:20%;text-align:center;border:none;"></span>
+			<span  class="card-text fontCss" style="position:absolute;left:15%;top: 78%;">&nbsp;&nbsp;<input type="number" id="tfd7" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s<sup>2</sup></b>
+			+ &nbsp;<input type="number" id="tfd8" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s</b> 
+			+ &nbsp; <input type="number" id="tfd9" value="0" readonly=readonly style="width:5%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 19%;left:38%;top:69%;">
+			
+			
+			
+			<span style="position:absolute;left:51%;top: 70%;">= <input type="number" id="tfn10" value="0" readonly=readonly style="width:20%;text-align:center;border:none;"> + </span>
+			
+			<span style="position:absolute;left:60%;top: 62%;"><input type="number" id="tfn11" value="0" readonly=readonly style="width:20%;text-align:center;border:none;"></span>
+			<span style="position:absolute;left:59%;top: 77%;">s + (<input type="number" id="tfd10" value="0" readonly=readonly style="width:20%;text-align:center;border:none;">)</span>
+			<hr  style="position:absolute;width: 8%;left:66%;top:69%;">
+			
+			<span style="position:absolute;left:74%;top: 70%;">+</span>
+			<span style="position:absolute;left:71%;top: 62%;"><input type="number" id="tfn12" value="0" readonly=readonly style="width:20%;text-align:center;border:none;"></span>
+			<span style="position:absolute;left:70%;top: 77%;">s + (<input type="number" id="tfd11" value="0" readonly=readonly style="width:20%;text-align:center;border:none;">)</span>
+			<hr  style="position:absolute;width: 8%;left:77%;top: 70%;">
+									
+			<br/><br/>
+			</div><br/><br/>
+			
+			
+			<!--<p id='my-div'/>
+			<p id="output_text2_1"/>
+			<p id="output_text3"/>-->
+			
+			
+			
+			</div>
+			<br/>
+			
+			
+			
+			<!--	<div class="row my-5 gy-2">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+	
+			
+			
+				<!--//<button class="btn btn-success" id ="run" onclick="ZOH_mag();ZOH_ph()">ZOH</button>-->
+				<!--<button class="btn btn-success" id ="run" onclick="FOH_fr()">FOH Freq. Resp.</button>-->
+				<!--<button class="btn btn-success" id ="run" onclick="FOH_bode()">FOH bode</button>-->
+				<!--<button class="btn btn-success" id ="run" onclick="FOH_pade1_fr()">FOH pade1 Freq.Resp.</button>-->
+				<!--<button class="btn btn-success" id ="run" onclick="FOH_pade1_bode()">FOH pade1 bode</button>-->
+				<!--<button class="btn btn-success" id ="run" onclick="FOH_pade2_fr()">FOH pade2 Freq.Resp.</button>-->
+				<!--<button class="btn btn-success" id ="run" onclick="FOH_pade2_bode()">FOH pade2 bode</button>-->
+				<!--<button class="btn btn-danger" id ="clr" onclick="refresh()" >Clear</button>-->
+	
+	<!--</div>
+	<div class="col-md-1"></div>
+	</div>-->
+				
+	 <div class="d-inline-flex p-3 gy-2">			
+		<div id="Disc"class="dropdown" style="display:none">
+  <button class="btn btn-info dropdown-toggle" type="button" id="methodB" data-bs-toggle="dropdown" aria-expanded="false">
+    Discretization
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <!-- <li><a class="dropdown-item" id ="run" onclick="IIM()">Impulse Invariance Method</a></li> -->
+	<li><a class="dropdown-item" id ="run1" onclick="impName()">Impulse Invariance Method: Freq. Resp.</a></li>
+    <!-- <li><a class="dropdown-item" id ="run" onclick="BTM()">Bilinear Transformation Method</a></li> -->
+	 <li><a class="dropdown-item" id ="run2" onclick="biName()">Bilinear Transformation Method: Freq. Resp.</a></li>
+    </b></br>
+  </ul>
+</div>&nbsp;&nbsp;
+        
+		<button class="btn btn-success" id ="rn" onclick="RunM()" style="display:none">Run</button>		
+		
+		&nbsp;&nbsp;<button class="btn btn-danger" id ="clr" onclick="refresh()" style="display:none" >Clear</button>
+		
+		<input type="number" id="mchk" value="1" style="visibility:hidden">
+		
+	</div>
+	</br>
+	<div id="DiscD"  class="img-container" style="visibility:hidden">			
+			<b>Discretized form of the given system:</b></br>
+			<!--<img class = "img-fluid" src="./images/DF_IIM.png" class="img-fluid" > <br/></br> -->
+			
+			<div id="tfbody3" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text "><b>Impulse Invariance Method</b></span>
+			
+			$$G (z) = b_0 + \frac{TA_1}{1 - z^{-1} e^{T_{p_1}}} + \frac{TA_2}{1 - z^{-1} e^{T_{p_2}}} = b_0 + \frac{TA_1 z}{z - e^{T_{p_1}}} + \frac{TA_2 z}{z - e^{T_{p_2}}} = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+				
+		    <br/>
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:4%;top:70%;"><span class="fontCss">G</span>(z) =</b></span>
+			
+			<span  class="card-text"style="position:absolute;left:3%;top:71%;" >&nbsp;<input type="number" id="tfn13" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			+</span> 
+			
+			<span class="card-text"style="position:absolute;left:12%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn14" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<span class="card-text"style="position:absolute;left:11%;top:78%;" >
+			&nbsp;1 - <span class="fontCss">z<sup>-1</sup></span><input type="number" id="tfd12" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 9%;left:17%;top: 70%;">
+			
+			<span class="card-text"style="position:absolute;left:26%;top:71%;" >+&nbsp;</span>
+			<span class="card-text"style="position:absolute;left:24%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn15" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<span class="card-text"style="position:absolute;left:23%;top:78%;" >
+			&nbsp;1 - <span class="fontCss">z<sup>-1</sup></span><input type="number" id="tfd13" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 9%;left:28%;top: 70%;">
+			
+			<span  class="card-text"style="position:absolute;left:31%;top:71%;" >=&nbsp;<input type="number" id="tfn16" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			+</span> 
+			
+			<span class="card-text"style="position:absolute;left:41%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn17" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<span class="card-text"style="position:absolute;left:41%;top:78%;" >
+			<span class="fontCss">z -</span><input type="number" id="tfd14" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 9%;left:46%;top: 70%;">
+			
+			<span class="card-text"style="position:absolute;left:55%;top:71%;" >+&nbsp;</span>
+			<span class="card-text"style="position:absolute;left:53%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn18" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<span class="card-text"style="position:absolute;left:53%;top:78%;" >
+			<span class="fontCss">z -</span><input type="number" id="tfd15" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 9%;left:57%;top: 70%;">
+			
+			<span class="card-text"style="position:absolute;left:67%;top:71%;" >=&nbsp;</span>
+			<span class="card-text"style="position:absolute;left:63%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z<sup>2</sup></span>
+			+&nbsp;<input type="number" id="tfn20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z</span>
+			+&nbsp;<input type="number" id="tfn21" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:63%;top: 80%;" >
+			&nbsp;<input type="number" id="tfd16" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z<sup>2</sup></span>
+			+&nbsp;<input type="number" id="tfd17" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z</span>
+			+&nbsp;<input type="number" id="tfd18" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 24%;left:69%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody4" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text "><b>Impulse Invariance Method: Frequency Response</b></span>
+			
+			$$G (e^{j\omega}) = b_0 + \frac{TA_1}{1 - e^{-j\omega} e^{T_{p_1}}} + \frac{TA_2}{1 - e^{-j\omega} e^{T_{p_2}}} = b_0 + \frac{TA_1 e^{j\omega}}{e^{j\omega} - e^{T_{p_1}}} + \frac{TA_2 e^{j\omega}}{e^{j\omega} - e^{T_{p_2}}} = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+				
+		    <br/>
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:4%;top:70%;"><span class="fontCss">G</span>(e <sup>jω </sup>) =</b></span>
+			
+			<span  class="card-text"style="position:absolute;left:3%;top:71%;" >&nbsp;<input type="number" id="tfnf13" value="0" readonly=readonly style="width:20%;text-align:center;border:none">
+			+</span> 
+			
+			<span class="card-text"style="position:absolute;left:12%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf14" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<span class="card-text"style="position:absolute;left:10%;top:78%;" >
+			&nbsp;1 - <span class="fontCss">e<sup>-jω </sup></span><input type="number" id="tfdf12" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 9%;left:17%;top: 70%;">
+			
+			<span class="card-text"style="position:absolute;left:26%;top:71%;" >+&nbsp;</span>
+			<span class="card-text"style="position:absolute;left:24%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf15" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<span class="card-text"style="position:absolute;left:21%;top:78%;" >
+			&nbsp;1 - <span class="fontCss">e<sup>-jω </sup></span><input type="number" id="tfdf13" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 9%;left:28%;top: 70%;">
+			
+			<span  class="card-text"style="position:absolute;left:31%;top:71%;" >=&nbsp;<input type="number" id="tfnf16" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			+</span> 
+			
+			<span class="card-text"style="position:absolute;left:41%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf17" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<span class="card-text"style="position:absolute;left:41%;top:78%;" >
+			<span class="fontCss">e<sup>jω </sup> -</span><input type="number" id="tfdf14" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 9%;left:46%;top: 70%;">
+			
+			<span class="card-text"style="position:absolute;left:55%;top:71%;" >+&nbsp;</span>
+			<span class="card-text"style="position:absolute;left:53%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf18" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<span class="card-text"style="position:absolute;left:53%;top:78%;" >
+			<span class="fontCss">e<sup>jω </sup> -</span><input type="number" id="tfdf15" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 9%;left:57%;top: 70%;">
+			
+			<span class="card-text"style="position:absolute;left:67%;top:71%;" >=&nbsp;</span>
+			<span class="card-text"style="position:absolute;left:63%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>j2ω </sup></span>
+			+&nbsp;<input type="number" id="tfnf20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>jω </sup></span>
+			+&nbsp;<input type="number" id="tfnf21" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:63%;top: 80%;" >
+			&nbsp;<input type="number" id="tfdf16" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>j2ω </sup></span>
+			+&nbsp;<input type="number" id="tfdf17" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>jω </sup></span>
+			+&nbsp;<input type="number" id="tfdf18" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 24%;left:69%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody5" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			<span class="card-text "><b>Bilinear Transformation Method</b></span>
+			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+			<br/>
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss">G</span>(z) =</b></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn22" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z<sup>2</sup></span>
+			+&nbsp;<input type="number" id="tfn23" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z</span>
+			+&nbsp;<input type="number" id="tfn24" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfd19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z<sup>2</sup></span>
+			+&nbsp;<input type="number" id="tfd20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z</span>
+			+&nbsp;<input type="number" id="tfd21" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody6" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			<span class="card-text "><b>Bilinear Transformation Method:Frequency Response</b></span>
+			$$G (e^{j\omega}) = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			<br/>
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss"><span style="font-family:Bodoni MT;font-style:italic;font-size:18px">G (e <sup>j ω </sup>) </span> =</b></span></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf22" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>j2ω </sup></span>
+			+&nbsp;<input type="number" id="tfnf23" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>jω </sup></span>
+			+&nbsp;<input type="number" id="tfnf24" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfdf19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>j2ω </sup></span>
+			+&nbsp;<input type="number" id="tfdf20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>jω </sup></span>
+			+&nbsp;<input type="number" id="tfdf21" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<!--<p id='my-div1'/>
+			<p id='output_text4'/>
+			<p id='output_text4_1'/> -->
+						
+			
+			</div>
+			<br/> <br/>
+	
+	        <div id="PlotFreq"class="dropdown" style="display:none">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Plot Frequency Response
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+   
+	<li ><a class="dropdown-item" id ="run3" onclick="IIM_fr()" >Impulse Invariance Method: Freq. Resp. Plot</a></li>
+    
+	 <li ><a class="dropdown-item" id ="run4" onclick="BTM_fr()" disabled=disabled>Bilinear Transformation Method: Freq. Resp. Plot</a></li>
+	 
+	 <li><a class="dropdown-item" id ="run5" onclick="comparePlots()" disabled=disabled>Comparison Plot</a></li>
+    </b></br>
+  </ul>
+</div>&nbsp;&nbsp;	
+	
+	</div>
+	
+	</div>
+	
+			
+	        
+		
+		
+		
+	 <div class="row justify-content-center"><!-----------------------graph T vs. w----------------------------------------->
+		
+	 <div class="col-md-1"></div>
+			<div class="col-md-10">
+			
+				<!--img id = "0.3fr" src="./images/plant.png" class="img-fluid" style="display:none">-->
+				<div id = "plotbucket" class="content-center " style="display:none; position:relative; border:3px solid white;height:600px;width:1000px ">
+				
+				<!--<button type="button" id="exportChart2" class="btn btn-primary"  style="display:none;position:absolute;top:210%;left:28%;">Download Plot</button>-->
+				
+					<div id="chartContainer1"  style="display:none; position:absolute; height:45%; width:100%;z-index:1 "></div>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<div id="chartContainer2"  style="display:none; position:absolute; height:45%; width:100%;z-index:1 "></div>
+				
+				</div>
+				<!--<button type="button" id="exportChart" class="btn btn-primary"  >Download Plot</button>-->
+			</div>
+		<div class="col-md-1"></div>	
+			
+		
+	</div>	
+
+	
+	
+          <!-- Code End here-->
+        </div><!--Fourth container under body tag end-->
+          
+      <!--</div>
+    </div>-->
+
+    <div class="container p-3 my-5 text-primary text-center border"><!--Last and fifth container under body tag start-->
+      <div class="row">
+        <footer>
+          <div class="row ce">
+            <div class="col-sm-12">
+              <p class="h5"><i> Copyright ©2022 <a href="http://vlabs.iitkgp.ac.in/vlt/">Virtual Labs IIT Kharagpur</a> </i><br><br>
+              <a href="../../license/index.html" target="_blank"> Licensing Terms </a>
+            </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+  </div><!--Last and fifth container under body tag end-->
+  
+   
+	
+	
+</body><!--body tag end-->
+</html><!--html tag end-->
