@@ -183,21 +183,26 @@ function IIM(){
 			var den=math.multiply(2,a0);
 			R1=math.divide(num1,den);
 			R2=math.divide(num2,den);
-			
+			console.log(R1);
+			console.log(R2);
 			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
 			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
 			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
 			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+			console.log(A1);
+			console.log(A2);
 	
 	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),100)),100);
 	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),100)),100);
-	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,-R1)),100)),100);
-	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,-R2)),100)),100);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),100)),100);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),100)),100);
+	console.log(eTp1);
+	console.log(eTp2);
 	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),100)),100);
 	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),100)),100);
-	var d0=math.divide(math.round(math.multiply(math.add(b0,TA1,TA2),100)),100);
-	var d1=math.divide(math.round(math.multiply(math.add(b0,math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),100)),100);
-	var d2=math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),100)),100);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),100)),100);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),100)),100);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),100)),100);
 	
 	        
 			document.getElementById('tfn13').value = b0;
@@ -219,7 +224,7 @@ function IIM(){
 	        document.getElementById('tfd15').value = eTp2;
 			
 			document.getElementById('tfd16').value = 1;
-	        document.getElementById('tfd17').value = c1;
+	        document.getElementById('tfd17').value = -c1;
 			document.getElementById('tfd18').value = c2;
 	        
 			
@@ -280,13 +285,13 @@ function IIMF(){
 	
 	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),100)),100);
 	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),100)),100);
-	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,-R1)),100)),100);
-	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,-R2)),100)),100);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),100)),100);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),100)),100);
 	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),100)),100);
 	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),100)),100);
-	var d0=math.divide(math.round(math.multiply(math.add(b0,TA1,TA2),100)),100);
-	var d1=math.divide(math.round(math.multiply(math.add(b0,math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),100)),100);
-	var d2=math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),100)),100);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),100)),100);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),100)),100);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),100)),100);
 	
 	        
 			document.getElementById('tfnf13').value = b0;
@@ -308,7 +313,7 @@ function IIMF(){
 	        document.getElementById('tfdf15').value = eTp2;
 			
 			document.getElementById('tfdf16').value = 1;
-	        document.getElementById('tfdf17').value = c1;
+	        document.getElementById('tfdf17').value = -c1;
 			document.getElementById('tfdf18').value = c2;
 	        
 			
@@ -483,14 +488,14 @@ function IIM_fr(){
 	
 	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),100)),100);
 	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),100)),100);
-	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,-R1)),100)),100);
-	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,-R2)),100)),100);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),100)),100);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),100)),100);
 	var c0 = 1;
 	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),100)),100);
 	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),100)),100);
-	var d0=math.divide(math.round(math.multiply(math.add(b0,TA1,TA2),100)),100);
-	var d1=math.divide(math.round(math.multiply(math.add(b0,math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),100)),100);
-	var d2=math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),100)),100);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),100)),100);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),100)),100);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),100)),100);
 	
 	console.log(d0);
 	console.log(d1);
@@ -499,7 +504,8 @@ function IIM_fr(){
 	console.log(c1);
 	console.log(c2);
 	
-	var maxf = 10;
+	
+	var maxf = 50;
 	var minf = 0;
 	
 		
@@ -510,6 +516,13 @@ function IIM_fr(){
 	while(f<=maxf){
 	//for(var f=minf;f<=maxf;f++){
 	f1=f;
+		
+	//f = f.toFixed(3);
+	//f1=f;
+	//fre=math.subtract(fre,-0.1);
+	//fre=fre.toFixed(3);
+	//var w = math.multiply(2,math.pi,f);
+	
 		
 	//f = f.toFixed(3);
 	//f1=f;
@@ -697,7 +710,8 @@ document.getElementById('chartContainer2').style.display  = "block";
 	
 	
 	});	 */
-
+document.getElementById("okb").style.display = "block";
+document.getElementById("exportChart").style.display = "block";
 
 }
 
@@ -736,7 +750,7 @@ function BTM_fr(){
 	console.log(c1);
 	console.log(c2);
 	
-	var maxf = 10;
+	var maxf = 50;
 	var minf = 0;
 	
 		
@@ -936,12 +950,14 @@ document.getElementById('chartContainer2').style.display  = "block";
 	
 	
 	});	 */
+document.getElementById("okb").style.display = "block";
+document.getElementById("exportChart").style.display = "block";
 
 
 }
 
 function comparePlots(){
-	var maxf = 10;
+	var maxf = 50;
 	var minf = 0;
 	
 document.getElementById('plotbucket').style.display  = "block"; 
@@ -1082,8 +1098,48 @@ document.getElementById('chartContainer2').style.display  = "block";
 	chart2.render();
 
 	
+document.getElementById("okb").style.display = "block";
+document.getElementById("exportChart").style.display = "block";	
+	
+}
+
+///code for downloading the plot area
+function saveAs(uri, filename) {
+
+    var link = document.createElement('a');
+
+    if (typeof link.download === 'string') {
+
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+
+    } else {
+
+        window.open(uri);
+
+    }
+}
+
+function saveImg(){
+html2canvas(document.querySelector('#plotbucket')).then(function(canvas) {
+
+        saveAs(canvas.toDataURL(), 'Plot.png');
+    }); 
 	
 	
-	
-	
+}
+
+function hidePlot(){
+	document.getElementById('plotbucket').style.display="none";
+	document.getElementById('exportChart').style.display="none";
+	document.getElementById('okb').style.display="none";
 }
