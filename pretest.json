@@ -1,0 +1,62 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "Q1. What does the frequency response of a system represent?",
+      "answers": {
+        "a": "The system's output for a given input signal",
+        "b": "The system's stability over time",
+        "c": "The steady-state response of a system to sinusoidal inputs of varying frequency",
+        "d": "The time-domain response of the system to an impulse input"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q2. Which of the following is true for the frequency response of a discrete-time system?",
+      "answers": {
+        "a": "It is only defined for continuous signals.",
+        "b": "It is derived by analyzing the system's output for sinusoidal inputs at discrete frequencies.",
+        "c": "The frequency response can only be determined using the Z-transform.",
+        "d": "It represents the system's time-domain response to a unit impulse."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q3. In discrete-time systems, the frequency response can be obtained by evaluating the system's transfer function at:",
+      "answers": {
+        "a": "<img src='./images/prq3a.png'/>",
+        "b": "<img src='./images/prq3b.png'/>",
+        "c": "<img src='./images/prq3c.png'/>",
+        "d": "<img src='./images/prq3d.png'/>"
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q4. Which of the following is the formula for the frequency response of a discrete-time system with the transfer function <img src='./images/prq4.png'/>?",
+      "answers": {
+        "a": "<img src='./images/prq4a.png'/>",
+        "b": "<img src='./images/prq4b.png'/>",
+        "c": "<img src='./images/prq4c.png'/>",
+        "d": "<img src='./images/prq4d.png'/>"
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q5. What is the effect of sampling a continuous signal at a rate less than twice the highest frequency component?",
+      "answers": {
+        "a": "The signal becomes perfectly reconstructed.",
+        "b": "Aliasing occurs, leading to distortion.",
+        "c": "The signal is unaffected.",
+        "d": "The signal's frequency components become zero."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    }
+	
+	
+  ]
+}
