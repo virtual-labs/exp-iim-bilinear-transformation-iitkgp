@@ -23,12 +23,12 @@
 <b>Fig. 2. Partial fraction form of continuous transfer function</b>							  
 </div>
 
-3. Clicking on 'Discretization' dropdown-menu to get different methods.  
+3. Click on 'Discretization' dropdown-menu to get different methods.  
 
 <div align="center">
 <img class="img-fluid"  src="./images/Prod_3.png" alt="">
 
-<b>Fig. 3. Dropdown menu button to get different discretization menthods</b>							  
+<b>Fig. 3. Dropdown menu button to get different discretization methods</b>							  
 </div>
             
 4. Click on the desired option to select the discrete form of the system.
@@ -75,7 +75,11 @@
 
 10. Click on 'Clear' button to get results for new transfer function. 
 
-11. Note: Run both the methods one after the another to compare the responses.
+11. Click on 'Download Plot' button to download the plot.
+					 
+12. Click on 'OK' button to clear the plot area.
+
+13. Note: Run both the methods one after the another to compare the responses.
 
 
 

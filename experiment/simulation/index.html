@@ -20,7 +20,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/adik.css" rel="stylesheet">
   
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.js"></script>
+ 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   
@@ -129,7 +131,7 @@
         
     </div><!--First Container under body tag end-->
     
-    	
+   	
     <div class="container p-3 my-5 text-left border"><!--3rd Container under body tag start-->
       <div class="row"><!--First row under 3rd container start-->
         <div class="col-md-1"></div><!--First col under 3rd container start& end-->
@@ -149,6 +151,10 @@
 					 <li> Click on 'Plot Frequency Response' dropdown-menu to get the desired frequecy response plot. </li><br/>
 					 
 					 <li> Click on 'Clear' button to get results for new transfer function.</li><br/>
+					 
+					 <li> Click on 'Download Plot' button to download the plot.</li><br/>
+					 
+					 <li> Click on 'OK' button to clear the plot area.</li><br/>
 					 
 					 <li> Note: Run both the methods one after the another to compare the responses.</li><br/>
 
@@ -352,7 +358,7 @@
 			
 			<span class="card-text "><b>Impulse Invariance Method</b></span>
 			
-			$$G (z) = b_0 + \frac{TA_1}{1 - z^{-1} e^{T_{p_1}}} + \frac{TA_2}{1 - z^{-1} e^{T_{p_2}}} = b_0 + \frac{TA_1 z}{z - e^{T_{p_1}}} + \frac{TA_2 z}{z - e^{T_{p_2}}} = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+			$$G (z) = b_0 + \frac{TA_1}{1 - z^{-1} e^{T p_1}} + \frac{TA_2}{1 - z^{-1} e^{T p_2}} = b_0 + \frac{TA_1 z}{z - e^{T p_1}} + \frac{TA_2 z}{z - e^{T p_2}} = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
 				
 		    <br/>
 			<span class="card-text" ><b style="position:absolute;min-width:6%;left:4%;top:70%;"><span class="fontCss">G</span>(z) =</b></span>
@@ -377,14 +383,14 @@
 			+</span> 
 			
 			<span class="card-text"style="position:absolute;left:41%;top: 62%;" >
-			&nbsp;<input type="number" id="tfn17" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			&nbsp;<input type="number" id="tfn17" value="0" readonly=readonly style="width:25%;text-align:center;border:none">&nbsp;<span class="fontCss">z</span></span>
 			<span class="card-text"style="position:absolute;left:41%;top:78%;" >
 			<span class="fontCss">z -</span><input type="number" id="tfd14" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
 			<hr  style="position:absolute;width: 9%;left:46%;top: 70%;">
 			
 			<span class="card-text"style="position:absolute;left:55%;top:71%;" >+&nbsp;</span>
 			<span class="card-text"style="position:absolute;left:53%;top: 62%;" >
-			&nbsp;<input type="number" id="tfn18" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
+			&nbsp;<input type="number" id="tfn18" value="0" readonly=readonly style="width:25%;text-align:center;border:none">&nbsp;<span class="fontCss">z</span></span>
 			<span class="card-text"style="position:absolute;left:53%;top:78%;" >
 			<span class="fontCss">z -</span><input type="number" id="tfd15" value="0" readonly=readonly style="width:25%;text-align:center;border:none"></span>
 			<hr  style="position:absolute;width: 9%;left:57%;top: 70%;">
@@ -552,7 +558,8 @@
 					<div id="chartContainer2"  style="display:none; position:absolute; height:45%; width:100%;z-index:1 "></div>
 				
 				</div>
-				<!--<button type="button" id="exportChart" class="btn btn-primary"  >Download Plot</button>-->
+				<button type="button" id="exportChart" class="btn btn-primary" style="display:none" onclick="saveImg()">Download Plot</button>
+				<button type="button" id="okb" class="btn btn-danger" style="display:none" onclick="hidePlot()">OK</button>
 			</div>
 		<div class="col-md-1"></div>	
 			
