@@ -101,8 +101,8 @@ var Rt2;
 			R2=math.divide(num2,den);
 			console.log(R1);
 			console.log(R2);
-			Rt1="Root-1 = " +math.divide(num1,den)+ "";
-			Rt2="Root-2 = " +math.divide(num2,den)+ "";
+			Rt1="Pole-1 = " +math.divide(num1,den)+ "";
+			Rt2="Pole-2 = " +math.divide(num2,den)+ "";
 			
 			document.getElementById("Rt_text1").innerHTML=Rt1;
 			document.getElementById("Rt_text2").innerHTML=Rt2;
