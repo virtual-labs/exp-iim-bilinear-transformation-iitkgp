@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en"><!--html tag start-->
 <head>
-    <title>Compare the frequency responses with methods and for different sampling times</title>
+    <title>Compare the Frequency Responses using Different Methods and Sampling Times</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -139,9 +139,9 @@
         <div class="col-md-10"><!--2nd col under 3rd container start-->
             <p class="text-center bg-success"> <a class="nav-link" data-bs-toggle="tab"  id="instcontrol" style="background-color:#128BD9"  ><span class=" h3 text-dark"> Instructions </span></a>
               <ol id="inst" style="display:block;height:200px;overflow-y:auto;">
-                      <li> At first enter the coefficient values of the transfer function and sampling time. Here default sampling time T is 0.1.</li></br>
+                      <li> At first enter the coefficient values of the transfer function and sampling time. Here default sampling time <span style="font-family:'Bodoni MT';font-style:italic;font-size:18px">T</span> is 0.1.</li></br>
   
-					  <li> Click on 'G(s)' button to get the partial fraction form of the transfer function. </li><br/>
+					  <li> Click on '<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span>)' button to get the partial fraction form of the transfer function. </li><br/>
 					 
 					 <li> Clicking on 'Discretization' dropdown-menu to get different methods.</li><br/>
 
@@ -182,30 +182,30 @@
 	
 			<div   class="img-container">			
 			<!--<img class = "img-fluid" src="./images/Continuous_System.png" class="img-fluid" > <br/></br>-->
-			Enter the value b<sub>0</sub>&nbsp; : &nbsp;<input type="number" id="b_0" min="1" value="1" max="10" step="1" style="position:absolute;width:25%" ><br/></br>
-			Enter the value b<sub>1</sub>&nbsp; : &nbsp;<input type="number" id="b_1" min="1" value="2" max="10" step="1" style="position:absolute;width:25%" ><br/></br>
-			Enter the value b<sub>2</sub>&nbsp; : &nbsp;<input type="number" id="b_2" min="1" value="1" max="10" step="1" style="position:absolute;width:25%" ><br/></br>
-            Enter the value a<sub>0</sub>&nbsp; : &nbsp;<input type="number" id="a_0" min="1" value="1" max="10" step="1" style="position:absolute;width:25%" ><br/></br>	
-            Enter the value a<sub>1</sub>&nbsp; : &nbsp;<input type="number" id="a_1" min="-10" value="-3" max="1000" step="1" style="position:absolute;width:25%" ><br/></br>
-            Enter the value a<sub>2</sub>&nbsp; : &nbsp;<input type="number" id="a_2" min="1" value="2" max="1000" step="1" style="position:absolute;width:25%" ><br/></br> 	
+			Enter the value <span style="font-family:'Bodoni MT';font-style:italic;font-size:18px">b<sub>0</sub></span> : &nbsp;<input type="number" id="b_0" min="1" value="1" max="10" step="1" style="position:absolute;width:25%" ><br/></br>
+			Enter the value <span style="font-family:'Bodoni MT';font-style:italic;font-size:18px">b<sub>1</sub></span> : &nbsp;<input type="number" id="b_1" min="1" value="2" max="10" step="1" style="position:absolute;width:25%" ><br/></br>
+			Enter the value <span style="font-family:'Bodoni MT';font-style:italic;font-size:18px">b<sub>2</sub></span> : &nbsp;<input type="number" id="b_2" min="1" value="1" max="10" step="1" style="position:absolute;width:25%" ><br/></br>
+            Enter the value <span style="font-family:'Bodoni MT';font-style:italic;font-size:18px">a<sub>0</sub></span> : &nbsp;<input type="number" id="a_0" min="1" value="1" max="10" step="1" style="position:absolute;width:25%" ><br/></br>	
+            Enter the value <span style="font-family:'Bodoni MT';font-style:italic;font-size:18px">a<sub>1</sub></span> : &nbsp;<input type="number" id="a_1" min="-10" value="-3" max="1000" step="1" style="position:absolute;width:25%" ><br/></br>
+            Enter the value <span style="font-family:'Bodoni MT';font-style:italic;font-size:18px">a<sub>2</sub></span> : &nbsp;<input type="number" id="a_2" min="1" value="2" max="1000" step="1" style="position:absolute;width:25%" ><br/></br> 	
 			<!--Enter the desired sampling time :    <input type="number" id="Ts" min="0.01" value="0.1" max="10" step="0.01" style="position:absolute;width:20%"readonly=readonly><br/></br>-->
 									
-			Enter the    sampling time T (sec)&nbsp; :    &nbsp;<input type="number" onchange="inputChange()" id="Ts" min="0.01" value="0.1" max="0.5" step="0.01" style="position:absolute;width:30%"><br/></br>				
+			Enter the    sampling time <span style="font-family:'Bodoni MT';font-style:italic;font-size:18px">T</span> (sec) :&nbsp;    <input type="number" onchange="inputChange()" id="Ts" min="0.01" value="0.1" max="0.5" step="0.01" style="position:absolute;width:25%"><br/></br>				
 			
-			<button class="btn btn-success" id ="run" onclick="system()">G(s)</button>
+			<button class="btn btn-success" id ="run" onclick="system()"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span>)</button>
 			
 			</div></div>
 			
 			<div id="tfbody" class="card" style="display:none; width:100%;background-color:none">
 			<br/>			
 			<span class="card-text "><b>Transfer Function of Continuous System</b></span><br/><br/><br/>			
-			<span class="card-text" ><b style="position:absolute;width: 6%;left:27%;top: 61%;">G (s) =</b></span> 
-			<span  class="card-text fontCss" >&nbsp;&nbsp;<input type="number" id="tfn1" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s<sup>2</sup></b>
-			+ &nbsp;<input type="number" id="tfn2" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s</b> 
+			<span class="card-text" ><b style="position:absolute;width: 6%;left:27%;top: 61%;"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span>) =</b></span> 
+			<span  class="card-text fontCss" >&nbsp;&nbsp;<input type="number" id="tfn1" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s<sup>2</sup></span></b>
+			+ &nbsp;<input type="number" id="tfn2" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span></b> 
 			+ &nbsp; <input type="number" id="tfn3" value="0" readonly=readonly style="width:5%;text-align:center;border:none"></span><br/>
 			<br/>
-			<span  class="card-text fontCss" >&nbsp;&nbsp;<input type="number" id="tfd1" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s<sup>2</sup></b>
-			+ &nbsp;<input type="number" id="tfd2" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s</b> 
+			<span  class="card-text fontCss" >&nbsp;&nbsp;<input type="number" id="tfd1" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s<sup>2</sup></span></b>
+			+ &nbsp;<input type="number" id="tfd2" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span></b> 
 			+ &nbsp; <input type="number" id="tfd3" value="0" readonly=readonly style="width:5%;text-align:center;border:none"></span>
 			<hr  style="position:absolute;width: 33%;left: 34%;top: 59%;">
 						
@@ -253,7 +253,7 @@
 			
 			
 			<div  id="pfG" class="img-container" style="visibility:hidden">			
-			<b>Partial Fractions form of given system, G(s):</b></br>
+			<b>Partial Fractions form of given system, <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span>):</b></br>
 			<!--<img class = "img-fluid" src="./images/pf.png" class="img-fluid" > <br/></br> -->
 			
 			<div id="tfbody2" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
@@ -262,23 +262,23 @@
 			$$G (s) = \frac{b_0 s^2 + b_1 s + b_2}{a_0 s^2 + a_1 s + a_2} = b_0 + \frac{e_0 s + e_1}{a_0 s^2 + a_1 s + a_2} = b_0 + \frac{A_1}{s + (p_1)} + \frac{A_2}{s + (p_2)}$$
 			<!--<span class="card-text "><b>Equation example</b></span><br/><br/><br/>	-->
 		
-			<span class="card-text" ><b style="position:absolute;min-width:5%;left:0%;top:70%;"><span class="fontCss">G</span>(s) =</b></span>
+			<span class="card-text" ><b style="position:absolute;min-width:5%;left:0%;top:70%;"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span>) =</b></span>
 			
-			<span  class="card-text fontCss"style="position:absolute;left:-17%;top: 62%;" >&nbsp;&nbsp;<input type="number" id="tfn4" value="0" readonly=readonly style="width:6%;text-align:center;border:none">&nbsp;<b>s<sup>2</sup></b>
-			+ &nbsp;<input type="number" id="tfn5" value="0" readonly=readonly style="width:6%;text-align:center;border:none">&nbsp;<b>s</b> 
+			<span  class="card-text fontCss"style="position:absolute;left:-17%;top: 62%;" >&nbsp;&nbsp;<input type="number" id="tfn4" value="0" readonly=readonly style="width:6%;text-align:center;border:none">&nbsp;<b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s<sup>2</sup></span></b>
+			+ &nbsp;<input type="number" id="tfn5" value="0" readonly=readonly style="width:6%;text-align:center;border:none">&nbsp;<b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span></b> 
 			+ &nbsp; <input type="number" id="tfn6" value="0" readonly=readonly style="width:6%;text-align:center;border:none"></span><br/>
 			<br/>
-			<span  class="card-text fontCss" style="position:absolute;left:-17%;top: 78%;">&nbsp;&nbsp;<input type="number" id="tfd4" value="0" readonly=readonly style="width:6%;text-align:center;border:none">&nbsp;<b>s<sup>2</sup></b>
-			+ &nbsp;<input type="number" id="tfd5" value="0" readonly=readonly style="width:6%;text-align:center;border:none">&nbsp;<b>s</b> 
+			<span  class="card-text fontCss" style="position:absolute;left:-17%;top: 78%;">&nbsp;&nbsp;<input type="number" id="tfd4" value="0" readonly=readonly style="width:6%;text-align:center;border:none">&nbsp;<b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s<sup>2</sup></span></b>
+			+ &nbsp;<input type="number" id="tfd5" value="0" readonly=readonly style="width:6%;text-align:center;border:none">&nbsp;<b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span></b> 
 			+ &nbsp; <input type="number" id="tfd6" value="0" readonly=readonly style="width:6%;text-align:center;border:none"></span>
 			<hr  style="position:absolute;width: 18%;left: 6%;top: 69%;">
 			
 			<span style="position:absolute;left:18%;top: 70%;">=<input type="number" id="tfn7" value="0" readonly=readonly style="width:18%;text-align:center;border:none;"> + </span>
 			
-			<span style="position:absolute;left:23%;top: 62%;"><input type="number" id="tfn8" value="0" readonly=readonly style="width:20%;text-align:center;border:none;"> s + 
+			<span style="position:absolute;left:23%;top: 62%;"><input type="number" id="tfn8" value="0" readonly=readonly style="width:20%;text-align:center;border:none;"> <b> <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</sup></span></b> + 
 			<input type="number" id="tfn9" value="0" readonly=readonly style="width:20%;text-align:center;border:none;"></span>
-			<span  class="card-text fontCss" style="position:absolute;left:10%;top: 78%;">&nbsp;&nbsp;<input type="number" id="tfd7" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b>s<sup>2</sup></b>
-			+ &nbsp;<input type="number" id="tfd8" value="0" readonly=readonly style="width:6%;text-align:center;border:none">&nbsp;<b>s</b> 
+			<span  class="card-text fontCss" style="position:absolute;left:10%;top: 78%;">&nbsp;&nbsp;<input type="number" id="tfd7" value="0" readonly=readonly style="width:5%;text-align:center;border:none">&nbsp;<b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s<sup>2</sup></span></b>
+			+ &nbsp;<input type="number" id="tfd8" value="0" readonly=readonly style="width:6%;text-align:center;border:none">&nbsp;<b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span></b> 
 			+ &nbsp; <input type="number" id="tfd9" value="0" readonly=readonly style="width:6%;text-align:center;border:none"></span>
 			<hr  style="position:absolute;width: 19%;left:33%;top:69%;">
 			
@@ -286,13 +286,13 @@
 			
 			<span style="position:absolute;left:46%;top: 70%;">= <input type="number" id="tfn10" value="0" readonly=readonly style="width:18%;text-align:center;border:none;"> + </span>
 			<span style="position:absolute;left:56%;top: 62%;"><input type="text" id="tfn11" value="0" readonly=readonly style="width:55%;text-align:center;border:none;"></span>			
-			<span style="position:absolute;left:57%;top: 77%;">s +( <input type="text" id="tfd10" value="0" readonly=readonly style="width:45%;text-align:center;border:none;">)</span>
+			<span style="position:absolute;left:57%;top: 77%;"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span> </b>+( <input type="text" id="tfd10" value="0" readonly=readonly style="width:45%;text-align:center;border:none;">)</span>
 			
 			<hr  style="position:absolute;width: 18%;left:61%;top:69%;">
 			
 			<span style="position:absolute;left:80%;top: 70%;">+</span>
 			<span style="position:absolute;left:78%;top: 62%;"><input type="text" id="tfn12" value="0" readonly=readonly style="width:55%;text-align:center;border:none;"></span>
-			<span style="position:absolute;left:79%;top: 77%;">s + (<input type="text" id="tfd11" value="0" readonly=readonly style="width:45%;text-align:center;border:none;">)</span>
+			<span style="position:absolute;left:79%;top: 77%;"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span> </b>+ (<input type="text" id="tfd11" value="0" readonly=readonly style="width:45%;text-align:center;border:none;">)</span>
 			<hr  style="position:absolute;width: 18%;left:82%;top: 69%;">
 									
 			<br/><br/>
@@ -411,18 +411,18 @@
 			+&nbsp;<input type="number" id="tfd18" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
 			<hr  style="position:absolute;width: 24%;left:69%;top: 70%;"> -->	
 			
-			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss">G</span>(z) =</b></span>
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) =</b></span>
 			
 			
 			
 			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
-			&nbsp;<input type="number" id="tfn19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z<sup>2</sup></span>
-			+&nbsp;<input type="number" id="tfn20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z</span>
+			&nbsp;<input type="number" id="tfn19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfn20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
 			+&nbsp;<input type="number" id="tfn21" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
 			
 			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
-			&nbsp;<input type="number" id="tfd16" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z<sup>2</sup></span>
-			+&nbsp;<input type="number" id="tfd17" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z</span>
+			&nbsp;<input type="number" id="tfd16" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfd17" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
 			+&nbsp;<input type="number" id="tfd18" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
 			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">		
 
@@ -494,13 +494,13 @@
 			
 			
 			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
-			&nbsp;<input type="number" id="tfnf19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>j2ω </sup></span>
-			+&nbsp;<input type="number" id="tfnf20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>jω </sup></span>
+			&nbsp;<input type="number" id="tfnf19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
 			+&nbsp;<input type="number" id="tfnf21" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
 			
 			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
-			&nbsp;<input type="number" id="tfdf16" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>j2ω </sup></span>
-			+&nbsp;<input type="number" id="tfdf17" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>jω </sup></span>
+			&nbsp;<input type="number" id="tfdf16" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf17" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
 			+&nbsp;<input type="number" id="tfdf18" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
 			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">	
 
@@ -516,18 +516,18 @@
 			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
 			<br/>
 		
-			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss">G</span>(z) =</b></span>
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"> <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) =</b></span>
 			
 			
 			
 			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
-			&nbsp;<input type="number" id="tfn22" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z<sup>2</sup></span>
-			+&nbsp;<input type="number" id="tfn23" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z</span>
+			&nbsp;<input type="number" id="tfn22" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfn23" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
 			+&nbsp;<input type="number" id="tfn24" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
 			
 			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
-			&nbsp;<input type="number" id="tfd19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z<sup>2</sup></span>
-			+&nbsp;<input type="number" id="tfd20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">z</span>
+			&nbsp;<input type="number" id="tfd19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfd20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
 			+&nbsp;<input type="number" id="tfd21" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
 			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">						
 			<br/><br/>
@@ -544,13 +544,13 @@
 			
 			
 			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
-			&nbsp;<input type="number" id="tfnf22" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>j2ω </sup></span>
-			+&nbsp;<input type="number" id="tfnf23" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>jω </sup></span>
+			&nbsp;<input type="number" id="tfnf22" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf23" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
 			+&nbsp;<input type="number" id="tfnf24" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
 			
 			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
-			&nbsp;<input type="number" id="tfdf19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>j2ω </sup></span>
-			+&nbsp;<input type="number" id="tfdf20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span class="fontCss">e<sup>jω </sup></span>
+			&nbsp;<input type="number" id="tfdf19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
 			+&nbsp;<input type="number" id="tfdf21" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
 			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">						
 			<br/><br/>
