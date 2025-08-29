@@ -3,7 +3,7 @@
 <b>Steps to perform the simulation</b>
 
 										
-1. At first enter the coefficient values of the transfer function and sampling time T. 
+1. At first enter the coefficient values of the transfer function and sampling time <span style="font-family:'Bodoni MT';font-style:italic;font-size:18px">T</span>. 
 
 <div align="center">
 <img class="img-fluid"  src="./images/Prod_1.png" alt="">

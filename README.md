@@ -7,16 +7,16 @@
 <b>Discipline | <b>Electrical Engineering 
 :--|:--|
 <b> Lab | <b> Digital Control Laboratory
-<b> Experiment|     <b> Compare the frequency responses with methods and for different sampling times and Exp 4
+<b> Experiment|     <b> Compare the Frequency Responses using Different Methods and Sampling Times and Exp 4
 
 ### About the Experiment 
 
 The frequency response of a discrete system describes how the system responds to sinusoidal inputs of varying frequencies. It is a key concept in signal processing and helps in analyzing the system's behavior in the frequency domain.
-For a discrete-time system, the frequency response is found by evaluating the system’s transfer function H(z) on the unit circle in the Z-plane, where z=e^jω. 
-This results in H(e^jω), which represents the system's response to a sinusoidal input of frequency ω. </br>
+For a discrete-time system, the frequency response is found by evaluating the system’s transfer function <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">H</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) on the unit circle in the Z-plane, where <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z = e <sup>j&omega;</sup></span>. 
+This results in <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">H</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e <sup>j&omega;</sup></span>), which represents the system's response to a sinusoidal input of frequency <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">&omega;</span>. </br>
 The frequency response can be broken into two components: </br>
-Magnitude Response: |H(e^jω)|, which indicates how much the system amplifies or attenuates the input at each frequency. </br>
-Phase Response: arg⁡(H(e^jω)), which shows the phase shift the system introduces at each frequency. </br>
+Magnitude Response: |<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">H</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e <sup>j&omega;</sup></span>)|, which indicates how much the system amplifies or attenuates the input at each frequency. </br>
+Phase Response: <span style="font-size:25px">&ang;⁡</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">H</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e <sup>j&omega;</sup></span>)), which shows the phase shift the system introduces at each frequency. </br>
 
 The frequency response is crucial in filter design (low-pass, high-pass, etc.), system identification, and stability analysis. It helps determine how a system modifies the amplitude and phase of sinusoidal components of a signal. 
 A stable system's frequency response will not cause instability or excessive amplification at any frequency, making it a vital tool in both analysis and design of discrete systems.
