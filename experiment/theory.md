@@ -18,6 +18,7 @@ The frequency response of the discrete system can be written as:
 $$ H(e^{j\omega}) = \sum_{i=1}^{N}\frac{T A_i}{(1-e^{-j\omega} e^{Tp_i})} \tag{3}$$
 
 In the case of a pole of order two, which pertains to the damping ratio <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">&zeta; = 1</span>,
+
 $$ H(z) = \sum_{i=1}^{N}\frac{T z e^{Tp_i}}{(e^{Tp_i}-z)^2} \tag{4}$$
 
 The frequency response of the discrete system can be written as:
@@ -46,12 +47,9 @@ $$ \approx \frac{2}{T} \frac{z -1}{z+1} $$
 
 $$ \approx \frac{2}{T} \frac{1- z^{-1}}{1+z^{-1}}\tag{7} $$
 
-
 The frequency response of the discrete system can be written as:
 
-
 $$ H(z) = H(e^{j\omega})\tag{8} $$
-
 
 
 
