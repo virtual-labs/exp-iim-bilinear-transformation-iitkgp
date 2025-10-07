@@ -13,11 +13,11 @@
       "difficulty": "beginner"
     },
     {
-      "question": "Q2. Which of the following is true for the frequency response of a discrete-time system?",
+      "question": "Q2. Which of the following is true about the frequency response of a discrete-time system?",
       "answers": {
-        "a": "It is only defined for continuous signals.",
-        "b": "It is derived by analyzing the system's output for sinusoidal inputs at discrete frequencies.",
-        "c": "The frequency response can only be determined using the Z-transform.",
+        "a": "It is defined only for continuous signals.",
+        "b": "It is derived by analyzing the system’s output when the input is a sinusoid at any normalized frequency between 0 and <img src='./images/2pi.png'/> radians/samples.",
+        "c": "It can only be determined using the Z-transform.",
         "d": "It represents the system's time-domain response to a unit impulse."
       },
       "correctAnswer": "b",
