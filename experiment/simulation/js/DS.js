@@ -547,50 +547,51 @@ function IIMF(){
 	var outputText5_1;
 	incr1=1;
 	if(incr1==1 && incr2==1){
-		document.getElementById("run3").style.display="block";
+		//document.getElementById("run3").style.display="block";
 		document.getElementById("run32").style.display="block";
 		
-		document.getElementById("run4").style.display="block";
+		//document.getElementById("run4").style.display="block";
 		document.getElementById("run42").style.display="block";
 		
-	document.getElementById("run5").style.display="block";
-	document.getElementById("run52").style.display="block";
+	//document.getElementById("run5").style.display="block";
+	//document.getElementById("run52").style.display="block";
 	
-	document.getElementById("run6").style.display="none";
-	document.getElementById("run62").style.display="none";
+	//document.getElementById("run6").style.display="none";
+	//document.getElementById("run62").style.display="none";
 	}	
 		
 	if(incr1==1 && incr2!=1){	
-	document.getElementById("run3").style.display="block";
+	//document.getElementById("run3").style.display="block";
 	document.getElementById("run32").style.display="block";
 	
-	document.getElementById("run5").style.display="none";
-	document.getElementById("run52").style.display="none";
+	//document.getElementById("run5").style.display="none";
+	//document.getElementById("run52").style.display="none";
 	
-	document.getElementById("run4").style.display="none";
+	//document.getElementById("run4").style.display="none";
 	document.getElementById("run42").style.display="none";
 	
-	document.getElementById("run6").style.display="block";
-	document.getElementById("run62").style.display="block";
+	//document.getElementById("run6").style.display="block";
+	//document.getElementById("run62").style.display="block";
 	}
 	if(incr1!=1 && incr2==1){	
-	document.getElementById("run3").style.display="none";
+	//document.getElementById("run3").style.display="none";
 	document.getElementById("run32").style.display="none";
 	
-	document.getElementById("run5").style.display="none";
-	document.getElementById("run52").style.display="none";
+	//document.getElementById("run5").style.display="none";
+	//document.getElementById("run52").style.display="none";
 	
-	document.getElementById("run4").style.display="block";
+	//document.getElementById("run4").style.display="block";
 	document.getElementById("run42").style.display="block";
 	
-	document.getElementById("run6").style.display="block";
-	document.getElementById("run62").style.display="block";
+	//document.getElementById("run6").style.display="block";
+	//document.getElementById("run62").style.display="block";
 	}
 	
 	
 	 document.getElementById('tfbody4').style.display = "block"; 
-	  document.getElementById('PlotFreq').style.display = "block";
+	  //document.getElementById('PlotFreq').style.display = "block";
 	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
 	   
 	  
 	        var b0 = document.getElementById('b_0').value;			
@@ -602,58 +603,7 @@ function IIMF(){
 	        var T = document.getElementById('Ts').value;
 			
            	
-	        /* var part=math.sqrt(math.subtract(math.pow(a1,2),math.multiply(4,a0,a2)));
-			var num1=math.add(-a1,part);
-			var num2=math.add(-a1,-part);
-			var den=math.multiply(2,a0);
-			R1=math.divide(num1,den);
-			R2=math.divide(num2,den);
-			
-			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
-			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
-			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
-			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
-	
-	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),100)),100);
-	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),100)),100);
-	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),100)),100);
-	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),100)),100);
-	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),100)),100);
-	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),100)),100);
-	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),100)),100);
-	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),100)),100);
-	var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),100)),100);
-	
-	        
-			document.getElementById('tfnf13').value = b0;
-	        document.getElementById('tfnf14').value = TA1;	
-	        document.getElementById('tfnf15').value = TA2;
-			
-	        document.getElementById('tfnf16').value = b0;
-			document.getElementById('tfnf17').value = TA1;
-			document.getElementById('tfnf18').value = TA2;
-			
-			document.getElementById('tfnf19').value = d0;
-			document.getElementById('tfnf20').value = d1;
-			document.getElementById('tfnf21').value = d2;
-			
-			document.getElementById('tfdf12').value = eTp1;
-	        document.getElementById('tfdf13').value = eTp2;
-			
-			document.getElementById('tfdf14').value = eTp1;
-	        document.getElementById('tfdf15').value = eTp2;
-			
-			document.getElementById('tfdf16').value = 1;
-	        document.getElementById('tfdf17').value = -c1;
-			document.getElementById('tfdf18').value = c2;
-	        
-			
-			
-			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
-			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
-			
-			document.getElementById("output_text5").innerHTML=outputText5;
-			document.getElementById("output_text5_1").innerHTML=outputText5_1; */ 
+	      
 			
 			var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
 			
@@ -977,49 +927,50 @@ function BTMF(){
 	var outputText7_1;
 	incr2=1;
 	if(incr1==1 && incr2==1){
-		document.getElementById("run3").style.display="block";
+		//document.getElementById("run3").style.display="block";
 		document.getElementById("run32").style.display="block";
 		
-		document.getElementById("run4").style.display="block";
+		//document.getElementById("run4").style.display="block";
 		document.getElementById("run42").style.display="block";
 		
-	document.getElementById("run5").style.display="block";
-	document.getElementById("run52").style.display="block";
+	//document.getElementById("run5").style.display="block";
+	//document.getElementById("run52").style.display="block";
 
-	document.getElementById("run6").style.display="none";
-	document.getElementById("run62").style.display="none";
+	//document.getElementById("run6").style.display="none";
+	//document.getElementById("run62").style.display="none";
 	}	
 		
 	if(incr1!=1 && incr2==1){	
-	document.getElementById("run3").style.display="none";
+	//document.getElementById("run3").style.display="none";
 	document.getElementById("run32").style.display="none";
 	
-	document.getElementById("run5").style.display="none";
-	document.getElementById("run52").style.display="none";
+	//document.getElementById("run5").style.display="none";
+	//document.getElementById("run52").style.display="none";
 	
-	document.getElementById("run4").style.display="block";
+	//document.getElementById("run4").style.display="block";
 	document.getElementById("run42").style.display="block";
 	
-	document.getElementById("run6").style.display="block";
-	document.getElementById("run62").style.display="block";
+	//document.getElementById("run6").style.display="block";
+	//document.getElementById("run62").style.display="block";
 	}
 	if(incr1==1 && incr2!=1){	
-	document.getElementById("run3").style.display="block";
+	//document.getElementById("run3").style.display="block";
 	document.getElementById("run32").style.display="block";
 	
-	document.getElementById("run6").style.display="block";
-	document.getElementById("run62").style.display="block";
+	//document.getElementById("run6").style.display="block";
+	//document.getElementById("run62").style.display="block";
 	
-	document.getElementById("run5").style.display="none";
-	document.getElementById("run52").style.display="none";
+	//document.getElementById("run5").style.display="none";
+	//document.getElementById("run52").style.display="none";
 	
-	document.getElementById("run4").style.display="none";
+	//document.getElementById("run4").style.display="none";
 	document.getElementById("run42").style.display="none";
 	}
 	
 	 document.getElementById('tfbody6').style.display = "block";
-	  document.getElementById('PlotFreq').style.display = "block";
+	  //document.getElementById('PlotFreq').style.display = "block";
 	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
 	 
 	        var b0 = document.getElementById('b_0').value;			
 			var b1 = document.getElementById('b_1').value;
@@ -1413,8 +1364,14 @@ document.getElementById("exportChart").style.display = "block";
 var dArray1s=[],dArray2s=[],dArray3s=[],dArray4s=[];///for method comparison
 var DatafTss = [],DatapTss = [], inc1s=0, spstore1s=[];///for iim Ts compare
 var chart1s, chart2s;
+var counter = 0;///counter
+var D1=[],D2=[],D3=[],D4=[],D5=[],D6=[];///magnitude
+var D11=[],D22=[],D33=[],D44=[],D55=[],D66=[];///phase
+var lt1 =[],lt2=[],lt3=[],lt4=[],lt5=[],lt6=[];///legends compare
+var t1=[],t2=[],t3=[],t4=[],t5=[],t6=[];///sampling time compare
+
 function IIM_frs(){
-	
+	counter++;
 	var dataOPPoints1s=[];	///for plotting chart
     var dataOPPoints2s=[];
 	
@@ -1425,7 +1382,8 @@ function IIM_frs(){
 			var a1 = document.getElementById('a_1').value;
 			var a2 = document.getElementById('a_2').value;
 	        var T = document.getElementById('Ts').value;
-			spstore1s.push(T);        
+			spstore1s.push(T);
+			lgTxt = "IIM";			
 	
 	var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
 			
@@ -1554,13 +1512,13 @@ function IIM_frs(){
 			}
 	
 	var maxf = 10;//100;
-	var minf = 0.1;
+	var minf = 0.01;
 	
 		
     var yop = new Array();	///continous data output result storing
 	var phase = [];
 	
-	var	f = minf;
+	var	f = math.multiply(minf,1);
 	while(f<=maxf){
 	
 	f1=f;
@@ -1582,7 +1540,39 @@ function IIM_frs(){
 	
 	yop[f] = math.multiply(20,math.log(yy,10));
 	dataOPPoints1s.push({x:(w), y:(yop[f])});//dataOPPoints1s.push({x:(w), y:(yop[f])});///magnitude part
-	dArray1s = dataOPPoints1s;
+	
+	if(counter==1){
+		D1= dataOPPoints1s;
+		t1= T;
+		lt1 = lgTxt;
+	}
+	if(counter==2){
+		D2= dataOPPoints1s;
+		t2= T;
+		lt2 = lgTxt;
+	}
+	if(counter==3){
+		D3= dataOPPoints1s;
+		t3= T;
+		lt3 = lgTxt;
+	}
+	if(counter==4){
+		D4= dataOPPoints1s;
+		t4= T;
+		lt4 = lgTxt;
+	}
+	
+	if(counter==5){
+		D5= dataOPPoints1s;
+		t5= T;
+		lt5 = lgTxt;
+	}
+	if(counter==6){
+		D6= dataOPPoints1s;
+		t6= T;
+		lt6 = lgTxt;
+	}
+	//dArray1s = dataOPPoints1s;
 	DatafTss['ar'+inc1s]= dataOPPoints1s;	
 	
 	var w1 = math.multiply(2,math.pi,f);
@@ -1596,8 +1586,43 @@ function IIM_frs(){
 	phase[f]=math.multiply(math.divide(180,math.pi),math.atan2(imagy,y));
 	
 	dataOPPoints2s.push({x:(w), y:(phase[f])});//dataOPPoints2s.push({x:(w), y:(phase[f])});//phase part
-	dArray2s = dataOPPoints2s;
+	//dArray2s = dataOPPoints2s;
+	if(counter==1){
+		D11 = dataOPPoints2s;
+		t1= T;
+		lt1 = lgTxt;
+	}
+	if(counter==2){
+		D22 = dataOPPoints2s;
+		t2= T;
+		lt2 = lgTxt;
+	}
+	if(counter==3){
+		D33 = dataOPPoints2s;
+		t3= T;
+		lt3 = lgTxt;
+	}
+	if(counter==4){
+		D44 = dataOPPoints2s;
+		t4= T;
+		lt4 = lgTxt;
+	}
+	if(counter==5){
+		D55 = dataOPPoints2s;
+		t5= T;
+		lt5 = lgTxt;
+	}
+	if(counter==6){
+		D66 = dataOPPoints2s;
+		t6= T;
+		lt6 = lgTxt;
+	}
+	
 	DatapTss['ar'+inc1s]= dataOPPoints2s;
+	
+	if(counter>1){
+		document.getElementById('cbtn').disabled = false;
+	}
 	
 	f=math.add(f,0.01);
 }
@@ -1612,7 +1637,7 @@ document.getElementById('chartContainer1').style.display  = "block";
 	  zoomType: "xy",
 		  animationDuration: 10000, 
 	  title:{
-      text: "Frequency Response (Magnitude vs. Frequency) "
+      text: "Magnitude Response"
 	  
       },
 	  
@@ -1620,8 +1645,8 @@ document.getElementById('chartContainer1').style.display  = "block";
         interlacedColor: "#dddbdb",
         title: "Frequency(rad/s)",
 		logarithmic:true,
-		maximum:maxf,
-		minimum:minf,
+		maximum:10,//maxf,
+		minimum:0.1,//minf,
       },
     axisY: 
 	      {/////output Y axis
@@ -1634,7 +1659,7 @@ document.getElementById('chartContainer1').style.display  = "block";
 	data:[ 
       {        
         type: "spline",
-		color:"#ed2c4e",
+		color:"black",
         dataPoints:dataOPPoints1s
 	
        }]
@@ -1651,7 +1676,7 @@ document.getElementById('chartContainer2').style.display  = "block";
 	  zoomType: "xy",
 		  animationDuration: 10000, 
 	  title:{
-      text: "Frequency Response (Phase vs. Frequency) "
+      text: "Phase Response"
 	  
       },
 	  
@@ -1659,8 +1684,8 @@ document.getElementById('chartContainer2').style.display  = "block";
         interlacedColor: "#dddbdb",
         title: "Frequency (rad/s)",
 		logarithmic:true,
-		maximum:maxf,
-		minimum:minf,
+		maximum:10,//maxf,
+		minimum:0.1,//minf,
       },
     axisY: 
 	      {/////output Y axis
@@ -1673,7 +1698,9 @@ document.getElementById('chartContainer2').style.display  = "block";
 	data:[ 
       {        
         type: "spline",
-		color:"109DB6",
+		color:"black",
+		showInLegend: true,
+		legendText: "IIM",
         dataPoints:dataOPPoints2s
 	
        }]
@@ -2052,7 +2079,7 @@ var chart3s, chart4s;
 var DatafTs2s = [],DatapTs2s = [], inc2s=0, spstore2s=[];///for btm Ts compare
 
 function BTM_frs(){
-	
+	counter++;
 	var dataOPPoints3s=[];	///for plotting chart
     var dataOPPoints4s=[];
 	
@@ -2064,6 +2091,7 @@ function BTM_frs(){
 			var a2 = document.getElementById('a_2').value;
 	        var T = document.getElementById('Ts').value;
 			spstore2s.push(T);
+			lgTxt = "BTM";
 	
 	       /*  var k=math.divide(2,T);
 			var b0k2=math.multiply(b0,math.pow(k,2));
@@ -2164,7 +2192,7 @@ function BTM_frs(){
 			}
 	
 	var maxf = 10;//100;
-	var minf = 0.1;
+	var minf = 0.01;
 	
 		
     var yop = new Array();	///continous data output result storing
@@ -2194,7 +2222,39 @@ function BTM_frs(){
 	//var ww = math.log(w,10);
 	
 	dataOPPoints3s.push({x:(w), y:(yop[f])});//dataOPPoints3s.push({x:(w), y:(yop[f])});///magnitude part
-	dArray3s = dataOPPoints3s;
+	
+	if(counter==1){
+		D1= dataOPPoints3s;
+		t1= T;
+		lt1 = lgTxt;
+	}
+	if(counter==2){
+		D2= dataOPPoints3s;
+		t2= T;
+		lt2 = lgTxt;
+	}
+	if(counter==3){
+		D3= dataOPPoints3s;
+		t3= T;
+		lt3 = lgTxt;
+	}
+	if(counter==4){
+		D4= dataOPPoints3s;
+		t4= T;
+		lt4 = lgTxt;
+	}
+	
+	if(counter==5){
+		D5= dataOPPoints3s;
+		t5= T;
+		lt5 = lgTxt;
+	}
+	if(counter==6){
+		D6= dataOPPoints3s;
+		t6= T;
+		lt6 = lgTxt;
+	}
+	//dArray3s = dataOPPoints3s;
 	DatafTs2s['ar'+inc2s]= dataOPPoints3s;
 	
 	var w1 = math.multiply(2,math.pi,f);
@@ -2208,8 +2268,43 @@ function BTM_frs(){
 	phase[f]=math.multiply(math.divide(180,math.pi),math.atan2(imagy,y));
 	
 	dataOPPoints4s.push({x:(w), y:(phase[f])});//dataOPPoints4s.push({x:(w), y:(phase[f])});//phase part
-	dArray4s = dataOPPoints4s;
+	
+	if(counter==1){
+		D11= dataOPPoints4s;
+		t1= T;
+		lt1 = lgTxt;
+	}
+	if(counter==2){
+		D22= dataOPPoints4s;
+		t2= T;
+		lt2 = lgTxt;
+	}
+	if(counter==3){
+		D33= dataOPPoints4s;
+		t3= T;
+		lt3 = lgTxt;
+	}
+	if(counter==4){
+		D44= dataOPPoints4s;
+		t4= T;
+		lt4 = lgTxt;
+	}
+	
+	if(counter==5){
+		D55= dataOPPoints4s;
+		t5= T;
+		lt5 = lgTxt;
+	}
+	if(counter==6){
+		D66= dataOPPoints4s;
+		t6= T;
+		lt6 = lgTxt;
+	}
+	//dArray4s = dataOPPoints4s;
 	DatapTs2s['ar'+inc2s]= dataOPPoints4s;
+	if(counter>1){
+		document.getElementById('cbtn').disabled = false;
+	}
 	
 	f=math.add(f,0.01);
 }
@@ -2225,16 +2320,16 @@ document.getElementById('chartContainer1').style.display  = "block";
 	  zoomType: "xy",
 		  animationDuration: 10000, 
 	  title:{
-      text: "Frequency Response (Magnitude vs. Frequency) "
+      text: "Magnitude Response"
 	  
       },
 	  
 	  axisX:{
         interlacedColor: "#dddbdb",
-        title: "Frequency(rad/s)",
+        title: "Frequency(Hz)",
 		logarithmic:true,
-		maximum:maxf,
-		minimum:minf,
+		maximum:10,//maxf,
+		minimum:0.1,//minf,
       },
     axisY: 
 	      {/////output Y axis
@@ -2248,7 +2343,7 @@ document.getElementById('chartContainer1').style.display  = "block";
       {        
         type: "spline",
 		color:"#ed2c4e",
-        dataPoints:dataOPPoints3s
+		dataPoints:dataOPPoints3s
 	
        }]
        
@@ -2264,7 +2359,7 @@ document.getElementById('chartContainer2').style.display  = "block";
 	  zoomType: "xy",
 		  animationDuration: 10000, 
 	  title:{
-      text: "Frequency Response (Phase vs. Frequency) "
+      text: "Phase Response"
 	  
       },
 	  
@@ -2272,8 +2367,8 @@ document.getElementById('chartContainer2').style.display  = "block";
         interlacedColor: "#dddbdb",
         title: "Frequency (rad/s)",
 		logarithmic:true,
-		maximum:maxf,
-		minimum:minf,
+		maximum:10,//maxf,
+		minimum:0.1,//minf,
       },
     axisY: 
 	      {/////output Y axis
@@ -2286,7 +2381,9 @@ document.getElementById('chartContainer2').style.display  = "block";
 	data:[ 
       {        
         type: "spline",
-		color:"#109DB6",
+		color:"#ed2c4e",
+		showInLegend: true,
+		legendText: "BTM",
         dataPoints:dataOPPoints4s
 
        }]
@@ -2448,7 +2545,7 @@ document.getElementById('chartContainer1').style.display  = "block";
 	  zoomType: "xy",
 		  animationDuration: 10000, 
 	  title:{
-      text: "Frequency Response (Magnitude vs. Frequency) "
+      text: "Magnitude Response"
 	  
       },
 	  
@@ -2569,8 +2666,11 @@ document.getElementById("exportChart").style.display = "block";
 	
 }
 
+//////DXP EDIT
 ///Method comparison LOG SCALE
 function comparePlots_log(){
+	
+	if(counter<=6){
 	var maxf = 10;//50;
 	var minf = 0.1;
 	
@@ -2584,7 +2684,7 @@ document.getElementById('chartContainer1').style.display  = "block";
 	  zoomType: "xy",
 		  animationDuration: 10000, 
 	  title:{
-      text: "Frequency Response (Magnitude vs. Frequency) "
+      text: "Magnitude Response"
 	  
       },
 	  
@@ -2597,12 +2697,44 @@ document.getElementById('chartContainer1').style.display  = "block";
       },
     axisY:[ 
 	      {//data array1 axis
-		  //logarithmic: true,
+		  //logarithmic: true,D1 axis
             title: "Magnitude(T) in dB",
 			
 			///maximum:0.3,
         },
-		{///dataArray2 axis invisible
+		{///D2 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D3 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D4 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D5 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D6 axis invisible
 			gridThickness: 0,
     tickLength: 0,
     lineThickness: 0,
@@ -2617,19 +2749,51 @@ document.getElementById('chartContainer1').style.display  = "block";
       {        
         type: "spline",
 		color:"black",
-		showInLegend: true,
-		legendText: "IIM Magnitude",
-        dataPoints:dArray1s
+		//showInLegend: true,
+		//legendText: lgTxt+"("+,
+        dataPoints:D1
 	
        },
 	  {        
         type: "spline",
 		color:"red",
-		showInLegend: true,
-		legendText: "BTM Magnitude",
-        dataPoints:dArray3s
+		//showInLegend: true,
+		//legendText: "BTM Magnitude",
+        dataPoints:D2
 	
-       },    
+       },   
+{        
+        type: "spline",
+		color:"blue",
+		//showInLegend: true,
+		//legendText: "BTM Magnitude",
+        dataPoints:D3
+	
+       },  
+{        
+        type: "spline",
+		color:"green",
+		//showInLegend: true,
+		//legendText: "BTM Magnitude",
+        dataPoints:D4
+	
+       },  
+{        
+        type: "spline",
+		color:"brown",
+		//showInLegend: true,
+		//legendText: "BTM Magnitude",
+        dataPoints:D5
+	
+       }, 
+{        
+        type: "spline",
+		color:"cyan",
+		//showInLegend: true,
+		//legendText: "BTM Magnitude",
+        dataPoints:D6
+	
+       },   	   
 	   
 	   
 	   ]
@@ -2646,13 +2810,13 @@ document.getElementById('chartContainer2').style.display  = "block";
 	  zoomType: "xy",
 		  animationDuration: 10000, 
 	  title:{
-      text: "Frequency Response (Phase vs. Frequency) "
+      text: "Phase Response"
 	  
       },
 	  
 	  axisX:{
         interlacedColor: "#dddbdb",
-        title: "Frequency(rad/s)",
+        title: "Frequency(Hz)",
 		logarithmic:true,
 		maximum:maxf,
 		minimum:minf,
@@ -2660,12 +2824,44 @@ document.getElementById('chartContainer2').style.display  = "block";
     axisY: 
 	      [ 
 	      {//data array1 axis
-		  //logarithmic: true,
+		  //logarithmic: true,D11 axis
             title: "Phase",
 			
 			///maximum:0.3,
         },
-		{///dataArray2 axis invisible
+		{///D22 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D33 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D44 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D55 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D66 axis invisible
 			gridThickness: 0,
     tickLength: 0,
     lineThickness: 0,
@@ -2679,20 +2875,52 @@ document.getElementById('chartContainer2').style.display  = "block";
 	data:[ 
       {        
         type: "spline",
-		color:"blue",
+		color:"black",
 		showInLegend: true,
-		legendText: "IIM Phase",
-        dataPoints:dArray2s
+		legendText: lt1+"("+t1+")",
+        dataPoints:D11
 	
        },
 	  {        
         type: "spline",
+		color:"red",
+		showInLegend: true,
+		legendText: lt2+"("+t2+")",
+        dataPoints:D22
+	
+       },   
+{        
+        type: "spline",
+		color:"blue",
+		showInLegend: true,
+		legendText: lt3+"("+t3+")",
+        dataPoints:D33
+	
+       },  
+{        
+        type: "spline",
 		color:"green",
 		showInLegend: true,
-		legendText: "BTM Phase",
-        dataPoints:dArray4s
+		legendText: lt4+"("+t4+")",
+        dataPoints:D44
 	
-       },    
+       },  
+{        
+        type: "spline",
+		color:"brown",
+		showInLegend: true,
+		legendText: lt5+"("+t5+")",
+        dataPoints:D55
+	
+       }, 
+{        
+        type: "spline",
+		color:"cyan",
+		showInLegend: true,
+		legendText: lt6+"("+t6+")",
+        dataPoints:D66
+	
+       },   	
 	   
 	   ]
        
@@ -2702,6 +2930,10 @@ document.getElementById('chartContainer2').style.display  = "block";
 	
 document.getElementById("okb").style.display = "block";
 document.getElementById("exportChart").style.display = "block";	
+	}
+	if(counter>6){
+		alert('Upto six plots can be compared.');
+	}
 	
 }
 
