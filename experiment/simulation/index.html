@@ -128,7 +128,7 @@
             </div><!--3rd col under 2nd row end-->
         </div><!--2nd row under 1st container end-->
         <hr>
-        
+       
     </div><!--First Container under body tag end-->
     
 	
@@ -156,7 +156,9 @@
 					 
 					 <li> Click on 'OK' button to clear the plot area.</li><br/>
 					 
-					 <li> Note: Run both the methods one after the another to compare the responses.</li><br/>
+					 <li> <b>Note:</b> Run the methods for different sampling times sequentially without clicking 'Clear' button, then click 'Compare' button to compare the responses.</li><br/>
+					 
+					 <li><b>Note:</b> Maximum six plot comparisons can be performed.</li>
 
 					
 						 
@@ -447,7 +449,7 @@
 			</div>
 			<br/> <br/>
 	<div class="d-inline-flex p-3 gy-2">
-	        <div id="PlotFreq"class="dropdown" style="display:none">
+	       <!--  <div id="PlotFreq"class="dropdown" style="display:none">
   <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
     Plot Frequency Response (Linear Scale)
   </button>
@@ -462,24 +464,26 @@
 	 <li><a class="dropdown-item" id ="run5" onclick="comparePlots()" disabled=disabled>Comparison Plot (Methods)</a></li>
     </b></br>
   </ul>
-</div>&nbsp;&nbsp;	
+</div>&nbsp;&nbsp; -->	
 
 <div id="PlotFreqLog"class="dropdown" style="display:none">
   <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Plot Frequency Response (Semilog Scale)
+   Frequency Response  Plot
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
    
-	<li ><a class="dropdown-item" id ="run32" onclick="IIM_frs()" >Impulse Invariance Method: Freq. Resp. Plot</a></li>
+	<li ><a class="dropdown-item" id ="run32" onclick="IIM_frs()" >Impulse Invariance Method (IIM)</a></li>
     
-	 <li ><a class="dropdown-item" id ="run42" onclick="BTM_frs()" disabled=disabled>Bilinear Transformation Method: Freq. Resp. Plot</a></li>
+	 <li ><a class="dropdown-item" id ="run42" onclick="BTM_frs()" disabled=disabled>Bilinear Transformation Method (BTM)</a></li>
 	 
-	 <li><a class="dropdown-item" id ="run62" onclick="comparePlots_Ts_log()">Comparison Plot (Sampling Time)</a></li>
+	<!--  <li><a class="dropdown-item" id ="run62" onclick="comparePlots_Ts_log()">Comparison Plot (Sampling Time)</a></li> -->
 	 
-	 <li><a class="dropdown-item" id ="run52" onclick="comparePlots_log()" disabled=disabled>Comparison Plot (Methods)</a></li>
+	<!--  <li><a class="dropdown-item" id ="run52" onclick="comparePlots_log()" disabled=disabled>Comparison Plot (Methods)</a></li> -->
     </b></br>
   </ul>
 </div>&nbsp;&nbsp;
+
+<button class="btn btn-primary" id="cbtn" onclick="comparePlots_log()" style="display:none" disabled>Compare</button>
 </div>	
 	
 	</div>
