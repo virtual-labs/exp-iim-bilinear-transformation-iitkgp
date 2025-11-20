@@ -39,36 +39,34 @@
 <li> Results of the discretized form will be displayed for the selected method. </li><br/>
 
 
-
-<li> Results of the discretized form: Impulse Invariance Method: Frequency Response. </li><br/>
+<li> Results of the discretized form: Transfer Function and Frequency Transfer Function by Impulse Invariance Method. </li><br/>
 <div align="center">
 <img class="img-fluid"  src="./images/Prod_5_1.png" alt=""><br>  
-<b>Fig. 6. Discretization form of Impulse Invariance Method: Frequency Response</b><br/>						 
+<b>Fig. 6. Discretization form by Impulse Invariance Method</b><br/>						 
 </div><br/>
 
 
 
-<li> Results of the discretized form: Bilinear Transformation Method: Frequency Response. </li><br/>
+<li> Results of the discretized form: Transfer Function and Frequency Transfer Function by Bilinear Transformation Method. </li><br/>
 <div align="center">
 <img class="img-fluid"  src="./images/Prod_6_1.png" alt=""><br> 
-<b>Fig. 7. Discretization form of Bilinear Transformation Method: Frequency Response </b><br/>						 
+<b>Fig. 7. Discretization form of Bilinear Transformation Method </b><br/>						 
 </div><br/>
 
-<li> Click on 'Frequency Response Plot' dropdown-menu to get the desired frequecy response plot. </li><br/>
+<li> Click on 'Frequency Response Plot' button to get the desired frequecy response plot. </li><br/>
 <div align="center">
 <img class="img-fluid"  src="./images/Prod_6_2.png" alt=""><br> 
-<b>Fig. 8. Dropdown button to get the desired plot </b><br/>						 
+<b>Fig. 8. Button to get the desired plot </b><br/>						 
 </div><br/>
 
 <li> Click on 'Clear' button to get results for new transfer function.</li><br/> 
 
 <li> Click on 'Download Plot' button to download the plot.</li><br/>
 
-<li> Click on 'OK' button to clear the plot area.</li><br/>
-
 <li> <b>Note:</b> Run the methods for different sampling times sequentially without clicking 'Clear' button, then click 'Compare' button to compare the responses.</li><br/>
 
- <li><b>Note:</b> Maximum six plot comparisons can be performed.</li>
+<li> <b>Note:</b> A maximum of six frequency response experiments can be conducted and plotted for comparison. </li><br/>
+
 
 </ol>
 
