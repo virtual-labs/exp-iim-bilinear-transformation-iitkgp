@@ -128,8 +128,9 @@
             </div><!--3rd col under 2nd row end-->
         </div><!--2nd row under 1st container end-->
         <hr>
-       
+        
     </div><!--First Container under body tag end-->
+    
     
 	
     <div class="container p-3 my-5 text-left border"><!--3rd Container under body tag start-->
@@ -148,17 +149,16 @@
 					 
 					 <li> Click on the 'Run' button option to get the selected discrete form of the system.</li><br/> 
 					 
-					 <li> Click on 'Plot Frequency Response' dropdown-menu to get the desired frequecy response plot. </li><br/>
+					 <li> Click on 'Frequency Response Plot' button to get the desired plot. </li><br/>
 					 
 					 <li> Click on 'Clear' button to get results for new transfer function.</li><br/>
 					 
 					 <li> Click on 'Download Plot' button to download the plot.</li><br/>
 					 
-					 <li> Click on 'OK' button to clear the plot area.</li><br/>
-					 
 					 <li> <b>Note:</b> Run the methods for different sampling times sequentially without clicking 'Clear' button, then click 'Compare' button to compare the responses.</li><br/>
 					 
-					 <li><b>Note:</b> Maximum six plot comparisons can be performed.</li>
+					 <li> <b>Note:</b> A maximum of six frequency response experiments can be conducted and plotted for comparison. </li><br/>
+					 
 
 					
 						 
@@ -310,9 +310,9 @@
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
     <!-- <li><a class="dropdown-item" id ="run" onclick="IIM()">Impulse Invariance Method</a></li> -->
-	<li><a class="dropdown-item" id ="run1" onclick="impName()">Impulse Invariance Method: Freq. Resp.</a></li>
+	<li><a class="dropdown-item" id ="run1" onclick="impName()">Impulse Invariance Method (IIM)</a></li>
     <!-- <li><a class="dropdown-item" id ="run" onclick="BTM()">Bilinear Transformation Method</a></li> -->
-	 <li><a class="dropdown-item" id ="run2" onclick="biName()">Bilinear Transformation Method: Freq. Resp.</a></li>
+	 <li><a class="dropdown-item" id ="run2" onclick="biName()">Bilinear Transformation Method (BTM)</a></li>
     </b></br>
   </ul>
 </div>&nbsp;&nbsp;
@@ -332,7 +332,7 @@
 			<div id="tfbody3" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
 			<br/>	
 			
-			<span class="card-text "><b>Impulse Invariance Method</b></span>
+			<span class="card-text "><b>Transfer Function by Impulse Invariance Method (IIM)</b></span>
 			
 			<!-- $$G (z) = b_0 + \frac{TA_1}{1 - z^{-1} e^{T p_1}} + \frac{TA_2}{1 - z^{-1} e^{T p_2}} = b_0 + \frac{TA_1 z}{z - e^{T p_1}} + \frac{TA_2 z}{z - e^{T p_2}} = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$ -->
 			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
@@ -354,16 +354,197 @@
 			&nbsp;<input type="number" id="tfd16" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
 			+&nbsp;<input type="number" id="tfd17" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
 			+&nbsp;<input type="number" id="tfd18" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:70%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT1" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
 			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">		
 
 			
 			<br/><br/>
 			</div>
 			
+			<!------DXP BORING EDIT--------------------------------------------->
+			<div id="tfbody3_1" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text "><b>Transfer Function by Impulse Invariance Method (IIM)</b></span>
+			
+			<!-- $$G (z) = b_0 + \frac{TA_1}{1 - z^{-1} e^{T p_1}} + \frac{TA_2}{1 - z^{-1} e^{T p_2}} = b_0 + \frac{TA_1 z}{z - e^{T p_1}} + \frac{TA_2 z}{z - e^{T p_2}} = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$ -->
+			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+			
+				
+		    <br/>
+			
+			
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) =</b></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn19_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfn20_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfn21_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfd16_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfd17_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfd18_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:70%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT1_1" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">		
+
+			
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody3_2" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text "><b>Transfer Function by Impulse Invariance Method (IIM)</b></span>
+			
+			<!-- $$G (z) = b_0 + \frac{TA_1}{1 - z^{-1} e^{T p_1}} + \frac{TA_2}{1 - z^{-1} e^{T p_2}} = b_0 + \frac{TA_1 z}{z - e^{T p_1}} + \frac{TA_2 z}{z - e^{T p_2}} = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$ -->
+			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+			
+				
+		    <br/>
+			
+			
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) =</b></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn19_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfn20_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfn21_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfd16_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfd17_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfd18_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:70%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT1_2" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">		
+
+			
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody3_3" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text "><b>Transfer Function by Impulse Invariance Method (IIM)</b></span>
+			
+			<!-- $$G (z) = b_0 + \frac{TA_1}{1 - z^{-1} e^{T p_1}} + \frac{TA_2}{1 - z^{-1} e^{T p_2}} = b_0 + \frac{TA_1 z}{z - e^{T p_1}} + \frac{TA_2 z}{z - e^{T p_2}} = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$ -->
+			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+			
+				
+		    <br/>
+			
+			
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) =</b></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn19_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfn20_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfn21_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfd16_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfd17_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfd18_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:70%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT1_3" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">		
+
+			
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody3_4" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text "><b>Transfer Function by Impulse Invariance Method (IIM)</b></span>
+			
+			<!-- $$G (z) = b_0 + \frac{TA_1}{1 - z^{-1} e^{T p_1}} + \frac{TA_2}{1 - z^{-1} e^{T p_2}} = b_0 + \frac{TA_1 z}{z - e^{T p_1}} + \frac{TA_2 z}{z - e^{T p_2}} = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$ -->
+			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+			
+				
+		    <br/>
+			
+			
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) =</b></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn19_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfn20_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfn21_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfd16_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfd17_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfd18_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:70%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT1_4" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">		
+
+			
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody3_5" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text "><b>Transfer Function by Impulse Invariance Method (IIM)</b></span>
+			
+			<!-- $$G (z) = b_0 + \frac{TA_1}{1 - z^{-1} e^{T p_1}} + \frac{TA_2}{1 - z^{-1} e^{T p_2}} = b_0 + \frac{TA_1 z}{z - e^{T p_1}} + \frac{TA_2 z}{z - e^{T p_2}} = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$ -->
+			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+			
+				
+		    <br/>
+			
+			
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) =</b></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn19_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfn20_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfn21_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfd16_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfd17_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfd18_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:70%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT1_5" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">		
+
+			
+			<br/><br/>
+			</div>
+			
+			<!---------------------------------------------------------------->
 			<div id="tfbody4" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
 			<br/>	
 			
-			<span class="card-text "><b>Impulse Invariance Method: Frequency Response</b></span>
+			<span class="card-text "><b>Frequency Transfer Function by Impulse Invariance Method (IIM)</b></span>
 			
 			<!-- $$G (e^{j\omega}) = b_0 + \frac{TA_1}{1 - e^{-j\omega} e^{T_{p_1}}} + \frac{TA_2}{1 - e^{-j\omega} e^{T_{p_2}}} = b_0 + \frac{TA_1 e^{j\omega}}{e^{j\omega} - e^{T_{p_1}}} + \frac{TA_2 e^{j\omega}}{e^{j\omega} - e^{T_{p_2}}} = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
 			 -->	
@@ -387,6 +568,10 @@
 			&nbsp;<input type="number" id="tfdf16" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
 			+&nbsp;<input type="number" id="tfdf17" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
 			+&nbsp;<input type="number" id="tfdf18" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:75%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT1f" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
 			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">	
 
 
@@ -395,9 +580,207 @@
 			<br/><br/>
 			</div>
 			
+			
+			<div id="tfbody4_1" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text "><b>Frequency Transfer Function by Impulse Invariance Method (IIM)</b></span>
+			
+			<!-- $$G (e^{j\omega}) = b_0 + \frac{TA_1}{1 - e^{-j\omega} e^{T_{p_1}}} + \frac{TA_2}{1 - e^{-j\omega} e^{T_{p_2}}} = b_0 + \frac{TA_1 e^{j\omega}}{e^{j\omega} - e^{T_{p_1}}} + \frac{TA_2 e^{j\omega}}{e^{j\omega} - e^{T_{p_2}}} = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			 -->	
+			 $$G (e^{j\omega}) = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			
+			 
+			 
+		    <br/>
+			
+			
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss"><span style="font-family:Bodoni MT;font-style:italic;font-size:18px">G (e <sup>j ω </sup>) </span> =</b></span></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf19_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf20_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf21_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfdf16_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf17_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf18_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:75%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT1f_1" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">	
+
+
+
+			
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody4_2" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text "><b>Frequency Transfer Function by Impulse Invariance Method (IIM)</b></span>
+			
+			<!-- $$G (e^{j\omega}) = b_0 + \frac{TA_1}{1 - e^{-j\omega} e^{T_{p_1}}} + \frac{TA_2}{1 - e^{-j\omega} e^{T_{p_2}}} = b_0 + \frac{TA_1 e^{j\omega}}{e^{j\omega} - e^{T_{p_1}}} + \frac{TA_2 e^{j\omega}}{e^{j\omega} - e^{T_{p_2}}} = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			 -->	
+			 $$G (e^{j\omega}) = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			
+			 
+			 
+		    <br/>
+			
+			
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss"><span style="font-family:Bodoni MT;font-style:italic;font-size:18px">G (e <sup>j ω </sup>) </span> =</b></span></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf19_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf20_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf21_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfdf16_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf17_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf18_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:75%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT1f_2" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">	
+
+
+
+			
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody4_3" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text "><b>Frequency Transfer Function by Impulse Invariance Method (IIM)</b></span>
+			
+			<!-- $$G (e^{j\omega}) = b_0 + \frac{TA_1}{1 - e^{-j\omega} e^{T_{p_1}}} + \frac{TA_2}{1 - e^{-j\omega} e^{T_{p_2}}} = b_0 + \frac{TA_1 e^{j\omega}}{e^{j\omega} - e^{T_{p_1}}} + \frac{TA_2 e^{j\omega}}{e^{j\omega} - e^{T_{p_2}}} = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			 -->	
+			 $$G (e^{j\omega}) = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			
+			 
+			 
+		    <br/>
+			
+			
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss"><span style="font-family:Bodoni MT;font-style:italic;font-size:18px">G (e <sup>j ω </sup>) </span> =</b></span></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf19_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf20_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf21_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfdf16_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf17_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf18_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:75%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT1f_3" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">	
+
+
+
+			
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody4_4" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text "><b>Frequency Transfer Function by Impulse Invariance Method (IIM)</b></span>
+			
+			<!-- $$G (e^{j\omega}) = b_0 + \frac{TA_1}{1 - e^{-j\omega} e^{T_{p_1}}} + \frac{TA_2}{1 - e^{-j\omega} e^{T_{p_2}}} = b_0 + \frac{TA_1 e^{j\omega}}{e^{j\omega} - e^{T_{p_1}}} + \frac{TA_2 e^{j\omega}}{e^{j\omega} - e^{T_{p_2}}} = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			 -->	
+			 $$G (e^{j\omega}) = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			
+			 
+			 
+		    <br/>
+			
+			
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss"><span style="font-family:Bodoni MT;font-style:italic;font-size:18px">G (e <sup>j ω </sup>) </span> =</b></span></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf19_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf20_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf21_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfdf16_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf17_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf18_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:75%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT1f_4" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">	
+
+
+
+			
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody4_5" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text "><b>Frequency Transfer Function by Impulse Invariance Method (IIM)</b></span>
+			
+			<!-- $$G (e^{j\omega}) = b_0 + \frac{TA_1}{1 - e^{-j\omega} e^{T_{p_1}}} + \frac{TA_2}{1 - e^{-j\omega} e^{T_{p_2}}} = b_0 + \frac{TA_1 e^{j\omega}}{e^{j\omega} - e^{T_{p_1}}} + \frac{TA_2 e^{j\omega}}{e^{j\omega} - e^{T_{p_2}}} = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			 -->	
+			 $$G (e^{j\omega}) = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			
+			 
+			 
+		    <br/>
+			
+			
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss"><span style="font-family:Bodoni MT;font-style:italic;font-size:18px">G (e <sup>j ω </sup>) </span> =</b></span></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf19_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf20_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf21_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfdf16_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf17_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf18_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:75%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT1f_5" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">	
+
+
+
+			
+			<br/><br/>
+			</div>
+			
+			<!----------------------------------------->
+			
 			<div id="tfbody5" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
 			<br/>	
-			<span class="card-text "><b>Bilinear Transformation Method</b></span>
+			<span class="card-text "><b>Transfer Function by Bilinear Transformation Method (BTM)</b></span>
 			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
 			<br/>
 		
@@ -414,13 +797,155 @@
 			&nbsp;<input type="number" id="tfd19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
 			+&nbsp;<input type="number" id="tfd20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
 			+&nbsp;<input type="number" id="tfd21" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:70%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT2" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
 			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">						
 			<br/><br/>
 			</div>
 			
+			<div id="tfbody5_1" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			<span class="card-text "><b>Transfer Function by Bilinear Transformation Method (BTM)</b></span>
+			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+			<br/>
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"> <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) =</b></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn22_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfn23_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfn24_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfd19_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfd20_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfd21_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:70%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT2_1" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">						
+			<br/><br/>
+			</div>
+						
+			<div id="tfbody5_2" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			<span class="card-text "><b>Transfer Function by Bilinear Transformation Method (BTM)</b></span>
+			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+			<br/>
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"> <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) =</b></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn22_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfn23_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfn24_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfd19_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfd20_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfd21_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:70%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT2_2" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody5_3" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			<span class="card-text "><b>Transfer Function by Bilinear Transformation Method (BTM)</b></span>
+			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+			<br/>
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"> <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) =</b></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn22_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfn23_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfn24_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfd19_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfd20_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfd21_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:70%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT2_3" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody5_4" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			<span class="card-text "><b>Transfer Function by Bilinear Transformation Method (BTM)</b></span>
+			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+			<br/>
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"> <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) =</b></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn22_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfn23_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfn24_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfd19_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfd20_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfd21_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:70%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT2_4" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody5_5" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			<span class="card-text "><b>Transfer Function by Bilinear Transformation Method (BTM)</b></span>
+			$$G (z) = \frac{d_0 z^2 + d_1 z + d_2}{z^2 + c_1 z + c_2}$$
+			<br/>
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"> <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">G</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) =</b></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfn22_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfn23_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfn24_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfd19_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z<sup>2</sup></span></b>
+			+&nbsp;<input type="number" id="tfd20_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span></b>
+			+&nbsp;<input type="number" id="tfd21_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:70%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT2_5" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 36%;left:40%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<!---------------------------------------------------------->
+			
+								
 			<div id="tfbody6" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
 			<br/>	
-			<span class="card-text "><b>Bilinear Transformation Method:Frequency Response</b></span>
+			<span class="card-text "><b>Frequency Transfer Function by Bilinear Transformation Method (BTM)</b></span>
 			$$G (e^{j\omega}) = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
 			<br/>
 		
@@ -437,9 +962,151 @@
 			&nbsp;<input type="number" id="tfdf19" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
 			+&nbsp;<input type="number" id="tfdf20" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
 			+&nbsp;<input type="number" id="tfdf21" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:75%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT2f" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
 			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">						
 			<br/><br/>
 			</div>
+			
+			<!----------------------------------------------------------->
+			<div id="tfbody6_1" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			<span class="card-text "><b>Frequency Transfer Function by Bilinear Transformation Method (BTM)</b></span>
+			$$G (e^{j\omega}) = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			<br/>
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss"><span style="font-family:Bodoni MT;font-style:italic;font-size:18px">G (e <sup>j ω </sup>) </span> =</b></span></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf22_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf23_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf24_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfdf19_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf20_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf21_1" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:75%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT2f_1" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody6_2" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			<span class="card-text "><b>Frequency Transfer Function by Bilinear Transformation Method (BTM)</b></span>
+			$$G (e^{j\omega}) = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			<br/>
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss"><span style="font-family:Bodoni MT;font-style:italic;font-size:18px">G (e <sup>j ω </sup>) </span> =</b></span></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf22_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf23_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf24_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfdf19_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf20_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf21_2" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:75%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT2f_2" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody6_3" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			<span class="card-text "><b>Frequency Transfer Function by Bilinear Transformation Method (BTM)</b></span>
+			$$G (e^{j\omega}) = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			<br/>
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss"><span style="font-family:Bodoni MT;font-style:italic;font-size:18px">G (e <sup>j ω </sup>) </span> =</b></span></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf22_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf23_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf24_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfdf19_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf20_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf21_3" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:75%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT2f_3" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody6_4" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			<span class="card-text "><b>Frequency Transfer Function by Bilinear Transformation Method (BTM)</b></span>
+			$$G (e^{j\omega}) = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			<br/>
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss"><span style="font-family:Bodoni MT;font-style:italic;font-size:18px">G (e <sup>j ω </sup>) </span> =</b></span></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf22_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf23_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf24_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfdf19_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf20_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf21_4" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:75%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT2f_4" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<div id="tfbody6_5" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			<span class="card-text "><b>Frequency Transfer Function by Bilinear Transformation Method (BTM)</b></span>
+			$$G (e^{j\omega}) = \frac{d_0 e^{j2\omega} + d_1 e^{j\omega} + d_2}{e^{j2\omega} + c_1 e^{j\omega} + c_2}$$
+			<br/>
+		
+			<span class="card-text" ><b style="position:absolute;min-width:6%;left:30%;top:70%;"><span class="fontCss"><span style="font-family:Bodoni MT;font-style:italic;font-size:18px">G (e <sup>j ω </sup>) </span> =</b></span></span>
+			
+			
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 62%;" >
+			&nbsp;<input type="number" id="tfnf22_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf23_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfnf24_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:28%;top: 80%;" >
+			&nbsp;<input type="number" id="tfdf19_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j2&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf20_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"><b><span style="font-family:Bodoni MT; font-style:italic;font-size:18px">e<sup>j&omega;</sup></span></b>
+			+&nbsp;<input type="number" id="tfdf21_5" value="0" readonly=readonly style="width:20%;text-align:center;border:none"></span>
+			
+			<span class="card-text"style="position:absolute;left:75%;top: 70%;" > ;&nbsp; <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">T</span> = <input type="number" id="tfT2f_5" value="0" readonly=readonly style="width:25%;text-align:center;border:none">
+			</span>
+			
+			<hr  style="position:absolute;width: 40%;left:40%;top: 70%;">						
+			<br/><br/>
+			</div>
+			
+			<!----------------------------------------------------------->
 			
 			<!--<p id='my-div1'/>
 			<p id='output_text4'/>
@@ -467,20 +1134,20 @@
 </div>&nbsp;&nbsp; -->	
 
 <div id="PlotFreqLog"class="dropdown" style="display:none">
-  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+ <!--  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
    Frequency Response  Plot
   </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-   
-	<li ><a class="dropdown-item" id ="run32" onclick="IIM_frs()" >Impulse Invariance Method (IIM)</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"> -->
+   <div class="d-inline-flex">
+	<button class="btn btn-primary p-2" id ="run32" onclick="IIM_frs()" >Frequency Response Plot: Impulse Invariance Method (IIM)</button>
     
-	 <li ><a class="dropdown-item" id ="run42" onclick="BTM_frs()" disabled=disabled>Bilinear Transformation Method (BTM)</a></li>
-	 
+	 <button class="btn btn-primary p-2" id ="run42" onclick="BTM_frs()">Frequency Response Plot: Bilinear Transformation Method (BTM)</button>
+	 </div>
 	<!--  <li><a class="dropdown-item" id ="run62" onclick="comparePlots_Ts_log()">Comparison Plot (Sampling Time)</a></li> -->
 	 
 	<!--  <li><a class="dropdown-item" id ="run52" onclick="comparePlots_log()" disabled=disabled>Comparison Plot (Methods)</a></li> -->
     </b></br>
-  </ul>
+  <!-- </ul> -->
 </div>&nbsp;&nbsp;
 
 <button class="btn btn-primary" id="cbtn" onclick="comparePlots_log()" style="display:none" disabled>Compare</button>
@@ -511,7 +1178,7 @@
 				
 				</div>
 				<button type="button" id="exportChart" class="btn btn-primary" style="display:none" onclick="saveImg()">Download Plot</button>
-				<button type="button" id="okb" class="btn btn-danger" style="display:none" onclick="hidePlot()">OK</button>
+				<!-- <button type="button" id="okb" class="btn btn-danger" style="display:none" onclick="hidePlot()">OK</button> -->
 			</div>
 		<div class="col-md-1"></div>	
 			

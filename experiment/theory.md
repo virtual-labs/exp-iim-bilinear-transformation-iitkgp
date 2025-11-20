@@ -1,6 +1,6 @@
 # Theory
 
-<b><i>Impulse Invariance Method:</i></b> <br>
+<b><i>Impulse Invariance Method (IIM):</i></b> <br>
 Using the impulse invariance method, <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">H</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) is directly generated from <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">H</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span>) using a mapping that depends on the sampling period and the locations of the poles of <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">H</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span>). 
 Because the input is an impulse, the system transfer function <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">H</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span>) is the same as the Laplace transform of the response <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">y</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">t</span>).<br>
 The method starts by expressing the Laplace transfer function <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">H</span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span>) in partial form
@@ -25,7 +25,7 @@ The frequency response of the discrete system can be written as:
 
 $$ H(e^{j\omega}) = \sum_{i=1}^{N}\frac{T e^{j\omega} e^{Tp_i}}{(e^{Tp_i}-e^{j\omega})^2} \tag{5}$$
 
-<b><i>Bilinear Transform Method:</i></b> <br>
+<b><i>Bilinear Transform Method (BTM):</i></b> <br>
 The bilinear transform is used in digital control theory and digital signal processing to transform continuous-time system representation to discrete-time and vice-versa. 
 The bilinear transform is often used to convert a transfer function <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">H<sub>a</sub></span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">s</span>) of a linear time-invariant (LTI) in the continuous-time domain to 
 a transfer function <span style="font-family:Bodoni MT; font-style:italic;font-size:18px">H<sub>d</sub></span>(<span style="font-family:Bodoni MT; font-style:italic;font-size:18px">z</span>) of a linear shift-invariant in the discrete time domain. <br>
