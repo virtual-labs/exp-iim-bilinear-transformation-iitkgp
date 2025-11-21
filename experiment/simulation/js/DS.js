@@ -3391,7 +3391,8 @@ function IIMF(){
 	}
 	
 	if(countRun+countRunb>6){
-		alert('Experiment can be performed for six sampling times.');
+		alert('Experiments can be performed for six sampling times. For more experimentation, click Clear and then Run.');
+		
 	}
 			
 }
@@ -5207,7 +5208,7 @@ function BTMF(){
 	 }
 	 
 	 if(countRun+countRunb>6){
-		alert('Experiment can be performed for six sampling times.');
+		alert('Experiments can be performed for six sampling times. For more experimentation, click Clear and then Run.');
 	}
 	 
 }
@@ -5860,7 +5861,7 @@ document.getElementById('chartContainer2').style.display  = "block";
     axisY: 
 	      {/////output Y axis
 		  //logarithmic: true,
-            title: "Phase",
+            title: "Phase in degrees",
 			
 			///maximum:0.3,
         },
@@ -6293,7 +6294,7 @@ document.getElementById('chartContainer2').style.display  = "block";
     axisY: 
 	      {/////output Y axis
 		  //logarithmic: true,
-            title: "Phase",
+            title: "Phase in degrees",
 			
 			///maximum:0.3,
         },
@@ -6493,7 +6494,7 @@ document.getElementById('chartContainer2').style.display  = "block";
 	      [ 
 	      {//data array1 axis
 		  //logarithmic: true,D11 axis
-            title: "Phase",
+            title: "Phase in degrees",
 			
 			///maximum:0.3,
         },
@@ -6600,7 +6601,7 @@ document.getElementById('chartContainer2').style.display  = "block";
 document.getElementById("exportChart").style.display = "block";	
 	}
 	if(counter>6){
-		alert('Upto six plots can be compared.');
+		alert('Up to six plots can be compared. For more comparisons, click Clear and then Run.');
 	}
 	
 }
