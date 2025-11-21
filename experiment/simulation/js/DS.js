@@ -1,0 +1,6648 @@
+
+
+
+function inputChange(){
+	
+	if(document.getElementById('Ts').value >5){
+		
+	alert('maintain the range');	
+		
+	}
+	
+	
+}
+
+function refresh(){
+//location.reload();	
+/* document.getElementById('plotbucket').style.display = "none";
+document.getElementById('chartContainer1').style.display = "none";
+document.getElementById('chartContainer2').style.display = "none";
+dataOPPoints=[];	
+dataOPPoints1=[];
+ */
+ location.reload();
+//document.getElementById('0.3fr').style.display = "none";
+
+
+
+}
+
+//var dataOPPoints=[];	///for plotting chart
+//var dataOPPoints1=[];
+
+///name change impulse
+
+function impName(){
+	document.getElementById("methodB").innerHTML ="Impulse Invariance Method (IIM)";
+	document.getElementById('mchk').value=1;
+	document.getElementById('rn').style.display = "block";
+	
+}
+function biName(){
+	document.getElementById("methodB").innerHTML ="Bilinear Transformation Method (BTM)";
+	document.getElementById('mchk').value=2;
+	document.getElementById('rn').style.display = "block";
+	
+}
+function RunM(){
+	if(document.getElementById('mchk').value == 1){
+	IIM();
+	IIMF();	
+	}
+	if(document.getElementById('mchk').value == 2){
+	BTM(); 
+	BTMF();	
+	}
+}
+
+
+
+//////////////////////
+function system(){
+var outputText1;
+var outputText2;
+var outputText2_1;
+var outputText3;
+var R1;
+var R2;
+var Rt1;
+var Rt2;
+            document.getElementById('tfbody').style.display = "block";
+			document.getElementById('tfbody2').style.display = "block";
+	       document.getElementById('pfG').style.visibility = "visible";
+		   document.getElementById('Disc').style.display = "block";
+			document.getElementById('clr').style.display = "block";
+			
+            var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			
+			document.getElementById('tfn1').value = b0;
+	        document.getElementById('tfn2').value = b1;
+	        document.getElementById('tfn3').value = b2;
+	        document.getElementById('tfd1').value = a0;
+	        document.getElementById('tfd2').value = a1;
+	        document.getElementById('tfd3').value = a2;
+			
+			outputText1=" G(s)= ["+b0+"s\u00B2+("+b1+")s+("+b2+ ")] / [" +a0+"s<sup>2</sup>+("+a1+")s+("+a2+ ")]";//+b0+"s\u00B2+"+b1+"s+"+b2+;
+	        outputText2=" b<sub>0</sub>="+b0+";  b<sub>1</sub>="+b1+"; b<sub>2</sub>="+b2+ "; a<sub>0</sub>="+a0+";  a<sub>1</sub>="+a1+";  a<sub>2</sub>="+a2+ "";
+			//document.getElementById("output_text1").innerHTML=outputText1;
+			//document.getElementById("output_text2").innerHTML=outputText2;
+		    
+			var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			Rt1="Root-1 = " +R1+ "";
+			Rt2="Root-2 = " +R2+ "";
+			
+			document.getElementById("Rt_text1").innerHTML=Rt1;
+			document.getElementById("Rt_text2").innerHTML=Rt2;
+				
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			
+			
+			////////
+			var A1= math.divide(math.round(math.multiply(math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2)),1000)),1000);
+			var A2= math.divide(math.round(math.multiply(math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1)),1000)),1000);
+			
+			console.log(e0);
+			console.log(e1);
+			console.log(A1);
+			console.log(A2);
+			
+			document.getElementById('tfn4').value = b0;
+	        document.getElementById('tfn5').value = b1;
+	        document.getElementById('tfn6').value = b2;
+			
+			document.getElementById('tfd4').value = a0;
+	        document.getElementById('tfd5').value = a1;
+	        document.getElementById('tfd6').value = a2;
+			
+			document.getElementById('tfn7').value = b0;
+	        document.getElementById('tfn8').value = e0;
+	        document.getElementById('tfn9').value = e1;
+			
+	        document.getElementById('tfd7').value = a0;
+	        document.getElementById('tfd8').value = a1;
+	        document.getElementById('tfd9').value = a2;
+			
+			document.getElementById('tfn10').value = b0;
+	        document.getElementById('tfn11').value = A1;
+			//document.getElementById('tfn11').value = A1.re;
+			//document.getElementById('tfn11_1').value = A1.im;
+	        document.getElementById('tfn12').value = A2;
+			//document.getElementById('tfn12').value = A2.re;
+			//document.getElementById('tfn12_1').value = A2.im;
+			
+			
+	        //document.getElementById('tfd10').value = -R1;
+			R11=math.complex(-R1.re,-R1.im);
+	        document.getElementById('tfd10').value = R11;
+			//document.getElementById('tfd10').value = -R1.re;
+			//document.getElementById('tfd10_1').value = -R1.im;
+			R22=math.complex(-R2.re,-R2.im);
+	        document.getElementById('tfd11').value = R22;
+			//document.getElementById('tfd11').value = -R2.re;
+			//document.getElementById('tfd11_1').value = -R2.im;
+			
+			
+	
+	        
+			
+			//document.getElementById('my-div').innerHTML = '<img src="./images/pf.png">';
+			
+			outputText2_1=" b<sub>0</sub>="+b0+";  b<sub>1</sub>="+b1+"; b<sub>2</sub>="+b2+ "; a<sub>0</sub>="+a0+";  a<sub>1</sub>="+a1+";  a<sub>2</sub>="+a2+ "";
+			outputText3=" p<sub>1</sub>="+-R1+"; p<sub>2</sub>="+-R2+ " b<sub>0</sub>="+b0+"; e<sub>0</sub>="+e0+";  e<sub>1</sub>="+e1+";  A<sub>1</sub>="+A1+ "; A<sub>2</sub>="+A2+"";
+			///////
+				
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			console.log(R1);
+			console.log(R2);
+			Rt1="Root-1 = " +math.divide(num1,den)+ "";
+			Rt2="Root-2 = " +math.divide(num2,den)+ "";
+			
+			document.getElementById("Rt_text1").innerHTML=Rt1;
+			document.getElementById("Rt_text2").innerHTML=Rt2;
+			
+			//document.getElementById("Root_text1").innerHTML=-R1;
+			//document.getElementById("Root_text2").innerHTML=-R2;
+			
+			if (R1==R2){
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var rp1=1;
+			var rp2=2;
+			
+			console.log(e0);
+			console.log(e1);
+			console.log(A1);
+			console.log(A2);
+			
+			document.getElementById('tfn4').value = b0;
+	        document.getElementById('tfn5').value = b1;
+	        document.getElementById('tfn6').value = b2;
+			
+			document.getElementById('tfd4').value = a0;
+	        document.getElementById('tfd5').value = a1;
+	        document.getElementById('tfd6').value = a2;
+			
+			document.getElementById('tfn7').value = b0a0;
+	        document.getElementById('tfn8').value = e0;
+	        document.getElementById('tfn9').value = e1;
+			
+	        document.getElementById('tfd7').value = a0;
+	        document.getElementById('tfd8').value = a1;
+	        document.getElementById('tfd9').value = a2;
+			
+			document.getElementById('tfn10').value = b0;
+	        document.getElementById('tfn11').value = A1;
+			//document.getElementById('tfn11_1').value = 0;
+	        document.getElementById('tfn12').value = A2;
+			//document.getElementById('tfn12_1').value = 0;
+			
+			
+	        document.getElementById('tfd10').value = -R1;
+			//document.getElementById('tfd10_1').value = 0;
+	        document.getElementById('tfd11').value = -R2;
+			//document.getElementById('tfd11_1').value = 0;
+			
+			document.getElementById('rr1').value = rp1;
+			document.getElementById('rr2').value = rp2;
+			
+			}
+			else{
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+			
+			console.log(e0);
+			console.log(e1);
+			console.log(A1);
+			console.log(A2);
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var rp1=1;
+			var rp2=1;
+			
+			
+			console.log(e0);
+			console.log(e1);
+			console.log(A1);
+			console.log(A2);
+			
+			document.getElementById('tfn4').value = b0;
+	        document.getElementById('tfn5').value = b1;
+	        document.getElementById('tfn6').value = b2;
+			
+			document.getElementById('tfd4').value = a0;
+	        document.getElementById('tfd5').value = a1;
+	        document.getElementById('tfd6').value = a2;
+			
+			document.getElementById('tfn7').value = b0a0;
+	        document.getElementById('tfn8').value = e0;
+	        document.getElementById('tfn9').value = e1;
+			
+	        document.getElementById('tfd7').value = a0;
+	        document.getElementById('tfd8').value = a1;
+	        document.getElementById('tfd9').value = a2;
+			
+			document.getElementById('tfn10').value = b0;
+	        document.getElementById('tfn11').value = A1;
+			//document.getElementById('tfn11_1').value = 0;
+	        document.getElementById('tfn12').value = A2;
+			//document.getElementById('tfn12_1').value = 0;
+			
+			
+	        document.getElementById('tfd10').value = -R1;
+			//document.getElementById('tfd10_1').value = 0;
+	        document.getElementById('tfd11').value = -R2;
+			//document.getElementById('tfd11_1').value = 0;
+			document.getElementById('rr1').value = rp1;
+			document.getElementById('rr2').value = rp2;
+			
+			
+			
+	        
+	
+	        
+			
+			//document.getElementById('my-div').innerHTML = '<img src="./images/pf.png">';
+			
+			outputText2_1=" b<sub>0</sub>="+b0+";  b<sub>1</sub>="+b1+"; b<sub>2</sub>="+b2+ "; a<sub>0</sub>="+a0+";  a<sub>1</sub>="+a1+";  a<sub>2</sub>="+a2+ "";
+			outputText3=" p<sub>1</sub>="+-R1+"; p<sub>2</sub>="+-R2+ " b<sub>0</sub>="+b0+"; e<sub>0</sub>="+e0+";  e<sub>1</sub>="+e1+";  A<sub>1</sub>="+A1+ "; A<sub>2</sub>="+A2+"";
+			
+			//document.getElementById("output_text2_1").innerHTML=outputText2_1;
+			//document.getElementById("output_text3").innerHTML=outputText3;
+			}
+			}
+			}
+
+////////////////////
+var countRun = 0;
+var ST = [];///store sample time for tf display
+var icount1=false,icount2=false,icount3=false,icount4=false,icount5=false,icount6=false;
+function IIM(){
+	console.log(countRun);
+	countRun++;
+	var outputText4;
+	var outputText4_1;
+	
+	if(countRun==1){
+	 //document.getElementById('tfbody3').style.display = "block";
+	 
+	 icount1=true;
+	 icount2=false;
+	 icount3=false;
+	 icount4=false;
+	 icount5=false;
+	 icount6=false;
+	 
+	 document.getElementById('DiscD').style.visibility = "visible";
+	 
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			ST.push(T);
+           	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2;
+			 */
+			document.getElementById('tfn19').value = d0;
+			document.getElementById('tfn20').value = -d1;
+			document.getElementById('tfn21').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16').value = 1;
+	        document.getElementById('tfd17').value = -c1;
+			document.getElementById('tfd18').value = c2;
+	        
+			document.getElementById('tfT1').value = ST[0];
+			
+			outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
+			
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(A1);
+			console.log(A2);
+			console.log(d0);
+			console.log(d1);
+			console.log(d2);
+			console.log(c1);
+			console.log(c2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfn19').value = d0;
+			document.getElementById('tfn20').value = d1;
+			document.getElementById('tfn21').value = d2; 
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16').value = 1;
+	        document.getElementById('tfd17').value = -c1;
+			document.getElementById('tfd18').value = c2;  
+	        
+			document.getElementById('tfT1').value = ST[0];
+			
+			}
+			
+			else {
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfn19').value = d0;
+			document.getElementById('tfn20').value = -d1;
+			document.getElementById('tfn21').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16').value = 1;
+	        document.getElementById('tfd17').value = -c1;
+			document.getElementById('tfd18').value = c2;
+	        
+			document.getElementById('tfT1').value = ST[0];
+			
+			}
+			
+			outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
+			
+			/* document.getElementById("output_text4").innerHTML=outputText4;
+			document.getElementById("output_text4_1").innerHTML=outputText4_1; */
+			}
+	}
+	
+	if(countRun==2){
+		
+	 icount1=false;
+	 icount2=true;
+	 icount3=false;
+	 icount4=false;
+	 icount5=false;
+	 icount6=false;
+	 //document.getElementById('tfbody3').style.display = "block"; 
+	 //document.getElementById('tfbody3_1').style.display = "block"; 
+	 
+	 document.getElementById('DiscD').style.visibility = "visible";
+	 
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			ST.push(T);
+           	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2;
+			 */
+			document.getElementById('tfn19_1').value = d0;
+			document.getElementById('tfn20_1').value = -d1;
+			document.getElementById('tfn21_1').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_1').value = 1;
+	        document.getElementById('tfd17_1').value = -c1;
+			document.getElementById('tfd18_1').value = c2;
+	        
+			document.getElementById('tfT1_1').value = ST[1];
+			
+			outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
+			
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(A1);
+			console.log(A2);
+			console.log(d0);
+			console.log(d1);
+			console.log(d2);
+			console.log(c1);
+			console.log(c2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfn19_1').value = d0;
+			document.getElementById('tfn20_1').value = d1;
+			document.getElementById('tfn21_1').value = d2; 
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_1').value = 1;
+	        document.getElementById('tfd17_1').value = -c1;
+			document.getElementById('tfd18_1').value = c2;  
+	        
+			document.getElementById('tfT1_1').value = ST[1];
+			
+			}
+			
+			else {
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfn19_1').value = d0;
+			document.getElementById('tfn20_1').value = -d1;
+			document.getElementById('tfn21_1').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_1').value = 1;
+	        document.getElementById('tfd17_1').value = -c1;
+			document.getElementById('tfd18_1').value = c2;
+	        
+			document.getElementById('tfT1_1').value = ST[1];
+			
+			}
+			
+			outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
+			
+			/* document.getElementById("output_text4").innerHTML=outputText4;
+			document.getElementById("output_text4_1").innerHTML=outputText4_1; */
+			}
+	}
+	
+	if(countRun==3){
+		icount1=false;
+	 icount2=false;
+	 icount3=true;
+	 icount4=false;
+	 icount5=false;
+	 icount6=false;
+	 //document.getElementById('tfbody3').style.display = "block"; 
+	 //document.getElementById('tfbody3_1').style.display = "block"; 
+	 //document.getElementById('tfbody3_2').style.display = "block"; 
+	 
+	 document.getElementById('DiscD').style.visibility = "visible";
+	 
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			ST.push(T);
+           	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2;
+			 */
+			document.getElementById('tfn19_2').value = d0;
+			document.getElementById('tfn20_2').value = -d1;
+			document.getElementById('tfn21_2').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_2').value = 1;
+	        document.getElementById('tfd17_2').value = -c1;
+			document.getElementById('tfd18_2').value = c2;
+	        
+			document.getElementById('tfT1_2').value = ST[2];
+			
+			outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
+			
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(A1);
+			console.log(A2);
+			console.log(d0);
+			console.log(d1);
+			console.log(d2);
+			console.log(c1);
+			console.log(c2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfn19_2').value = d0;
+			document.getElementById('tfn20_2').value = d1;
+			document.getElementById('tfn21_2').value = d2; 
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_2').value = 1;
+	        document.getElementById('tfd17_2').value = -c1;
+			document.getElementById('tfd18_2').value = c2;  
+	        
+			document.getElementById('tfT1_2').value = ST[2];
+			
+			}
+			
+			else {
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfn19_2').value = d0;
+			document.getElementById('tfn20_2').value = -d1;
+			document.getElementById('tfn21_2').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_2').value = 1;
+	        document.getElementById('tfd17_2').value = -c1;
+			document.getElementById('tfd18_2').value = c2;
+	        
+			document.getElementById('tfT1_2').value = ST[2];
+			
+			}
+			
+			outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
+			
+			/* document.getElementById("output_text4").innerHTML=outputText4;
+			document.getElementById("output_text4_1").innerHTML=outputText4_1; */
+			}
+	}
+	
+	if(countRun==4){
+		icount1=false;
+	 icount2=false;
+	 icount3=false;
+	 icount4=true;
+	 icount5=false;
+	 icount6=false;
+	 /* document.getElementById('tfbody3').style.display = "block"; 
+	 document.getElementById('tfbody3_1').style.display = "block"; 
+	 document.getElementById('tfbody3_2').style.display = "block"; 
+	 document.getElementById('tfbody3_3').style.display = "block";  */
+	 
+	 document.getElementById('DiscD').style.visibility = "visible";
+	 
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			ST.push(T);
+           	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2;
+			 */
+			document.getElementById('tfn19_3').value = d0;
+			document.getElementById('tfn20_3').value = -d1;
+			document.getElementById('tfn21_3').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_3').value = 1;
+	        document.getElementById('tfd17_3').value = -c1;
+			document.getElementById('tfd18_3').value = c2;
+	        
+			document.getElementById('tfT1_3').value = ST[3];
+			
+			outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
+			
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(A1);
+			console.log(A2);
+			console.log(d0);
+			console.log(d1);
+			console.log(d2);
+			console.log(c1);
+			console.log(c2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfn19_3').value = d0;
+			document.getElementById('tfn20_3').value = d1;
+			document.getElementById('tfn21_3').value = d2; 
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_3').value = 1;
+	        document.getElementById('tfd17_3').value = -c1;
+			document.getElementById('tfd18_3').value = c2;  
+	        
+			document.getElementById('tfT1_3').value = ST[3];
+			
+			}
+			
+			else {
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfn19_3').value = d0;
+			document.getElementById('tfn20_3').value = -d1;
+			document.getElementById('tfn21_3').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_3').value = 1;
+	        document.getElementById('tfd17_3').value = -c1;
+			document.getElementById('tfd18_3').value = c2;
+	        
+			document.getElementById('tfT1_3').value = ST[3];
+			
+			}
+			
+			outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
+			
+			/* document.getElementById("output_text4").innerHTML=outputText4;
+			document.getElementById("output_text4_1").innerHTML=outputText4_1; */
+			}
+	}
+	
+	if(countRun==5){
+		icount1=false;
+	 icount2=false;
+	 icount3=false;
+	 icount4=false;
+	 icount5=true;
+	 icount6=false;
+	 /* document.getElementById('tfbody3').style.display = "block"; 
+	 document.getElementById('tfbody3_1').style.display = "block"; 
+	 document.getElementById('tfbody3_2').style.display = "block"; 
+	 document.getElementById('tfbody3_3').style.display = "block"; 
+	 document.getElementById('tfbody3_4').style.display = "block";  */
+	 
+	 document.getElementById('DiscD').style.visibility = "visible";
+	 
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			ST.push(T);
+           	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2;
+			 */
+			document.getElementById('tfn19_4').value = d0;
+			document.getElementById('tfn20_4').value = -d1;
+			document.getElementById('tfn21_4').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_4').value = 1;
+	        document.getElementById('tfd17_4').value = -c1;
+			document.getElementById('tfd18_4').value = c2;
+	        
+			document.getElementById('tfT1_4').value = ST[4];
+			
+			outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
+			
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(A1);
+			console.log(A2);
+			console.log(d0);
+			console.log(d1);
+			console.log(d2);
+			console.log(c1);
+			console.log(c2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfn19_4').value = d0;
+			document.getElementById('tfn20_4').value = d1;
+			document.getElementById('tfn21_4').value = d2; 
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_4').value = 1;
+	        document.getElementById('tfd17_4').value = -c1;
+			document.getElementById('tfd18_4').value = c2;  
+	        
+			document.getElementById('tfT1_4').value = ST[4];
+			
+			}
+			
+			else {
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfn19_4').value = d0;
+			document.getElementById('tfn20_4').value = -d1;
+			document.getElementById('tfn21_4').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_4').value = 1;
+	        document.getElementById('tfd17_4').value = -c1;
+			document.getElementById('tfd18_4').value = c2;
+	        
+			document.getElementById('tfT1_4').value = ST[4];
+			
+			}
+			
+			outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
+			
+			/* document.getElementById("output_text4").innerHTML=outputText4;
+			document.getElementById("output_text4_1").innerHTML=outputText4_1; */
+			}
+	}
+	
+	if(countRun==6){
+		icount1=false;
+	 icount2=false;
+	 icount3=false;
+	 icount4=false;
+	 icount5=false;
+	 icount6=true;
+	 /* document.getElementById('tfbody3').style.display = "block"; 
+	 document.getElementById('tfbody3_1').style.display = "block"; 
+	 document.getElementById('tfbody3_2').style.display = "block"; 
+	 document.getElementById('tfbody3_3').style.display = "block"; 
+	 document.getElementById('tfbody3_4').style.display = "block"; 
+	 document.getElementById('tfbody3_5').style.display = "block"; */ 
+	 
+	 document.getElementById('DiscD').style.visibility = "visible";
+	 
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			ST.push(T);
+           	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2;
+			 */
+			document.getElementById('tfn19_5').value = d0;
+			document.getElementById('tfn20_5').value = -d1;
+			document.getElementById('tfn21_5').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_5').value = 1;
+	        document.getElementById('tfd17_5').value = -c1;
+			document.getElementById('tfd18_5').value = c2;
+	        
+			document.getElementById('tfT1_5').value = ST[5];
+			
+			outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
+			
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(A1);
+			console.log(A2);
+			console.log(d0);
+			console.log(d1);
+			console.log(d2);
+			console.log(c1);
+			console.log(c2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfn19_5').value = d0;
+			document.getElementById('tfn20_5').value = d1;
+			document.getElementById('tfn21_5').value = d2; 
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_5').value = 1;
+	        document.getElementById('tfd17_5').value = -c1;
+			document.getElementById('tfd18_5').value = c2;  
+	        
+			document.getElementById('tfT1_5').value = ST[5];
+			
+			}
+			
+			else {
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfn19_5').value = d0;
+			document.getElementById('tfn20_5').value = -d1;
+			document.getElementById('tfn21_5').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfd16_5').value = 1;
+	        document.getElementById('tfd17_5').value = -c1;
+			document.getElementById('tfd18_5').value = c2;
+	        
+			document.getElementById('tfT1_5').value = ST[5];
+			
+			}
+			
+			outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+"";
+			
+			/* document.getElementById("output_text4").innerHTML=outputText4;
+			document.getElementById("output_text4_1").innerHTML=outputText4_1; */
+			}
+	}
+	
+	if(icount1==true && bcount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+	}
+	if(icount2==true && bcount1==false && icount1==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+	}
+	if(icount3==true && bcount1==false && icount1==false && icount2==false && icount4==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+	}
+	
+	if(icount4==true && bcount1==false && icount1==false && icount2==false && icount3==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+	}
+	if(icount5==true && bcount1==false && icount1==false && icount2==false && icount3==false && icount4==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody3_4').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody4_4').style.display = "block";
+	}
+	if(icount6==true && bcount1==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody3_4').style.display = "block";
+		document.getElementById('tfbody3_5').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody4_4').style.display = "block";
+		document.getElementById('tfbody4_5').style.display = "block";
+	}
+	
+	if(bcount1==true && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(bcount2==true && bcount1==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	if(bcount3==true && bcount1==false && bcount2==false && bcount4==false && bcount5==false && bcount6==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+	}
+	
+	if(bcount4==true && bcount1==false && bcount2==false && bcount3==false && bcount5==false && bcount6==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+	}
+	if(bcount5==true && bcount1==false && bcount2==false && bcount3==false && bcount4==false && bcount6==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody5_4').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+		document.getElementById('tfbody6_4').style.display = "block";
+	}
+	if(bcount6==true && bcount1==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody5_4').style.display = "block";
+		document.getElementById('tfbody5_5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+		document.getElementById('tfbody6_4').style.display = "block";
+		document.getElementById('tfbody6_5').style.display = "block";
+	}
+	
+	if(icount1==true && bcount1==true && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(icount2==true && bcount1==true && icount1==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(icount3==true && bcount1==true && icount1==false && icount2==false && icount4==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(icount4==true && bcount1==true && icount1==false && icount2==false && icount3==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(icount5==true && bcount1==true && icount1==false && icount2==false && icount3==false && icount4==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody3_4').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody4_4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	
+	if(icount1==true && bcount2==true && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		//document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		//document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	
+	if(icount2==true && bcount2==true && icount1==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	if(icount3==true && bcount2==true && icount1==false && icount2==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	if(icount4==true && bcount2==true && icount1==false && icount2==false && icount3==false && icount5==false && icount6==false && bcount1==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	if(icount1==true && bcount3==true && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount2==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+	}
+	if(icount2==true && bcount3==true && icount1==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount2==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+	}
+	if(icount3==true && bcount3==true && icount1==false && icount2==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount2==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+	}
+	if(icount1==true && bcount4==true && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount2==false && bcount3==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+	}
+	if(icount2==true && bcount4==true && icount1==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount2==false && bcount3==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+	}
+	if(icount1==true && bcount5==true && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount2==false && bcount3==false && bcount4==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody5_4').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+		document.getElementById('tfbody6_4').style.display = "block";
+	}
+	
+	
+}
+var incr1 =0,incr2=0;
+function IIMF(){
+	var outputText5;
+	var outputText5_1;
+	incr1=1;
+	/* if(incr1==1 && incr2==1){
+		//document.getElementById("run3").style.display="block";
+		document.getElementById("run32").style.display="block";
+		
+		//document.getElementById("run4").style.display="block";
+		document.getElementById("run42").style.display="block";
+		
+	//document.getElementById("run5").style.display="block";
+	//document.getElementById("run52").style.display="block";
+	
+	//document.getElementById("run6").style.display="none";
+	//document.getElementById("run62").style.display="none";
+	}	 */
+		
+	if(incr1==1){	
+	//document.getElementById("run3").style.display="block";
+	document.getElementById("run32").style.display="block";
+	incr2=0;
+	//document.getElementById("run5").style.display="none";
+	//document.getElementById("run52").style.display="none";
+	
+	//document.getElementById("run4").style.display="none";
+	document.getElementById("run42").style.display="none";
+	
+	//document.getElementById("run6").style.display="block";
+	//document.getElementById("run62").style.display="block";
+	}
+	if(incr2==1){	
+	//document.getElementById("run3").style.display="none";
+	document.getElementById("run32").style.display="none";
+	incr1=0;
+	//document.getElementById("run5").style.display="none";
+	//document.getElementById("run52").style.display="none";
+	
+	//document.getElementById("run4").style.display="block";
+	document.getElementById("run42").style.display="block";
+	
+	//document.getElementById("run6").style.display="block";
+	//document.getElementById("run62").style.display="block";
+	}
+	
+	if(countRun==1){
+		 icount1=true;
+	 icount2=false;
+	 icount3=false;
+	 icount4=false;
+	 icount5=false;
+	 icount6=false;
+	 //document.getElementById('tfbody4').style.display = "block"; 
+	  //document.getElementById('PlotFreq').style.display = "block";
+	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
+	   
+	  
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			
+           	
+	      
+			
+			var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2;
+			 */
+			document.getElementById('tfnf19').value = d0;
+			document.getElementById('tfnf20').value = -d1;
+			document.getElementById('tfnf21').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16').value = 1;
+	        document.getElementById('tfdf17').value = -c1;
+			document.getElementById('tfdf18').value = c2;
+	        
+			document.getElementById('tfT1f').value = ST[0];
+			
+			
+			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+""; */
+			
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(A1);
+			console.log(A2);
+			console.log(d0);
+			console.log(d1);
+			console.log(d2);
+			console.log(c1);
+			console.log(c2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfnf19').value = d0;
+			document.getElementById('tfnf20').value = d1;
+			document.getElementById('tfnf21').value = d2; 
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16').value = 1;
+	        document.getElementById('tfdf17').value = -c1;
+			document.getElementById('tfdf18').value = c2;  
+	        
+			document.getElementById('tfT1f').value = ST[0];
+			
+			}
+			
+			else {
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfnf19').value = d0;
+			document.getElementById('tfnf20').value = -d1;
+			document.getElementById('tfnf21').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16').value = 1;
+	        document.getElementById('tfdf17').value = -c1;
+			document.getElementById('tfdf18').value = c2;
+	        
+			document.getElementById('tfT1f').value = ST[0];
+			
+			}
+			
+			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+""; */
+			
+			/* document.getElementById("output_text4").innerHTML=outputText4;
+			document.getElementById("output_text4_1").innerHTML=outputText4_1; */
+			}
+	}	
+	
+	if(countRun==2){
+		 icount1=false;
+	 icount2=true;
+	 icount3=false;
+	 icount4=false;
+	 icount5=false;
+	 icount6=false;
+	 /* document.getElementById('tfbody4').style.display = "block";
+	 document.getElementById('tfbody4_1').style.display = "block"; */
+	  //document.getElementById('PlotFreq').style.display = "block";
+	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
+	   
+	  
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			
+           	
+	      
+			
+			var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2;
+			 */
+			document.getElementById('tfnf19_1').value = d0;
+			document.getElementById('tfnf20_1').value = -d1;
+			document.getElementById('tfnf21_1').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_1').value = 1;
+	        document.getElementById('tfdf17_1').value = -c1;
+			document.getElementById('tfdf18_1').value = c2;
+	        
+			document.getElementById('tfT1f_1').value = ST[1];
+			
+			
+			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+""; */
+			
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(A1);
+			console.log(A2);
+			console.log(d0);
+			console.log(d1);
+			console.log(d2);
+			console.log(c1);
+			console.log(c2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfnf19_1').value = d0;
+			document.getElementById('tfnf20_1').value = d1;
+			document.getElementById('tfnf21_1').value = d2; 
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_1').value = 1;
+	        document.getElementById('tfdf17_1').value = -c1;
+			document.getElementById('tfdf18_1').value = c2;  
+	        
+			document.getElementById('tfT1f_1').value = ST[1];
+			
+			}
+			
+			else {
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfnf19_1').value = d0;
+			document.getElementById('tfnf20_1').value = -d1;
+			document.getElementById('tfnf21_1').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_1').value = 1;
+	        document.getElementById('tfdf17_1').value = -c1;
+			document.getElementById('tfdf18_1').value = c2;
+	        
+			document.getElementById('tfT1f_1').value = ST[1];
+			
+			}
+			
+			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+""; */
+			
+			/* document.getElementById("output_text4").innerHTML=outputText4;
+			document.getElementById("output_text4_1").innerHTML=outputText4_1; */
+			}
+	}	
+	
+	if(countRun==3){
+	 /* document.getElementById('tfbody4').style.display = "block";
+	 document.getElementById('tfbody4_1').style.display = "block";
+	 document.getElementById('tfbody4_2').style.display = "block"; */
+	  //document.getElementById('PlotFreq').style.display = "block";
+	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
+	   
+	  
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			
+           	
+	      
+			
+			var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2;
+			 */
+			document.getElementById('tfnf19_2').value = d0;
+			document.getElementById('tfnf20_2').value = -d1;
+			document.getElementById('tfnf21_2').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_2').value = 1;
+	        document.getElementById('tfdf17_2').value = -c1;
+			document.getElementById('tfdf18_2').value = c2;
+	        
+			document.getElementById('tfT1f_2').value = ST[2];
+			
+			
+			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+""; */
+			
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(A1);
+			console.log(A2);
+			console.log(d0);
+			console.log(d1);
+			console.log(d2);
+			console.log(c1);
+			console.log(c2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfnf19_2').value = d0;
+			document.getElementById('tfnf20_2').value = d1;
+			document.getElementById('tfnf21_2').value = d2; 
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_2').value = 1;
+	        document.getElementById('tfdf17_2').value = -c1;
+			document.getElementById('tfdf18_2').value = c2;  
+	        
+			document.getElementById('tfT1f_2').value = ST[2];
+			
+			}
+			
+			else {
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfnf19_2').value = d0;
+			document.getElementById('tfnf20_2').value = -d1;
+			document.getElementById('tfnf21_2').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_2').value = 1;
+	        document.getElementById('tfdf17_2').value = -c1;
+			document.getElementById('tfdf18_2').value = c2;
+	        
+			document.getElementById('tfT1f_2').value = ST[2];
+			
+			}
+			
+			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+""; */
+			
+			/* document.getElementById("output_text4").innerHTML=outputText4;
+			document.getElementById("output_text4_1").innerHTML=outputText4_1; */
+			}
+	}
+	
+	if(countRun==4){
+	/*  document.getElementById('tfbody4').style.display = "block";
+	 document.getElementById('tfbody4_1').style.display = "block";
+	 document.getElementById('tfbody4_2').style.display = "block";
+	 document.getElementById('tfbody4_3').style.display = "block"; */
+	  //document.getElementById('PlotFreq').style.display = "block";
+	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
+	   
+	  
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			
+           	
+	      
+			
+			var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2;
+			 */
+			document.getElementById('tfnf19_3').value = d0;
+			document.getElementById('tfnf20_3').value = -d1;
+			document.getElementById('tfnf21_3').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_3').value = 1;
+	        document.getElementById('tfdf17_3').value = -c1;
+			document.getElementById('tfdf18_3').value = c2;
+	        
+			document.getElementById('tfT1f_3').value = ST[3];
+			
+			
+			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+""; */
+			
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(A1);
+			console.log(A2);
+			console.log(d0);
+			console.log(d1);
+			console.log(d2);
+			console.log(c1);
+			console.log(c2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfnf19_3').value = d0;
+			document.getElementById('tfnf20_3').value = d1;
+			document.getElementById('tfnf21_3').value = d2; 
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_3').value = 1;
+	        document.getElementById('tfdf17_3').value = -c1;
+			document.getElementById('tfdf18_3').value = c2;  
+	        
+			document.getElementById('tfT1f_3').value = ST[3];
+			
+			}
+			
+			else {
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfnf19_3').value = d0;
+			document.getElementById('tfnf20_3').value = -d1;
+			document.getElementById('tfnf21_3').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_3').value = 1;
+	        document.getElementById('tfdf17_3').value = -c1;
+			document.getElementById('tfdf18_3').value = c2;
+	        
+			document.getElementById('tfT1f_3').value = ST[3];
+			
+			}
+			
+			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+""; */
+			
+			/* document.getElementById("output_text4").innerHTML=outputText4;
+			document.getElementById("output_text4_1").innerHTML=outputText4_1; */
+			}
+	}
+	
+	if(countRun==5){
+	 /* document.getElementById('tfbody4').style.display = "block";
+	 document.getElementById('tfbody4_1').style.display = "block";
+	 document.getElementById('tfbody4_2').style.display = "block";
+	 document.getElementById('tfbody4_3').style.display = "block";
+	 document.getElementById('tfbody4_4').style.display = "block"; */
+	  //document.getElementById('PlotFreq').style.display = "block";
+	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
+	   
+	  
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			
+           	
+	      
+			
+			var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2;
+			 */
+			document.getElementById('tfnf19_4').value = d0;
+			document.getElementById('tfnf20_4').value = -d1;
+			document.getElementById('tfnf21_4').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_4').value = 1;
+	        document.getElementById('tfdf17_4').value = -c1;
+			document.getElementById('tfdf18_4').value = c2;
+	        
+			document.getElementById('tfT1f_4').value = ST[4];
+			
+			
+			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+""; */
+			
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(A1);
+			console.log(A2);
+			console.log(d0);
+			console.log(d1);
+			console.log(d2);
+			console.log(c1);
+			console.log(c2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfnf19_4').value = d0;
+			document.getElementById('tfnf20_4').value = d1;
+			document.getElementById('tfnf21_4').value = d2; 
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_4').value = 1;
+	        document.getElementById('tfdf17_4').value = -c1;
+			document.getElementById('tfdf18_4').value = c2;  
+	        
+			document.getElementById('tfT1f_4').value = ST[4];
+			
+			}
+			
+			else {
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfnf19_4').value = d0;
+			document.getElementById('tfnf20_4').value = -d1;
+			document.getElementById('tfnf21_4').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_4').value = 1;
+	        document.getElementById('tfdf17_4').value = -c1;
+			document.getElementById('tfdf18_4').value = c2;
+	        
+			document.getElementById('tfT1f_4').value = ST[4];
+			
+			}
+			
+			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+""; */
+			
+			/* document.getElementById("output_text4").innerHTML=outputText4;
+			document.getElementById("output_text4_1").innerHTML=outputText4_1; */
+			}
+	}
+	
+	if(countRun==6){
+	 /* document.getElementById('tfbody4').style.display = "block";
+	 document.getElementById('tfbody4_1').style.display = "block";
+	 document.getElementById('tfbody4_2').style.display = "block";
+	 document.getElementById('tfbody4_3').style.display = "block";
+	 document.getElementById('tfbody4_4').style.display = "block";
+	 document.getElementById('tfbody4_5').style.display = "block"; */
+	  //document.getElementById('PlotFreq').style.display = "block";
+	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
+	   
+	  
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			
+           	
+	      
+			
+			var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2;
+			 */
+			document.getElementById('tfnf19_5').value = d0;
+			document.getElementById('tfnf20_5').value = -d1;
+			document.getElementById('tfnf21_5').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_5').value = 1;
+	        document.getElementById('tfdf17_5').value = -c1;
+			document.getElementById('tfdf18_5').value = c2;
+	        
+			document.getElementById('tfT1f_5').value = ST[5];
+			
+			
+			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+""; */
+			
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(A1);
+			console.log(A2);
+			console.log(d0);
+			console.log(d1);
+			console.log(d2);
+			console.log(c1);
+			console.log(c2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfnf19_5').value = d0;
+			document.getElementById('tfnf20_5').value = d1;
+			document.getElementById('tfnf21_5').value = d2; 
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_5').value = 1;
+	        document.getElementById('tfdf17_5').value = -c1;
+			document.getElementById('tfdf18_5').value = c2;  
+	        
+			document.getElementById('tfT1f_5').value = ST[5];
+			
+			}
+			
+			else {
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			var c1=math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	        console.log(TA1);
+			console.log(TA2);
+			console.log(eTp1);
+			console.log(eTp2);
+	        
+			/* document.getElementById('tfn13').value = b0;
+	        document.getElementById('tfn14').value = TA1;	
+	        document.getElementById('tfn15').value = TA2;
+			
+	        document.getElementById('tfn16').value = b0;
+			document.getElementById('tfn17').value = TA1;
+			document.getElementById('tfn18').value = TA2; */
+			
+			document.getElementById('tfnf19_5').value = d0;
+			document.getElementById('tfnf20_5').value = -d1;
+			document.getElementById('tfnf21_5').value = d2;
+			
+			/* document.getElementById('tfd12').value = eTp1;
+	        document.getElementById('tfd13').value = eTp2;
+			
+			document.getElementById('tfd14').value = eTp1;
+	        document.getElementById('tfd15').value = eTp2; */
+			
+			document.getElementById('tfdf16_5').value = 1;
+	        document.getElementById('tfdf17_5').value = -c1;
+			document.getElementById('tfdf18_5').value = c2;
+	        
+			document.getElementById('tfT1f_5').value = ST[5];
+			
+			}
+			
+			/* outputText4=" b<sub>0</sub>="+b0+";  TA<sub>1</sub>="+TA1+"; TA<sub>2</sub>="+TA2+ "; e<sup>Tp<sub>1</sub></sup>="+eTp1+";  e<sup>Tp<sub>2</sub></sup>="+eTp2+"";
+			outputText4_1=" d<sub>0</sub>="+d0+"; d<sub>1</sub>="+d1+ "; d<sub>2</sub>="+d2+"; c<sub>1</sub>="+c1+";  c<sub>2</sub>="+c2+""; */
+			
+			/* document.getElementById("output_text4").innerHTML=outputText4;
+			document.getElementById("output_text4_1").innerHTML=outputText4_1; */
+			}
+	}
+	
+	if(countRun+countRunb>6){
+		alert('Experiments can be performed for six sampling times. For more experimentation, click Clear and then Run.');
+		
+	}
+			
+}
+
+ var bcount1=false;
+var	 bcount2=false;
+var	 bcount3=false;
+var	 bcount4=false;
+var	 bcount5=false;
+var	 bcount6=false;
+var countRunb=0;
+var ST1=[];
+function BTM(){
+	console.log(countRun);
+	countRunb++;
+	
+	var outputText6;
+	var outputText6_1;
+	
+	if(countRunb==1){
+		bcount1=true;
+	 bcount2=false;
+	 bcount3=false;
+	 bcount4=false;
+	 bcount5=false;
+	 bcount6=false;
+	 //document.getElementById('tfbody5').style.display = "block";
+	  document.getElementById('DiscD').style.visibility = "visible";
+	
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value; 
+			
+			ST1.push(T);
+	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfn22').value = d0;
+	        document.getElementById('tfn23').value = d1;	
+	        document.getElementById('tfn24').value = d2;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1;
+			document.getElementById('tfd21').value = c2;
+			
+            document.getElementById('tfT2').value = ST1[0];
+			
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfn22').value = d0;
+	        document.getElementById('tfn23').value = d1;	
+	        document.getElementById('tfn24').value = d2;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1;
+			document.getElementById('tfd21').value = c2;
+			
+			document.getElementById('tfT2').value = ST1[0];
+			
+			}
+			
+			
+	}
+	
+	
+	if(countRunb==2){
+		bcount1=false;
+	 bcount2=true;
+	 bcount3=false;
+	 bcount4=false;
+	 bcount5=false;
+	 bcount6=false;
+	 /* document.getElementById('tfbody5').style.display = "block";
+	 document.getElementById('tfbody5_1').style.display = "block"; */
+	  document.getElementById('DiscD').style.visibility = "visible";
+	
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value; 
+			
+			ST1.push(T);
+	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfn22_1').value = d0;
+	        document.getElementById('tfn23_1').value = d1;	
+	        document.getElementById('tfn24_1').value = d2;
+			        			
+						
+			document.getElementById('tfd19_1').value = 1;
+	        document.getElementById('tfd20_1').value = c1;
+			document.getElementById('tfd21_1').value = c2;
+			
+            document.getElementById('tfT2_1').value = ST1[1];
+			
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfn22_1').value = d0;
+	        document.getElementById('tfn23_1').value = d1;	
+	        document.getElementById('tfn24_1').value = d2;
+			        			
+						
+			document.getElementById('tfd19_1').value = 1;
+	        document.getElementById('tfd20_1').value = c1;
+			document.getElementById('tfd21_1').value = c2;
+			
+			document.getElementById('tfT2_1').value = ST1[1];
+			
+			}
+			
+			
+	}
+	
+	if(countRunb==3){
+		bcount1=false;
+	 bcount2=false;
+	 bcount3=true;
+	 bcount4=false;
+	 bcount5=false;
+	 bcount6=false;
+	 /* document.getElementById('tfbody5').style.display = "block";
+	 document.getElementById('tfbody5_1').style.display = "block";
+	 document.getElementById('tfbody5_2').style.display = "block"; */
+	  document.getElementById('DiscD').style.visibility = "visible";
+	
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value; 
+			
+			ST1.push(T);
+	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfn22_2').value = d0;
+	        document.getElementById('tfn23_2').value = d1;	
+	        document.getElementById('tfn24_2').value = d2;
+			        			
+						
+			document.getElementById('tfd19_2').value = 1;
+	        document.getElementById('tfd20_2').value = c1;
+			document.getElementById('tfd21_2').value = c2;
+			
+            document.getElementById('tfT2_2').value = ST1[2];
+			
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfn22_2').value = d0;
+	        document.getElementById('tfn23_2').value = d1;	
+	        document.getElementById('tfn24_2').value = d2;
+			        			
+						
+			document.getElementById('tfd19_2').value = 1;
+	        document.getElementById('tfd20_2').value = c1;
+			document.getElementById('tfd21_2').value = c2;
+			
+			document.getElementById('tfT2_2').value = ST1[2];
+			
+			}
+			
+			
+	}
+	
+	
+	if(countRunb==4){
+		bcount1=false;
+	 bcount2=false;
+	 bcount3=false;
+	 bcount4=true;
+	 bcount5=false;
+	 bcount6=false;
+	 /* document.getElementById('tfbody5').style.display = "block";
+	 document.getElementById('tfbody5_1').style.display = "block";
+	 document.getElementById('tfbody5_2').style.display = "block";
+	 document.getElementById('tfbody5_3').style.display = "block"; */
+	  document.getElementById('DiscD').style.visibility = "visible";
+	
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value; 
+			
+			ST1.push(T);
+	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfn22_3').value = d0;
+	        document.getElementById('tfn23_3').value = d1;	
+	        document.getElementById('tfn24_3').value = d2;
+			        			
+						
+			document.getElementById('tfd19_3').value = 1;
+	        document.getElementById('tfd20_3').value = c1;
+			document.getElementById('tfd21_3').value = c2;
+			
+            document.getElementById('tfT2_3').value = ST1[3];
+			
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfn22_3').value = d0;
+	        document.getElementById('tfn23_3').value = d1;	
+	        document.getElementById('tfn24_3').value = d2;
+			        			
+						
+			document.getElementById('tfd19_3').value = 1;
+	        document.getElementById('tfd20_3').value = c1;
+			document.getElementById('tfd21_3').value = c2;
+			
+			document.getElementById('tfT2_3').value = ST1[3];
+			
+			}
+			
+			
+	}
+	
+	
+	if(countRunb==5){
+		bcount1=false;
+	 bcount2=false;
+	 bcount3=false;
+	 bcount4=false;
+	 bcount5=true;
+	 bcount6=false;
+	 /* document.getElementById('tfbody5').style.display = "block";
+	 document.getElementById('tfbody5_1').style.display = "block";
+	 document.getElementById('tfbody5_2').style.display = "block";
+	 document.getElementById('tfbody5_3').style.display = "block";
+	 document.getElementById('tfbody5_4').style.display = "block"; */
+	  document.getElementById('DiscD').style.visibility = "visible";
+	
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value; 
+			
+			ST1.push(T);
+	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfn22_4').value = d0;
+	        document.getElementById('tfn23_4').value = d1;	
+	        document.getElementById('tfn24_4').value = d2;
+			        			
+						
+			document.getElementById('tfd19_4').value = 1;
+	        document.getElementById('tfd20_4').value = c1;
+			document.getElementById('tfd21_4').value = c2;
+			
+            document.getElementById('tfT2_4').value = ST1[4];
+			
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfn22_4').value = d0;
+	        document.getElementById('tfn23_4').value = d1;	
+	        document.getElementById('tfn24_4').value = d2;
+			        			
+						
+			document.getElementById('tfd19_4').value = 1;
+	        document.getElementById('tfd20_4').value = c1;
+			document.getElementById('tfd21_4').value = c2;
+			
+			document.getElementById('tfT2_4').value = ST1[4];
+			
+			}
+			
+			
+	}
+	
+	if(countRunb==6){
+		bcount1=false;
+	 bcount2=false;
+	 bcount3=false;
+	 bcount4=false;
+	 bcount5=false;
+	 bcount6=true;
+	 /* document.getElementById('tfbody5').style.display = "block";
+	 document.getElementById('tfbody5_1').style.display = "block";
+	 document.getElementById('tfbody5_2').style.display = "block";
+	 document.getElementById('tfbody5_3').style.display = "block";
+	 document.getElementById('tfbody5_4').style.display = "block";
+	 document.getElementById('tfbody5_5').style.display = "block"; */
+	  document.getElementById('DiscD').style.visibility = "visible";
+	
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value; 
+			
+			ST1.push(T);
+	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfn22_5').value = d0;
+	        document.getElementById('tfn23_5').value = d1;	
+	        document.getElementById('tfn24_5').value = d2;
+			        			
+						
+			document.getElementById('tfd19_5').value = 1;
+	        document.getElementById('tfd20_5').value = c1;
+			document.getElementById('tfd21_5').value = c2;
+			
+            document.getElementById('tfT2_5').value = ST1[5];
+			
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfn22_5').value = d0;
+	        document.getElementById('tfn23_5').value = d1;	
+	        document.getElementById('tfn24_5').value = d2;
+			        			
+						
+			document.getElementById('tfd19_5').value = 1;
+	        document.getElementById('tfd20_5').value = c1;
+			document.getElementById('tfd21_5').value = c2;
+			
+			document.getElementById('tfT2_5').value = ST1[5];
+			
+			}
+			
+			
+	}
+	
+	 
+	if(icount1==true && bcount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+	}
+	if(icount2==true && bcount1==false && icount1==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+	}
+	if(icount3==true && bcount1==false && icount1==false && icount2==false && icount4==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+	}
+	
+	if(icount4==true && bcount1==false && icount1==false && icount2==false && icount3==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+	}
+	if(icount5==true && bcount1==false && icount1==false && icount2==false && icount3==false && icount4==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody3_4').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody4_4').style.display = "block";
+	}
+	if(icount6==true && bcount1==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody3_4').style.display = "block";
+		document.getElementById('tfbody3_5').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody4_4').style.display = "block";
+		document.getElementById('tfbody4_5').style.display = "block";
+	}
+	
+	if(bcount1==true && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(bcount2==true && bcount1==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	if(bcount3==true && bcount1==false && bcount2==false && bcount4==false && bcount5==false && bcount6==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+	}
+	
+	if(bcount4==true && bcount1==false && bcount2==false && bcount3==false && bcount5==false && bcount6==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+	}
+	if(bcount5==true && bcount1==false && bcount2==false && bcount3==false && bcount4==false && bcount6==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody5_4').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+		document.getElementById('tfbody6_4').style.display = "block";
+	}
+	if(bcount6==true && bcount1==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && icount1==false && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody5_4').style.display = "block";
+		document.getElementById('tfbody5_5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+		document.getElementById('tfbody6_4').style.display = "block";
+		document.getElementById('tfbody6_5').style.display = "block";
+	}
+	
+	if(icount1==true && bcount1==true && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(icount2==true && bcount1==true && icount1==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(icount3==true && bcount1==true && icount1==false && icount2==false && icount4==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(icount4==true && bcount1==true && icount1==false && icount2==false && icount3==false && icount5==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(icount5==true && bcount1==true && icount1==false && icount2==false && icount3==false && icount4==false && icount6==false && bcount2==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody3_4').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody4_4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	
+	if(icount1==true && bcount2==true && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		//document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		//document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	
+	if(icount2==true && bcount2==true && icount1==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	if(icount3==true && bcount2==true && icount1==false && icount2==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	if(icount4==true && bcount2==true && icount1==false && icount2==false && icount3==false && icount5==false && icount6==false && bcount1==false && bcount3==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	if(icount1==true && bcount3==true && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount2==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+	}
+	if(icount2==true && bcount3==true && icount1==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount2==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+	}
+	if(icount3==true && bcount3==true && icount1==false && icount2==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount2==false && bcount4==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+	}
+	if(icount1==true && bcount4==true && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount2==false && bcount3==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+	}
+	if(icount2==true && bcount4==true && icount1==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount2==false && bcount3==false && bcount5==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+	}
+	if(icount1==true && bcount5==true && icount2==false && icount3==false && icount4==false && icount5==false && icount6==false && bcount1==false && bcount2==false && bcount3==false && bcount4==false && bcount6==false){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody5_4').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+		document.getElementById('tfbody6_4').style.display = "block";
+	}
+	
+}
+
+function BTMF(){
+	var outputText7;
+	var outputText7_1;
+	incr2=1;
+	/* if(incr1==1 && incr2==1){
+		//document.getElementById("run3").style.display="block";
+		document.getElementById("run32").style.display="block";
+		
+		//document.getElementById("run4").style.display="block";
+		document.getElementById("run42").style.display="block";
+		
+	//document.getElementById("run5").style.display="block";
+	//document.getElementById("run52").style.display="block";
+
+	//document.getElementById("run6").style.display="none";
+	//document.getElementById("run62").style.display="none";
+	}	 */
+		
+	if(incr2==1){	
+	//document.getElementById("run3").style.display="none";
+	document.getElementById("run32").style.display="none";
+	
+	//document.getElementById("run5").style.display="none";
+	//document.getElementById("run52").style.display="none";
+	
+	//document.getElementById("run4").style.display="block";
+	document.getElementById("run42").style.display="block";
+	incr1=0;
+	//document.getElementById("run6").style.display="block";
+	//document.getElementById("run62").style.display="block";
+	}
+	if(incr1==1){	
+	//document.getElementById("run3").style.display="block";
+	document.getElementById("run32").style.display="block";
+	incr2=0;
+	//document.getElementById("run6").style.display="block";
+	//document.getElementById("run62").style.display="block";
+	
+	//document.getElementById("run5").style.display="none";
+	//document.getElementById("run52").style.display="none";
+	
+	//document.getElementById("run4").style.display="none";
+	document.getElementById("run42").style.display="none";
+	}
+	
+	 if(countRunb==1){
+		 bcount1=true;
+	 bcount2=false;
+	 bcount3=false;
+	 bcount4=false;
+	 bcount5=false;
+	 bcount6=false;
+	 //document.getElementById('tfbody6').style.display = "block";
+	  //document.getElementById('PlotFreq').style.display = "block";
+	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
+	 
+	
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value; 
+	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfnf22').value = d0;
+	        document.getElementById('tfnf23').value = d1;	
+	        document.getElementById('tfnf24').value = d2;
+			        			
+						
+			document.getElementById('tfdf19').value = 1;
+	        document.getElementById('tfdf20').value = c1;
+			document.getElementById('tfdf21').value = c2;
+			
+			document.getElementById('tfT2f').value = ST1[0];
+				
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfnf22').value = d0;
+	        document.getElementById('tfnf23').value = d1;	
+	        document.getElementById('tfnf24').value = d2;
+			        			
+						
+			document.getElementById('tfdf19').value = 1;
+	        document.getElementById('tfdf20').value = c1;
+			document.getElementById('tfdf21').value = c2;
+			
+			document.getElementById('tfT2f').value = ST1[0];
+			
+			}
+	 
+	 }  
+	 
+	 if(countRunb==2){
+		 bcount1=false;
+	 bcount2=true;
+	 bcount3=false;
+	 bcount4=false;
+	 bcount5=false;
+	 bcount6=false;
+		 //document.getElementById('tfbody6').style.display = "block"; 
+		  //document.getElementById('tfbody6_1').style.display = "block"; 
+	  //document.getElementById('PlotFreq').style.display = "block";
+	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
+	 
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value; 
+	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfnf22_1').value = d0;
+	        document.getElementById('tfnf23_1').value = d1;	
+	        document.getElementById('tfnf24_1').value = d2;
+			        			
+						
+			document.getElementById('tfdf19_1').value = 1;
+	        document.getElementById('tfdf20_1').value = c1;
+			document.getElementById('tfdf21_1').value = c2;
+			
+			document.getElementById('tfT2f_1').value = ST1[1];
+				
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfnf22_1').value = d0;
+	        document.getElementById('tfnf23_1').value = d1;	
+	        document.getElementById('tfnf24_1').value = d2;
+			        			
+						
+			document.getElementById('tfdf19_1').value = 1;
+	        document.getElementById('tfdf20_1').value = c1;
+			document.getElementById('tfdf21_1').value = c2;
+			
+			document.getElementById('tfT2f_1').value = ST1[1];
+			
+			}
+	 
+	 }  
+	 
+	  if(countRunb==3){
+		  bcount1=false;
+	 bcount2=false;
+	 bcount3=true;
+	 bcount4=false;
+	 bcount5=false;
+	 bcount6=false;
+		  /* document.getElementById('tfbody6').style.display = "block"; 
+		  document.getElementById('tfbody6_1').style.display = "block"; 
+		  document.getElementById('tfbody6_2').style.display = "block";  */
+	  //document.getElementById('PlotFreq').style.display = "block";
+	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
+	  
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value; 
+	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfnf22_2').value = d0;
+	        document.getElementById('tfnf23_2').value = d1;	
+	        document.getElementById('tfnf24_2').value = d2;
+			        			
+						
+			document.getElementById('tfdf19_2').value = 1;
+	        document.getElementById('tfdf20_2').value = c1;
+			document.getElementById('tfdf21_2').value = c2;
+			
+			document.getElementById('tfT2f_2').value = ST1[2];
+				
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfnf22_2').value = d0;
+	        document.getElementById('tfnf23_2').value = d1;	
+	        document.getElementById('tfnf24_2').value = d2;
+			        			
+						
+			document.getElementById('tfdf19_2').value = 1;
+	        document.getElementById('tfdf20_2').value = c1;
+			document.getElementById('tfdf21_2').value = c2;
+			
+			document.getElementById('tfT2f_2').value = ST1[2];
+			
+			}
+	 
+	 }
+	 
+	 if(countRunb==4){
+		  bcount1=false;
+	 bcount2=false;
+	 bcount3=false;
+	 bcount4=true;
+	 bcount5=false;
+	 bcount6=false;
+		  /* document.getElementById('tfbody6').style.display = "block"; 
+		  document.getElementById('tfbody6_1').style.display = "block"; 
+		  document.getElementById('tfbody6_2').style.display = "block";  */
+	  //document.getElementById('PlotFreq').style.display = "block";
+	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
+	  
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value; 
+	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfnf22_3').value = d0;
+	        document.getElementById('tfnf23_3').value = d1;	
+	        document.getElementById('tfnf24_3').value = d2;
+			        			
+						
+			document.getElementById('tfdf19_3').value = 1;
+	        document.getElementById('tfdf20_3').value = c1;
+			document.getElementById('tfdf21_3').value = c2;
+			
+			document.getElementById('tfT2f_3').value = ST1[3];
+				
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfnf22_3').value = d0;
+	        document.getElementById('tfnf23_3').value = d1;	
+	        document.getElementById('tfnf24_3').value = d2;
+			        			
+						
+			document.getElementById('tfdf19_3').value = 1;
+	        document.getElementById('tfdf20_3').value = c1;
+			document.getElementById('tfdf21_3').value = c2;
+			
+			document.getElementById('tfT2f_3').value = ST1[3];
+			
+			}
+	 
+	 }
+	 
+	 if(countRunb==5){
+		  bcount1=false;
+	 bcount2=false;
+	 bcount3=false;
+	 bcount4=false;
+	 bcount5=true;
+	 bcount6=false;
+		  /* document.getElementById('tfbody6').style.display = "block"; 
+		  document.getElementById('tfbody6_1').style.display = "block"; 
+		  document.getElementById('tfbody6_2').style.display = "block";  */
+	  //document.getElementById('PlotFreq').style.display = "block";
+	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
+	  
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value; 
+	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfnf22_4').value = d0;
+	        document.getElementById('tfnf23_4').value = d1;	
+	        document.getElementById('tfnf24_4').value = d2;
+			        			
+						
+			document.getElementById('tfdf19_4').value = 1;
+	        document.getElementById('tfdf20_4').value = c1;
+			document.getElementById('tfdf21_4').value = c2;
+			
+			document.getElementById('tfT2f_4').value = ST1[4];
+				
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfnf22_4').value = d0;
+	        document.getElementById('tfnf23_4').value = d1;	
+	        document.getElementById('tfnf24_4').value = d2;
+			        			
+						
+			document.getElementById('tfdf19_4').value = 1;
+	        document.getElementById('tfdf20_4').value = c1;
+			document.getElementById('tfdf21_4').value = c2;
+			
+			document.getElementById('tfT2f_4').value = ST1[4];
+			
+			}
+	 
+	 }
+	 
+	  if(countRunb==6){
+		  bcount1=false;
+	 bcount2=false;
+	 bcount3=false;
+	 bcount4=false;
+	 bcount5=false;
+	 bcount6=true;
+		  /* document.getElementById('tfbody6').style.display = "block"; 
+		  document.getElementById('tfbody6_1').style.display = "block"; 
+		  document.getElementById('tfbody6_2').style.display = "block";  */
+	  //document.getElementById('PlotFreq').style.display = "block";
+	  document.getElementById('PlotFreqLog').style.display = "block";
+	  document.getElementById('cbtn').style.display = "block";
+	  
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value; 
+	
+	        var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfnf22_5').value = d0;
+	        document.getElementById('tfnf23_5').value = d1;	
+	        document.getElementById('tfnf24_5').value = d2;
+			        			
+						
+			document.getElementById('tfdf19_5').value = 1;
+	        document.getElementById('tfdf20_5').value = c1;
+			document.getElementById('tfdf21_5').value = c2;
+			
+			document.getElementById('tfT2f_5').value = ST1[5];
+				
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			document.getElementById('tfnf22_5').value = d0;
+	        document.getElementById('tfnf23_5').value = d1;	
+	        document.getElementById('tfnf24_5').value = d2;
+			        			
+						
+			document.getElementById('tfdf19_5').value = 1;
+	        document.getElementById('tfdf20_5').value = c1;
+			document.getElementById('tfdf21_5').value = c2;
+			
+			document.getElementById('tfT2f_5').value = ST1[5];
+			
+			}
+	 
+	 }
+	 
+	 if(countRun+countRunb>6){
+		alert('Experiments can be performed for six sampling times. For more experimentation, click Clear and then Run.');
+	}
+	 
+}
+
+//////////////////////////////////////show block the divs////////////////////////
+
+function showDivs(){
+	if(icount1==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+	}
+	if(icount2==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+	}
+	if(icount3==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+	}
+	
+	if(icount4==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+	}
+	if(icount5==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody3_4').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody4_4').style.display = "block";
+	}
+	if(icount6==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody3_4').style.display = "block";
+		document.getElementById('tfbody3_5').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody4_4').style.display = "block";
+		document.getElementById('tfbody4_5').style.display = "block";
+	}
+	
+	if(bcount1==true){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(bcount2==true){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	if(bcount3==true){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+	}
+	
+	if(bcount4==true){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+	}
+	if(bcount5==true){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody5_4').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+		document.getElementById('tfbody6_4').style.display = "block";
+	}
+	if(bcount6==true){
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody5_4').style.display = "block";
+		document.getElementById('tfbody5_5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+		document.getElementById('tfbody6_4').style.display = "block";
+		document.getElementById('tfbody6_5').style.display = "block";
+	}
+	
+	if(icount1==true && bcount1==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(icount2==true && bcount1==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(icount3==true && bcount1==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(icount4==true && bcount1==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	if(icount5==true && bcount1==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody3_4').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody4_4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+	}
+	
+	if(icount1==true && bcount2==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	
+	if(icount2==true && bcount2==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	if(icount3==true && bcount2==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	if(icount4==true && bcount2==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody3_3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody4_3').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+	}
+	if(icount1==true && bcount3==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+	}
+	if(icount2==true && bcount3==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+	}
+	if(icount3==true && bcount3==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody3_2').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody4_2').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+	}
+	if(icount1==true && bcount4==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+	}
+	if(icount2==true && bcount4==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody3_1').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody4_1').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+	}
+	if(icount1==true && bcount5==true){
+		document.getElementById('tfbody3').style.display = "block";
+		document.getElementById('tfbody4').style.display = "block";
+		document.getElementById('tfbody5').style.display = "block";
+		document.getElementById('tfbody5_1').style.display = "block";
+		document.getElementById('tfbody5_2').style.display = "block";
+		document.getElementById('tfbody5_3').style.display = "block";
+		document.getElementById('tfbody5_4').style.display = "block";
+		document.getElementById('tfbody6').style.display = "block";
+		document.getElementById('tfbody6_1').style.display = "block";
+		document.getElementById('tfbody6_2').style.display = "block";
+		document.getElementById('tfbody6_3').style.display = "block";
+		document.getElementById('tfbody6_4').style.display = "block";
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var dataOPPoints=[];	///for plotting chart linear
+var dataOPPoints1=[];
+
+
+
+
+///LOG SCALE
+//////////////////////// IIM 
+var dArray1s=[],dArray2s=[],dArray3s=[],dArray4s=[];///for method comparison
+var DatafTss = [],DatapTss = [], inc1s=0, spstore1s=[];///for iim Ts compare
+var chart1s, chart2s;
+var counter = 0;///counter
+var D1=[],D2=[],D3=[],D4=[],D5=[],D6=[];///magnitude
+var D11=[],D22=[],D33=[],D44=[],D55=[],D66=[];///phase
+var lt1 =[],lt2=[],lt3=[],lt4=[],lt5=[],lt6=[];///legends compare
+var t1=[],t2=[],t3=[],t4=[],t5=[],t6=[];///sampling time compare
+
+function IIM_frs(){
+	counter++;
+	var dataOPPoints1s=[];	///for plotting chart
+    var dataOPPoints2s=[];
+	
+	        var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			spstore1s.push(T);
+			lgTxt = "IIM";			
+	
+	var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+			
+			if (part < 0)
+			{
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var den=math.multiply(2,a0);
+			R11=math.divide(num1,den);
+			
+			R1 = math.complex(math.divide(math.round(math.multiply(R11.re,1000)),1000),math.divide(math.round(math.multiply(R11.im,1000)),1000));
+			
+			console.log(R1);
+			console.log(R1.re);
+			console.log(R1.im);
+			
+			var num2=math.add(-a1,-part1);
+			
+			R2=math.complex(R1.re,-R1.im);
+			
+			console.log(R2);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c0 = 1;
+	var c1=-math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=-math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	
+	console.log(d0);
+	console.log(d1);
+	console.log(d2);
+	console.log(c0);
+	console.log(c1);
+	console.log(c2);		
+				
+			}
+			
+			else {
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			var d = R1;
+			
+			var e0=math.add(b1,math.multiply(2,b0,d));
+			var e1=math.subtract(b2,math.multiply(b0,d,d));
+			
+			var A1=math.add(b1,math.multiply(2,b0,d));
+			var A2=math.add(b2,math.multiply(b1,d),math.multiply(b0,d,d));
+			
+			var b0a0 = math.divide(math.round(math.multiply(math.divide(b0,a0),100)),100);
+			
+			var Tb0a0 = math.divide(math.round(math.multiply(math.multiply(T,b0a0),100)),100);
+			
+			
+			var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+			var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+			var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+			var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+			
+			var c0=1;
+			var c1=math.divide(math.round(math.multiply(math.multiply(2,eTp2),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+			
+			var d0=math.divide(math.round(math.multiply(math.add(Tb0a0,TA1),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.multiply(-2,b0,eTp2,T),-math.multiply(TA1,eTp1),math.multiply(T,TA2,eTp1)),1000)),1000);
+			
+			//var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+			//var d1=math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+			
+			var d2=0;//math.divide(math.round(math.multiply(math.multiply(b0,eTp1,eTp2),1000)),1000);//0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+			}
+			
+			else {
+			
+			
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			var e0=math.subtract(b1,math.multiply(a1,math.divide(b0,a0)));
+			var e1=math.subtract(b2,math.multiply(a2,math.divide(b0,a0)));
+			var A1=math.divide(math.add(math.multiply(e0,R1),e1),math.subtract(R1,R2));
+			var A2=math.divide(math.add(math.multiply(e0,R2),e1),math.subtract(R2,R1));
+	
+	var TA1=math.divide(math.round(math.multiply(math.multiply(T,A1),1000)),1000);
+	var TA2=math.divide(math.round(math.multiply(math.multiply(T,A2),1000)),1000);
+	var eTp1=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R1)),1000)),1000);
+	var eTp2=math.divide(math.round(math.multiply(math.exp(math.multiply(T,R2)),1000)),1000);
+	var c0 = 1;
+	var c1=-math.divide(math.round(math.multiply(math.add(eTp1,eTp2),1000)),1000);
+	var c2=math.divide(math.round(math.multiply(math.multiply(eTp1,eTp2),1000)),1000);
+	var d0=math.divide(math.round(math.multiply(math.add(TA1,TA2),1000)),1000);
+	var d1=-math.divide(math.round(math.multiply(math.add(math.multiply(TA1,eTp2),math.multiply(TA2,eTp1)),1000)),1000);
+	var d2=0;//math.divide(math.round(math.multiply(math.multiply(math.multiply(T,0.5,b0),eTp1,eTp2),100)),100);
+	
+	console.log(d0);
+	console.log(d1);
+	console.log(d2);
+	console.log(c0);
+	console.log(c1);
+	console.log(c2);	
+	        
+			}	
+			}
+	
+	var maxf = 10;//100;
+	var minf = 0.01;
+	
+		
+    var yop = new Array();	///continous data output result storing
+	var phase = [];
+	
+	var	f = math.multiply(minf,1);
+	while(f<=maxf){
+	
+	f1=f;
+	
+	var w = math.multiply(2,math.pi,f);
+	
+	var i = math.sqrt(-1);
+	var num1 = math.multiply(math.complex(math.cos(math.multiply(2,w)),math.sin(math.multiply(w,2))),d0);
+	var num2 = math.multiply(math.complex(math.cos(math.multiply(1,w)),math.sin(math.multiply(w,1))),d1);
+	var num = math.add(num1,num2,d2);
+	
+	var den1 = math.multiply(math.complex(math.cos(math.multiply(2,w)),math.sin(math.multiply(w,2))),c0);
+	var den2 = math.multiply(math.complex(math.cos(math.multiply(1,w)),math.sin(math.multiply(w,1))),c1);
+	var den = math.add(den1,den2,c2);
+	
+	var yy = math.abs(math.divide(num,den));
+	
+	//var ww = math.log(w,10);
+	
+	yop[f] = math.multiply(20,math.log(yy,10));
+	dataOPPoints1s.push({x:(w), y:(yop[f])});//dataOPPoints1s.push({x:(w), y:(yop[f])});///magnitude part
+	
+	if(counter==1){
+		D1= dataOPPoints1s;
+		t1= T;
+		lt1 = lgTxt;
+	}
+	if(counter==2){
+		D2= dataOPPoints1s;
+		t2= T;
+		lt2 = lgTxt;
+	}
+	if(counter==3){
+		D3= dataOPPoints1s;
+		t3= T;
+		lt3 = lgTxt;
+	}
+	if(counter==4){
+		D4= dataOPPoints1s;
+		t4= T;
+		lt4 = lgTxt;
+	}
+	
+	if(counter==5){
+		D5= dataOPPoints1s;
+		t5= T;
+		lt5 = lgTxt;
+	}
+	if(counter==6){
+		D6= dataOPPoints1s;
+		t6= T;
+		lt6 = lgTxt;
+	}
+	//dArray1s = dataOPPoints1s;
+	DatafTss['ar'+inc1s]= dataOPPoints1s;	
+	
+	var w1 = math.multiply(2,math.pi,f);
+	
+	var y = math.divide(num,den).re;
+	
+	var imagy = math.divide(num,den).im;
+	
+	var fraction = math.divide(imagy,y);
+	
+	phase[f]=math.multiply(math.divide(180,math.pi),math.atan2(imagy,y));
+	
+	dataOPPoints2s.push({x:(w), y:(phase[f])});//dataOPPoints2s.push({x:(w), y:(phase[f])});//phase part
+	//dArray2s = dataOPPoints2s;
+	if(counter==1){
+		D11 = dataOPPoints2s;
+		t1= T;
+		lt1 = lgTxt;
+	}
+	if(counter==2){
+		D22 = dataOPPoints2s;
+		t2= T;
+		lt2 = lgTxt;
+	}
+	if(counter==3){
+		D33 = dataOPPoints2s;
+		t3= T;
+		lt3 = lgTxt;
+	}
+	if(counter==4){
+		D44 = dataOPPoints2s;
+		t4= T;
+		lt4 = lgTxt;
+	}
+	if(counter==5){
+		D55 = dataOPPoints2s;
+		t5= T;
+		lt5 = lgTxt;
+	}
+	if(counter==6){
+		D66 = dataOPPoints2s;
+		t6= T;
+		lt6 = lgTxt;
+	}
+	
+	DatapTss['ar'+inc1s]= dataOPPoints2s;
+	
+	if(counter>1){
+		document.getElementById('cbtn').disabled = false;
+	}
+	
+	f=math.add(f,0.01);
+}
+inc1s++;
+document.getElementById('plotbucket').style.display  = "block"; 
+ 
+document.getElementById('chartContainer1').style.display  = "block"; 	
+	 chart1s = new CanvasJS.Chart("chartContainer1",
+    {
+      animationEnabled: true,
+	  zoomEnabled:true,
+	  zoomType: "xy",
+		  animationDuration: 10000, 
+	  title:{
+      text: "Magnitude Response"
+	  
+      },
+	  
+	  axisX:{
+        interlacedColor: "#dddbdb",
+        title: "Frequency(rad/s)",
+		logarithmic:true,
+		maximum:10,//maxf,
+		minimum:0.1,//minf,
+      },
+    axisY: 
+	      {/////output Y axis
+		  //logarithmic: true,
+            title: "Magnitude in dB",
+			
+			///maximum:0.3,
+        },
+		
+	data:[ 
+      {        
+        type: "spline",
+		color:"black",
+        dataPoints:dataOPPoints1s
+	
+       }]
+       
+	});
+
+	chart1s.render();	
+	
+document.getElementById('chartContainer2').style.display  = "block"; 	
+	 chart2s = new CanvasJS.Chart("chartContainer2",
+    {
+      animationEnabled: true,
+	  zoomEnabled:true,
+	  zoomType: "xy",
+		  animationDuration: 10000, 
+	  title:{
+      text: "Phase Response"
+	  
+      },
+	  
+	  axisX:{
+        interlacedColor: "#dddbdb",
+        title: "Frequency (rad/s)",
+		logarithmic:true,
+		maximum:10,//maxf,
+		minimum:0.1,//minf,
+      },
+    axisY: 
+	      {/////output Y axis
+		  //logarithmic: true,
+            title: "Phase in degrees",
+			
+			///maximum:0.3,
+        },
+		
+	data:[ 
+      {        
+        type: "spline",
+		color:"black",
+		showInLegend: true,
+		legendText: "IIM (T ="+ " " + T+")",
+        dataPoints:dataOPPoints2s
+	
+       }]
+       
+	});
+
+	chart2s.render();
+
+document.getElementById("okb").style.display = "block";
+document.getElementById("exportChart").style.display = "block";
+
+}
+
+///LINEAR SCALE SAMPLING TIME COMPARISON IIM
+var dFreq_IIM=[]; dPh_IIM=[];
+ function IIM_fr_Ts() {
+    var sampleTime = $('#Ts').val();
+
+    // Initialize color palettes
+    CanvasJS.addColorSet("MagPlot", ["#a2b9bc", "#b2ad7f", "#878f99", "#6b5b95", "#feb236", "#d64161", "#ff7b25", "#d6cbd3", "#eca1a6", "#bdcebe"]);
+    CanvasJS.addColorSet("PhPlot", ["#ada397", "#feb236", "#d64161", "#ff7b25", "#d6cbd3", "#eca1a6", "#bdcebe", "#e3eaa7", "#d5e1df", "#b5e7a0"]);
+    
+    // Clear previous chart data arrays
+    chart1.options.data = [];
+    chart2.options.data = [];
+
+    for (var dnum = 0; dnum <= inc1-1; dnum++) {
+        dFreq_IIM[dnum] = DatafTs["ar" + dnum];
+        dPh_IIM[dnum] = DatapTs["ar" + dnum];
+        
+        if (inc1>=0) {
+            var stime = spstore1[dnum];
+            
+            // Magnitude IIM Chart
+            chart1.options.data.push({
+                type: "spline",
+                //showInLegend: true,
+                //name: "Run " + dnum,
+                toolTipContent:
+                    "<b>Sampling Time</b> = " + stime+' '+ "sec"+"<br/>"+
+	  "<b>Time:</b> {x}" +"<br/>"+
+  "<b>Magnitude:</b> {y}" ,
+                dataPoints: dFreq_IIM[dnum]
+            });
+
+            // Angle Chart
+            chart2.options.data.push({
+                type: "spline",
+                //showInLegend: true,
+                //name: "Run " + dnum,
+                toolTipContent:
+                    "<b>Sampling Time</b> = " + stime+' '+ "sec"+"<br/>"+
+	  "<b>Time:</b> {x}" +"<br/>"+
+  "<b>Phase:</b> {y}" ,
+                dataPoints: dPh_IIM[dnum]
+            });
+
+        }
+    }
+
+    chart1.render();
+    chart2.render();
+    
+	document.getElementById("okb").style.display = "block";
+    document.getElementById("exportChart").style.display = "block";
+
+}
+///LOG SCALE SAMPLING TIME COMPARISON IIM
+var dFreq_IIMs=[]; dPh_IIMs=[];
+ function IIM_fr_Tss() {
+    var sampleTime = $('#Ts').val();
+
+    // Initialize color palettes
+    CanvasJS.addColorSet("MagPlot", ["#a2b9bc", "#b2ad7f", "#878f99", "#6b5b95", "#feb236", "#d64161", "#ff7b25", "#d6cbd3", "#eca1a6", "#bdcebe"]);
+    CanvasJS.addColorSet("PhPlot", ["#ada397", "#feb236", "#d64161", "#ff7b25", "#d6cbd3", "#eca1a6", "#bdcebe", "#e3eaa7", "#d5e1df", "#b5e7a0"]);
+    
+    // Clear previous chart data arrays
+    chart1s.options.data = [];
+    chart2s.options.data = [];
+
+    for (var dnum = 0; dnum <= inc1s-1; dnum++) {
+        dFreq_IIMs[dnum] = DatafTss["ar" + dnum];
+        dPh_IIMs[dnum] = DatapTss["ar" + dnum];
+        
+        if (inc1s>=0) {
+            var stime = spstore1s[dnum];
+            
+            // Magnitude IIM Chart
+            chart1s.options.data.push({
+                type: "spline",
+                //showInLegend: true,
+                //name: "Run " + dnum,
+                toolTipContent:
+                    "<b>Sampling Time</b> = " + stime+' '+ "sec"+"<br/>"+
+	  "<b>Time:</b> {x}" +"<br/>"+
+  "<b>Magnitude:</b> {y}" ,
+                dataPoints: dFreq_IIMs[dnum]
+            });
+
+            // Angle Chart
+            chart2s.options.data.push({
+                type: "spline",
+                //showInLegend: true,
+                //name: "Run " + dnum,
+                toolTipContent:
+                    "<b>Sampling Time</b> = " + stime+' '+ "sec"+"<br/>"+
+	  "<b>Time:</b> {x}" +"<br/>"+
+  "<b>Phase:</b> {y}" ,
+                dataPoints: dPh_IIMs[dnum]
+            });
+
+        }
+    }
+
+    chart1s.render();
+    chart2s.render();
+    
+	document.getElementById("okb").style.display = "block";
+    document.getElementById("exportChart").style.display = "block";
+
+}
+
+
+///LOG SCALE
+var chart3s, chart4s;
+var DatafTs2s = [],DatapTs2s = [], inc2s=0, spstore2s=[];///for btm Ts compare
+
+function BTM_frs(){
+	counter++;
+	var dataOPPoints3s=[];	///for plotting chart
+    var dataOPPoints4s=[];
+	
+	         var b0 = document.getElementById('b_0').value;			
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+            var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+	        var T = document.getElementById('Ts').value;
+			spstore2s.push(T);
+			lgTxt = "BTM";
+	
+	       /*  var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),100)),100);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),100)),100);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),100)),100);
+			
+			var c0=1;
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),100)),100);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),100)),100);
+	
+	console.log(d0);
+	console.log(d1);
+	console.log(d2);
+	console.log(c0);
+	console.log(c1);
+	console.log(c2); */
+	
+	var part=math.subtract(math.pow(a1,2),math.multiply(4,a0,a2));
+	
+			var part1=math.sqrt(part);
+			var num1=math.add(-a1,part1);
+			var num2=math.add(-a1,-part1);
+			var den=math.multiply(2,a0);
+			R1=math.divide(num1,den);
+			R2=math.divide(num2,den);
+			
+			if (R1==R2){
+				
+			/* var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k); */
+			
+			/* var d0=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,2),T),b2),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,-8),math.multiply(T,T)),math.multiply(b2,2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.add(math.divide(math.multiply(b0,4),math.multiply(T,T)),math.divide(math.multiply(b1,-2),T),b2),1000)),1000);
+			
+			var c0=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var c1=math.divide(math.round(math.multiply(math.add(math.divide(-8,math.multiply(T,T)),math.multiply(R1,R1,2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.add(math.divide(4,math.multiply(T,T)),math.divide(math.multiply(R1,-4),T),math.multiply(R1,R1)),1000)),1000);
+			
+			var d0c0 = math.divide(math.round(math.multiply(math.divide(d0,c0),1000)),1000);
+			var d1c0 = math.divide(math.round(math.multiply(math.divide(d1,c0),1000)),1000);
+			var d2c0 = math.divide(math.round(math.multiply(math.divide(d2,c0),1000)),1000);
+			
+			var c1c0 = math.divide(math.round(math.multiply(math.divide(c1,c0),1000)),1000);
+			var c2c0 = math.divide(math.round(math.multiply(math.divide(c2,c0),1000)),1000);
+			
+			
+			document.getElementById('tfn22').value = d0c0;
+	        document.getElementById('tfn23').value = d1c0;	
+	        document.getElementById('tfn24').value = d2c0;
+			        			
+						
+			document.getElementById('tfd19').value = 1;
+	        document.getElementById('tfd20').value = c1c0;
+			document.getElementById('tfd21').value = c2c0; */
+			
+			var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c0=1;
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			
+				
+			}
+			
+			else{
+	
+	        var k=math.divide(2,T);
+			var b0k2=math.multiply(b0,math.pow(k,2));
+			var b1k=math.multiply(b1,k);
+			var a0k2=math.multiply(a0,math.pow(k,2));
+			var a1k=math.multiply(a1,k);
+			
+			var d0=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*b2,2*b0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var d2=math.divide(math.round(math.multiply(math.divide(math.add(b0k2,-b1k,b2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c0=1;
+			var c1=math.divide(math.round(math.multiply(math.divide(math.subtract(2*a2,2*a0k2),math.add(a0k2,a1k,a2)),1000)),1000);
+			var c2=math.divide(math.round(math.multiply(math.divide(math.add(a0k2,-a1k,a2),math.add(a0k2,a1k,a2)),1000)),1000);
+			
+			}
+	
+	var maxf = 10;//100;
+	var minf = 0.01;
+	
+		
+    var yop = new Array();	///continous data output result storing
+	var phase = [];
+	
+	var	f = minf;
+	while(f<=maxf){
+	
+	f1=f;
+	
+	var w = math.multiply(2,math.pi,f);
+	
+	var i = math.sqrt(-1);
+	
+	var num1 = math.multiply(math.complex(math.cos(math.multiply(2,w)),math.sin(math.multiply(w,2))),d0);
+	var num2 = math.multiply(math.complex(math.cos(math.multiply(1,w)),math.sin(math.multiply(w,1))),d1);
+	var num = math.add(num1,num2,d2);
+	
+	var den1 = math.multiply(math.complex(math.cos(math.multiply(2,w)),math.sin(math.multiply(w,2))),c0);
+	var den2 = math.multiply(math.complex(math.cos(math.multiply(1,w)),math.sin(math.multiply(w,1))),c1);
+	var den = math.add(den1,den2,c2);
+	
+	var yy = math.abs(math.divide(num,den));
+	
+	yop[f] = math.multiply(20,math.log(yy,10));
+	
+	//var ww = math.log(w,10);
+	
+	dataOPPoints3s.push({x:(w), y:(yop[f])});//dataOPPoints3s.push({x:(w), y:(yop[f])});///magnitude part
+	
+	if(counter==1){
+		D1= dataOPPoints3s;
+		t1= T;
+		lt1 = lgTxt;
+	}
+	if(counter==2){
+		D2= dataOPPoints3s;
+		t2= T;
+		lt2 = lgTxt;
+	}
+	if(counter==3){
+		D3= dataOPPoints3s;
+		t3= T;
+		lt3 = lgTxt;
+	}
+	if(counter==4){
+		D4= dataOPPoints3s;
+		t4= T;
+		lt4 = lgTxt;
+	}
+	
+	if(counter==5){
+		D5= dataOPPoints3s;
+		t5= T;
+		lt5 = lgTxt;
+	}
+	if(counter==6){
+		D6= dataOPPoints3s;
+		t6= T;
+		lt6 = lgTxt;
+	}
+	//dArray3s = dataOPPoints3s;
+	DatafTs2s['ar'+inc2s]= dataOPPoints3s;
+	
+	var w1 = math.multiply(2,math.pi,f);
+	
+	var y = math.divide(num,den).re;
+	
+	var imagy = math.divide(num,den).im;
+	
+	var fraction = math.divide(imagy,y);
+	
+	phase[f]=math.multiply(math.divide(180,math.pi),math.atan2(imagy,y));
+	
+	dataOPPoints4s.push({x:(w), y:(phase[f])});//dataOPPoints4s.push({x:(w), y:(phase[f])});//phase part
+	
+	if(counter==1){
+		D11= dataOPPoints4s;
+		t1= T;
+		lt1 = lgTxt;
+	}
+	if(counter==2){
+		D22= dataOPPoints4s;
+		t2= T;
+		lt2 = lgTxt;
+	}
+	if(counter==3){
+		D33= dataOPPoints4s;
+		t3= T;
+		lt3 = lgTxt;
+	}
+	if(counter==4){
+		D44= dataOPPoints4s;
+		t4= T;
+		lt4 = lgTxt;
+	}
+	
+	if(counter==5){
+		D55= dataOPPoints4s;
+		t5= T;
+		lt5 = lgTxt;
+	}
+	if(counter==6){
+		D66= dataOPPoints4s;
+		t6= T;
+		lt6 = lgTxt;
+	}
+	//dArray4s = dataOPPoints4s;
+	DatapTs2s['ar'+inc2s]= dataOPPoints4s;
+	if(counter>1){
+		document.getElementById('cbtn').disabled = false;
+	}
+	
+	f=math.add(f,0.01);
+}
+inc2s++;
+document.getElementById('plotbucket').style.display  = "block"; 
+ 
+document.getElementById('chartContainer1').style.display  = "block"; 	
+	chart3s = new CanvasJS.Chart("chartContainer1",
+    {      
+	  
+	  animationEnabled: true,
+	  zoomEnabled:true,
+	  zoomType: "xy",
+		  animationDuration: 10000, 
+	  title:{
+      text: "Magnitude Response"
+	  
+      },
+	  
+	  axisX:{
+        interlacedColor: "#dddbdb",
+        title: "Frequency(rad/s)",
+		logarithmic:true,
+		maximum:10,//maxf,
+		minimum:0.1,//minf,
+      },
+    axisY: 
+	      {/////output Y axis
+		  //logarithmic: true,
+            title: "Magnitude in dB",
+			
+			///maximum:0.3,
+        },
+		
+	data:[ 
+      {        
+        type: "spline",
+		color:"#ed2c4e",
+		dataPoints:dataOPPoints3s
+	
+       }]
+       
+	});
+
+	chart3s.render();	
+	
+document.getElementById('chartContainer2').style.display  = "block"; 	
+	 chart4s = new CanvasJS.Chart("chartContainer2",
+    {
+      animationEnabled: true,
+	  zoomEnabled:true,
+	  zoomType: "xy",
+		  animationDuration: 10000, 
+	  title:{
+      text: "Phase Response"
+	  
+      },
+	  
+	  axisX:{
+        interlacedColor: "#dddbdb",
+        title: "Frequency (rad/s)",
+		logarithmic:true,
+		maximum:10,//maxf,
+		minimum:0.1,//minf,
+      },
+    axisY: 
+	      {/////output Y axis
+		  //logarithmic: true,
+            title: "Phase in degrees",
+			
+			///maximum:0.3,
+        },
+		
+	data:[ 
+      {        
+        type: "spline",
+		color:"#ed2c4e",
+		showInLegend: true,
+		legendText: "BTM (T ="+ " " + T+")",
+        dataPoints:dataOPPoints4s
+
+       }]
+       
+	});
+
+	chart4s.render();
+
+//document.getElementById("okb").style.display = "block";
+document.getElementById("exportChart").style.display = "block";
+
+}
+
+
+
+
+
+///LOG SCALE TS COMPARISON PLOTS
+function comparePlots_Ts_log(){
+	if(document.getElementById('mchk').value == 1){
+		IIM_fr_Tss();
+	}
+	if(document.getElementById('mchk').value == 2){
+		BTM_fr_Tss();
+	}
+	
+}
+
+
+
+//////DXP EDIT
+///Method comparison LOG SCALE
+function comparePlots_log(){
+	
+	if(counter<=6){
+	var maxf = 10;//50;
+	var minf = 0.1;
+	
+document.getElementById('plotbucket').style.display  = "block"; 
+ 
+document.getElementById('chartContainer1').style.display  = "block"; 	
+	var chart5s = new CanvasJS.Chart("chartContainer1",
+    {
+      animationEnabled: true,
+	  zoomEnabled:true,
+	  zoomType: "xy",
+		  animationDuration: 10000, 
+	  title:{
+      text: "Magnitude Response"
+	  
+      },
+	  
+	  axisX:{
+        interlacedColor: "#dddbdb",
+        title: "Frequency(rad/s)",
+		logarithmic:true,
+		maximum:maxf,
+		minimum:minf,
+      },
+    axisY:[ 
+	      {//data array1 axis
+		  //logarithmic: true,D1 axis
+            title: "Magnitude in dB",
+			
+			///maximum:0.3,
+        },
+		{///D2 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D3 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D4 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D5 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D6 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		
+		],
+		
+	data:[ 
+      {        
+        type: "spline",
+		color:"black",
+		//showInLegend: true,
+		//legendText: lgTxt+"("+,
+        dataPoints:D1
+	
+       },
+	  {        
+        type: "spline",
+		color:"red",
+		//showInLegend: true,
+		//legendText: "BTM Magnitude",
+        dataPoints:D2
+	
+       },   
+{        
+        type: "spline",
+		color:"blue",
+		//showInLegend: true,
+		//legendText: "BTM Magnitude",
+        dataPoints:D3
+	
+       },  
+{        
+        type: "spline",
+		color:"green",
+		//showInLegend: true,
+		//legendText: "BTM Magnitude",
+        dataPoints:D4
+	
+       },  
+{        
+        type: "spline",
+		color:"brown",
+		//showInLegend: true,
+		//legendText: "BTM Magnitude",
+        dataPoints:D5
+	
+       }, 
+{        
+        type: "spline",
+		color:"cyan",
+		//showInLegend: true,
+		//legendText: "BTM Magnitude",
+        dataPoints:D6
+	
+       },   	   
+	   
+	   
+	   ]
+       
+	});
+
+	chart5s.render();	
+	 
+document.getElementById('chartContainer2').style.display  = "block"; 	
+	var chart6s = new CanvasJS.Chart("chartContainer2",
+    {
+      animationEnabled: true,
+	  zoomEnabled:true,
+	  zoomType: "xy",
+		  animationDuration: 10000, 
+	  title:{
+      text: "Phase Response"
+	  
+      },
+	  
+	  axisX:{
+        interlacedColor: "#dddbdb",
+        title: "Frequency(rad/s)",
+		logarithmic:true,
+		maximum:maxf,
+		minimum:minf,
+      },
+    axisY: 
+	      [ 
+	      {//data array1 axis
+		  //logarithmic: true,D11 axis
+            title: "Phase in degrees",
+			
+			///maximum:0.3,
+        },
+		{///D22 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D33 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D44 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D55 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///D66 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		
+		],
+		
+	data:[ 
+      {        
+        type: "spline",
+		color:"black",
+		showInLegend: true,
+		legendText: lt1+"(T ="+ " " +t1+")",
+        dataPoints:D11
+	
+       },
+	  {        
+        type: "spline",
+		color:"red",
+		showInLegend: true,
+		legendText: lt2+"(T ="+ " " +t2+")",
+        dataPoints:D22
+	
+       },   
+{        
+        type: "spline",
+		color:"blue",
+		showInLegend: true,
+		legendText: lt3+"(T ="+ " " +t3+")",
+        dataPoints:D33
+	
+       },  
+{        
+        type: "spline",
+		color:"green",
+		showInLegend: true,
+		legendText: lt4+"(T ="+ " " +t4+")",
+        dataPoints:D44
+	
+       },  
+{        
+        type: "spline",
+		color:"brown",
+		showInLegend: true,
+		legendText: lt5+"(T ="+ " " +t5+")",
+        dataPoints:D55
+	
+       }, 
+{        
+        type: "spline",
+		color:"cyan",
+		showInLegend: true,
+		legendText: lt6+"(T ="+ " " +t6+")",
+        dataPoints:D66
+	
+       },   	
+	   
+	   ]
+       
+	});
+
+	chart6s.render();
+	
+//document.getElementById("okb").style.display = "block";
+document.getElementById("exportChart").style.display = "block";	
+	}
+	if(counter>6){
+		alert('Up to six plots can be compared. For more comparisons, click Clear and then Run.');
+	}
+	
+}
+
+///code for downloading the plot area
+function saveAs(uri, filename) {
+
+    var link = document.createElement('a');
+
+    if (typeof link.download === 'string') {
+
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+
+    } else {
+
+        window.open(uri);
+
+    }
+}
+
+function saveImg(){
+html2canvas(document.querySelector('#plotbucket')).then(function(canvas) {
+
+        saveAs(canvas.toDataURL(), 'Plot.png');
+    }); 
+	
+	
+}
+
+function hidePlot(){
+	document.getElementById('plotbucket').style.display="none";
+	document.getElementById('exportChart').style.display="none";
+	document.getElementById('okb').style.display="none";
+}

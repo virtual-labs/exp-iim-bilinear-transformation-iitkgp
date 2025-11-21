@@ -2,38 +2,61 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "Q1. The transfer function of a system is given by <img src='./images/poq11.png'/> . What is the frequency response of the system at <img src='./images/poq12.png'/>?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "1",
+        "b": "0.9",
+        "c": "10",
+        "d": "0"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q2. Given the transfer function of a discrete-time system: <br/><img src='./images/poq21.png'/> <br/> What is the frequency response of the system at <img src='./images/poq22.png'/>?",
+      "answers": {
+        "a": "<img src='./images/poq2a.png'/>",
+        "b": "<img src='./images/poq2b.png'/>",
+        "c": "<img src='./images/poq2c.png'/>",
+        "d": "<img src='./images/poq2d.png'/>"
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q3. For the system with a frequency response <img src='./images/poq31.png'/> , what is the magnitude of the frequency response at <img src='./images/poq32.png'/>?",
+      "answers": {
+        "a": "1",
+        "b": "0.6",
+        "c": "0.8",
+        "d": "1.25"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q4. Given the discrete transfer function: <img src='./images/poq41.png'/> . What is the magnitude of the frequency response at <img src='./images/poq32.png'/>?",
+      "answers": {
+        "a": "2",
+        "b": "0.5",
+        "c": "1",
+        "d": "0.25"
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Q5. Given the transfer function of a discrete-time system: <img src='./images/poq51.png'/> . What is the angle of the frequency response <img src='./images/poq52.png'/> at <img src='./images/poq22.png'/>?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "30 &deg;",
+        "b": "60 &deg;",
+        "c": "-45 &deg;",
+        "d": "45 &deg;"
+        
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
     }
+    
   ]
 }
